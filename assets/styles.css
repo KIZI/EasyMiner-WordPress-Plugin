@@ -1,0 +1,8 @@
+#ea-dialog {
+    display: none;
+}
+
+#ea-tb-container {
+    overflow-y: scroll;
+    height: 400px;
+}
