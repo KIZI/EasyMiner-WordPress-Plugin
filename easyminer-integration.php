@@ -1,9 +1,8 @@
 <?php
 /**
-Plugin Name:  EasyMiner Integration 2
+Plugin Name:  EasyMiner Integration
 Plugin URI:   https://github.com/PetrNovak96/easyminer-integration
 Description:  EasyMiner Integration Plugin for WordPress
-Version:      0.1
 Author:       Petr Novák
 License:      Apache
 License URI:  http://www.apache.org/licenses/LICENSE-2.0.html
