@@ -1,124 +1,62 @@
-( function( blocks, editor, i18n, element, components, _ ) {
-    var el = element.createElement;
-    var RichText = editor.RichText;
-    var MediaUpload = editor.MediaUpload;
+( function( blocks, editor, i18n, element, components, _, plugins) {
 
+    // var registerPlugin = plugins.registerPlugin;
+    // var el = element.createElement;
+    var tridy = {
+        'button': true,
+        'thickbox': true
+    };
 
-    blocks.registerBlockType( 'easyminer-integration/example', {
-        title: i18n.__( 'Example: Recipe Card', 'gutenberg-examples' ),
-        icon: 'index-card',
-        category: 'layout',
-        attributes: {
-            title: {
-                type: 'array',
-                source: 'children',
-                selector: 'h2',
-            },
-            mediaID: {
-                type: 'number',
-            },
-            mediaURL: {
-                type: 'string',
-                source: 'attribute',
-                selector: 'img',
-                attribute: 'src',
-            },
-            ingredients: {
-                type: 'array',
-                source: 'children',
-                selector: '.ingredients',
-            },
-            instructions: {
-                type: 'array',
-                source: 'children',
-                selector: '.steps',
-            },
-        },
-        edit: function( props ) {
-            var attributes = props.attributes;
+    var el = wp.element.createElement;
+    var Fragment = wp.element.Fragment;
+    var Button = wp.element.Button;
+    var PluginSidebar = wp.editPost.PluginSidebar;
+    var PluginSidebarMoreMenuItem = wp.editPost.PluginSidebarMoreMenuItem;
+    var registerPlugin = wp.plugins.registerPlugin;
 
-            var onSelectImage = function( media ) {
-                return props.setAttributes( {
-                    mediaURL: media.url,
-                    mediaID: media.id,
-                } );
-            };
-
-            return (
-                el( 'div', { className: props.className },
-                    el( RichText, {
-                        tagName: 'h2',
-                        inline: true,
-                        placeholder: i18n.__( 'Write Recipe title…', 'gutenberg-examples' ),
-                        value: attributes.title,
-                        onChange: function( value ) {
-                            props.setAttributes( { title: value } );
-                        },
-                    } ),
-                    el( 'div', { className: 'recipe-image' },
-                        el( MediaUpload, {
-                            onSelect: onSelectImage,
-                            allowedTypes: 'image',
-                            value: attributes.mediaID,
-                            render: function( obj ) {
-                                return el( components.Button, {
-                                        className: attributes.mediaID ? 'image-button' : 'button button-large',
-                                        onClick: obj.open
-                                    },
-                                    ! attributes.mediaID ? i18n.__( 'Upload Image', 'gutenberg-examples' ) : el( 'img', { src: attributes.mediaURL } )
-                                );
-                            }
-                        } )
-                    ),
-                    el( 'h3', {}, i18n.__( 'Ingredients', 'gutenberg-examples' ) ),
-                    el( RichText, {
-                        tagName: 'ul',
-                        multiline: 'li',
-                        placeholder: i18n.__( 'Write a list of ingredients…', 'gutenberg-examples' ),
-                        value: attributes.ingredients,
-                        onChange: function( value ) {
-                            props.setAttributes( { ingredients: value } );
-                        },
-                        className: 'ingredients',
-                    } ),
-                    el( 'h3', {}, i18n.__( 'Instructions', 'gutenberg-examples' ) ),
-                    el( RichText, {
-                        tagName: 'div',
-                        inline: false,
-                        placeholder: i18n.__( 'Write instructions…', 'gutenberg-examples' ),
-                        value: attributes.instructions,
-                        onChange: function( value ) {
-                            props.setAttributes( { instructions: value } );
-                        },
-                    } )
-                )
-            );
-        },
-        save: function( props ) {
-            var attributes = props.attributes;
-
-            return (
-                el( 'div', { className: props.className },
-                    el( RichText.Content, {
-                        tagName: 'h2', value: attributes.title
-                    } ),
-                    attributes.mediaURL &&
-                    el( 'div', { className: 'recipe-image' },
-                        el( 'img', { src: attributes.mediaURL } ),
-                    ),
-                    el( 'h3', {}, i18n.__( 'Ingredients', 'gutenberg-examples' ) ),
-                    el( RichText.Content, {
-                        tagName: 'ul', className: 'ingredients', value: attributes.ingredients
-                    } ),
-                    el( 'h3', {}, i18n.__( 'Instructions', 'gutenberg-examples' ) ),
-                    el( RichText.Content, {
-                        tagName: 'div', className: 'steps', value: attributes.instructions
-                    } ),
-                )
-            );
-        },
+    registerPlugin( 'easyminer-integration', {
+        icon: 'analytics',
+        render: EasyminerIntegrationButton,
     } );
-
+    
+    function EasyminerIntegrationButton() {
+        // return
+        // el(
+        //     'a',
+        //     {
+        //         classNames: tridy,
+        //         id: 'ea-tlacitko',
+        //         href: '#TB_inline?&width=600&height=550&inlineId=ea-dialog'
+        //     }
+        // );
+        return el(
+            Fragment,
+            {},
+            el(
+                PluginSidebarMoreMenuItem,
+                {
+                    target: 'sidebar-name',
+                },
+                'My Sidebar'
+            ),
+            el(
+                PluginSidebar,
+                {
+                    name: 'sidebar-name',
+                    title: 'My Sidebar',
+                },
+                el(
+                    'a',
+                    {
+                        class: 'button thickbox',
+                        id: 'ea-tlacitko',
+                        href: '#TB_inline?&width=600&height=550&inlineId=ea-dialog'
+                    },
+                    'Content'
+                )
+            )
+        );
+    }
 } )(
     window.wp.blocks,
     window.wp.editor,
@@ -126,5 +64,6 @@
     window.wp.element,
     window.wp.components,
     window._,
+    window.wp.plugins
 );
 

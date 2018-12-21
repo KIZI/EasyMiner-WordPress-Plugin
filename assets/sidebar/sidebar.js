@@ -35,6 +35,7 @@ const { registerPlugin } = wp.plugins;
 
 const MyTreeSelect = withState( {
 	page: 'p21',
+	page: 'p21',
 } )( ( { page, setState } ) => (
 	<TreeSelect
 		label="Parent page"

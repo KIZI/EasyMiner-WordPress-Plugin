@@ -10,14 +10,10 @@ class PopUpContent
     public function __construct()
     {
         $this->seznamReportu = new SeznamReportu();
-        $this->ajax_akce();
-        add_action('admin_footer', array($this, 'render_obsah'));
-    }
 
-    public function ajax_akce()
-    {
         add_action('wp_ajax_zobraz_reporty', array($this, 'zobraz_reporty'));
         add_action('wp_ajax_zobraz_pravidla', array($this, 'zobraz_pravidla'));
+        add_action('admin_footer', array($this, 'render_obsah'));
     }
 
     public function zobraz_reporty()

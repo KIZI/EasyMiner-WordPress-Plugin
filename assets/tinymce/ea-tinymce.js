@@ -45,5 +45,3 @@ jQuery('#ea-tlacitko').click(function(){
 });
 
 
-
-

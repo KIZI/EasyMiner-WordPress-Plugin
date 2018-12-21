@@ -7,12 +7,7 @@ class ShortCodes
 {
 	public function __construct()
 	{
-		$this->register_shortcodes();
-	}
-
-	public function register_shortcodes()
-	{
-		add_shortcode( 'clicktotweet', array($this, 'clicktotweet_callback') );
+        add_shortcode( 'clicktotweet', array($this, 'clicktotweet_callback') );
 	}
 
 	public function clicktotweet_callback( $attr ) {

@@ -6,7 +6,6 @@ Description:  EasyMiner Integration Plugin for WordPress
 Author:       Petr Novák
 License:      Apache
 License URI:  http://www.apache.org/licenses/LICENSE-2.0.html
-
  */
 
 // Exit if accessed directly.

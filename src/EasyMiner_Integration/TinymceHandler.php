@@ -10,14 +10,9 @@ class TinymceHandler extends AssetsHandler
     public function __construct()
     {
         parent::__construct();
-        $this->init();
-        $this->popUpContent = new PopUpContent();
-    }
-
-    public function init()
-    {
         add_action('media_buttons', array($this, 'tlacitko_callback'), 15);
         add_action('wp_enqueue_media', array($this, 'zaradit_javascript'));
+        $this->popUpContent = new PopUpContent();
     }
 
     public function tlacitko_callback()
