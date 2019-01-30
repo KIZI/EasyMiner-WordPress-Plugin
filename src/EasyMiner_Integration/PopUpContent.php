@@ -1,6 +1,5 @@
 <?php
 
-
 namespace EasyMiner_Integration;
 
 class PopUpContent
