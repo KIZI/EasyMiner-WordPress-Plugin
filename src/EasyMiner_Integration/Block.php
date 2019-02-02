@@ -14,7 +14,6 @@ class Block
 	{
 		if ( function_exists( 'register_block_type' ) ) {
 
-
             register_block_type( 'easyminer-integration/easyminer_report', array(
                 'style' => 'easyminer_integration-css',
                 'editor_script' => 'easyminer_integration-js',
@@ -30,11 +29,10 @@ class Block
 
 	public function block_callback($attr)
 	{
-		extract( $attr );
-		if ( isset( $tweet ) ) {
-			$theme = ( $theme === true ? 'click-to-tweet-alt' : 'click-to-tweet' );
-			$shortcode_string = '[clicktotweet tweet="%s" tweetsent="%s" button="%s" theme="%s"]';
-			return sprintf( $shortcode_string, $tweet, $tweetsent, $button, $theme );
-		}
+	    //TODO: extract nepoužívat
+//		extract( $attr );
+//        $shortcode_string = '[clicktotweet tweet="%s" tweetsent="%s" button="%s" theme="%s"]';
+//        return sprintf( $shortcode_string, $tweet, $tweetsent, $button, $theme );
+        return 'easyminer report';
 	}
 }

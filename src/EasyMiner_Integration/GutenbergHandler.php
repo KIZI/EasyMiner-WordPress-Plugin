@@ -26,7 +26,6 @@ class GutenbergHandler extends AssetsHandler
             array('wp-blocks', 'wp-i18n', 'wp-element', 'wp-editor',
                 'underscore', 'wp-edit-post', 'wp-plugins', 'wp-data', 'wp-compose'),
             filemtime( plugin_dir_path( $this->plugin_file ) . '/assets/entry.js'));
-
     }
 
 }
