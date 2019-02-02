@@ -14,27 +14,17 @@ class Block
 	{
 		if ( function_exists( 'register_block_type' ) ) {
 
-			register_block_type(
-				'easyminer-integration/click-to-tweet', [
-					'render_callback' => array($this, 'block_callback'),
-					'attributes'	  => array(
-						'tweet'	 => array(
-							'type' => 'string',
-						),
-						'tweetsent' => array(
-							'type' => 'string',
-						),
-						'button'	=> array(
-							'type'	=> 'string',
-							'default' => 'Tweet',
-						),
-						'theme'	 => array(
-							'type'	=> 'boolean',
-							'default' => false,
-						),
-					),
-				]
-			);
+
+            register_block_type( 'easyminer-integration/easyminer_report', array(
+                'style' => 'easyminer_integration-css',
+                'editor_script' => 'easyminer_integration-js',
+                'render_callback' => array($this, 'block_callback'),
+                'attributes' => array(
+                    'atribut1' => array(
+                        'type' => 'string'
+                    ),
+                )
+            ) );
 		}
 	}
 
