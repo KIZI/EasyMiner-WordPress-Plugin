@@ -14,7 +14,7 @@ class Assets extends AssetsHandler
     public function obecne_styly()
     {
         wp_enqueue_style(
-            'easyminer_integration-css2',
+            'easyminer_integration-css',
             plugins_url( '/assets/styles.css', $this->plugin_file )
         );
     }

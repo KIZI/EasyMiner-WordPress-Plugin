@@ -24,12 +24,12 @@ class GutenbergHandler extends AssetsHandler
         }
 
         wp_enqueue_script('easyminer_integration-js',
-            plugins_url( '/assets/entry.js', $this->plugin_file),
+            plugins_url( '/assets/block/block.js', $this->plugin_file),
             array('wp-blocks', 'wp-i18n', 'wp-element', 'wp-editor',
                 'underscore', 'wp-edit-post', 'wp-plugins', 'wp-data', 'wp-compose'),
             filemtime( plugin_dir_path( $this->plugin_file ) . '/assets/entry.js'));
 
-        register_block_type( 'easyminer-integration/example', array(
+        register_block_type( 'easyminer-integration/easyminer_report', array(
             'style' => 'easyminer_integration-css',
             'editor_script' => 'easyminer_integration-js',
         ) );
