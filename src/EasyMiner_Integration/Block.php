@@ -14,25 +14,37 @@ class Block
 	{
 		if ( function_exists( 'register_block_type' ) ) {
 
-            register_block_type( 'easyminer-integration/easyminer_report', array(
-                'style' => 'easyminer_integration-css',
-                'editor_script' => 'easyminer_integration-js',
-                'render_callback' => array($this, 'block_callback'),
-                'attributes' => array(
-                    'atribut1' => array(
-                        'type' => 'string'
-                    ),
-                )
-            ) );
+			register_block_type(
+				'easyminer-integration/click-to-tweet', [
+					'render_callback' => array($this, 'block_callback'),
+					'attributes'	  => array(
+						'tweet'	 => array(
+							'type' => 'string',
+						),
+						'tweetsent' => array(
+							'type' => 'string',
+						),
+						'button'	=> array(
+							'type'	=> 'string',
+							'default' => 'Tweet',
+						),
+						'theme'	 => array(
+							'type'	=> 'boolean',
+							'default' => false,
+						),
+					),
+				]
+			);
 		}
 	}
 
 	public function block_callback($attr)
 	{
-	    //TODO: extract nepoužívat
-//		extract( $attr );
-//        $shortcode_string = '[clicktotweet tweet="%s" tweetsent="%s" button="%s" theme="%s"]';
-//        return sprintf( $shortcode_string, $tweet, $tweetsent, $button, $theme );
-        return 'easyminer report';
+		extract( $attr );
+		if ( isset( $tweet ) ) {
+			$theme = ( $theme === true ? 'click-to-tweet-alt' : 'click-to-tweet' );
+			$shortcode_string = '[clicktotweet tweet="%s" tweetsent="%s" button="%s" theme="%s"]';
+			return sprintf( $shortcode_string, $tweet, $tweetsent, $button, $theme );
+		}
 	}
 }
