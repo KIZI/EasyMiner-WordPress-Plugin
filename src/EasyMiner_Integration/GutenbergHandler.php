@@ -19,28 +19,19 @@ class GutenbergHandler extends AssetsHandler
 
     public function register_assets()
     {
-        if ( ! function_exists( 'register_block_type' ) ) {
-            return;
-        }
-
-        wp_enqueue_script('easyminer_integration-js',
-            plugins_url( '/assets/entry.js', $this->plugin_file),
-            array('wp-blocks', 'wp-i18n', 'wp-element', 'wp-editor',
-                'underscore', 'wp-edit-post', 'wp-plugins', 'wp-data', 'wp-compose'),
-            filemtime( plugin_dir_path( $this->plugin_file ) . '/assets/entry.js'));
-
-        register_block_type( 'easyminer-integration/example', array(
-            'style' => 'easyminer_integration-css',
-            'editor_script' => 'easyminer_integration-js',
-        ) );
-
-        wp_register_script('my-custom-format-js',
-                            plugins_url('assets/my-custom-format.js',
+        wp_register_script('easyminer-integration-report-format-js',
+                            plugins_url('assets/gutenberg/ea-report-format.js',
                                 $this->plugin_file),
                             array('wp-rich-text'));
+
+        wp_register_script('easyminer-integration-gutenberg-js',
+            plugins_url('assets/gutenberg/script.js',
+                $this->plugin_file),
+            array('jquery'));
     }
 
     function my_custom_format_enqueue_assets_editor() {
-        wp_enqueue_script('my-custom-format-js');
+        wp_enqueue_script('easyminer-integration-report-format-js');
+        wp_enqueue_script('easyminer-integration-gutenberg-js');
     }
 }

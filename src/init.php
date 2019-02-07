@@ -8,8 +8,9 @@ use EasyMiner_Integration as EI;
 
 $rewriter = new EI\Rewriter();
 $shortcodes = new EI\ShortCodes();
-$block = new EI\Block();
-$gutenberg = new EI\GutenbergHandler();
-$tinymce = new EI\TinymceHandler();
+
 $assets = new EI\Assets();
 //$reportTyp = new EI\EasyminerReportType();
+if(use_block_editor_for_post($post)){
+    //Block editor is active for this post.
+}
