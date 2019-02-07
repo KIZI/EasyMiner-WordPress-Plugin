@@ -6,14 +6,11 @@ namespace EasyMiner_Integration;
 class TinymceHandler extends AssetsHandler
 {
 
-
     public function __construct()
     {
         parent::__construct();
-        if (!$this->is_gutenberg_page()) {
             add_action('media_buttons', array($this, 'tlacitko_callback'), 15);
             add_action('wp_enqueue_media', array($this, 'zaradit_javascript'));
-        }
     }
 
     public function tlacitko_callback()

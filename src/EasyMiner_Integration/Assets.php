@@ -20,7 +20,8 @@ class Assets extends AssetsHandler
 
         wp_enqueue_script(
             'easyminer-integration-js',
-            plugins_url('/assets/script.js', $this->plugin_file)
+            plugins_url('/assets/script.js', $this->plugin_file), array('jquery'),
+            '1.0', true
         );
     }
 }

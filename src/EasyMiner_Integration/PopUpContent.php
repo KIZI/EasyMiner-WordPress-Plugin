@@ -29,13 +29,13 @@ class PopUpContent
             </p>
             <?php
         }
-        wp_die(); //takto musí končit každá ajax akce
+        wp_die();
     }
 
     public function zobraz_pravidla()
     {
         echo $this->seznamReportu->getPravidla($_GET['id']);
-        wp_die(); //takto musí končit každá ajax akce
+        wp_die();
     }
 
     public function render_obsah()

@@ -6,6 +6,7 @@ function zobrazReporty() {
             action: 'zobraz_reporty',
         },
         success:function (data) {
+            console.log("success");
             $('#ea-tb-container').html(data);
         },
         error:function (errorThrown) {
@@ -36,7 +37,6 @@ $( document ).delegate( ".ea-report-polozka", "click", function() {
 
 $( document ).delegate( "#ea-button-vlozit", "click", function() {
     //wp.data.dispatch('core/editor').insert('sdsasd');
-
     //
     // var content = "Test content";
     // var el = wp.element.createElement;
@@ -47,6 +47,7 @@ $( document ).delegate( "#ea-button-vlozit", "click", function() {
     // });
     // wp.data.dispatch('core/editor').insertBlocks(insertedBlock);
 
-    onVlozitReporty();
+    tinyMCE.activeEditor.execCommand('mceInsertContent', 0,
+        'easyminer_report');
     tb_remove();
 });

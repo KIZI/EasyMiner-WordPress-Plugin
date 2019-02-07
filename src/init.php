@@ -13,3 +13,4 @@ $assets = new EI\Assets();
 //$reportTyp = new EI\EasyminerReportType();
 $tinymce = new EI\TinymceHandler();
 $gutenberg = new EI\GutenbergHandler();
+$popUpContent = new EI\PopUpContent();

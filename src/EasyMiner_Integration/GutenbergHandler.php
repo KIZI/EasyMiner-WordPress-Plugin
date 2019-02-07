@@ -21,6 +21,7 @@ class GutenbergHandler extends AssetsHandler
 
     public function register_assets()
     {
+
         wp_register_script('easyminer-integration-report-format-js',
                             plugins_url('assets/gutenberg/ea-report-format.js',
                                 $this->plugin_file),

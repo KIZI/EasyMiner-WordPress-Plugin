@@ -2,7 +2,6 @@
 
 namespace EasyMiner_Integration;
 
-
 class EasyminerReportType
 {
     public function __construct()
