@@ -34,20 +34,3 @@ $( document ).delegate( ".ea-report-polozka", "click", function() {
         }
     });
 });
-
-$( document ).delegate( "#ea-button-vlozit", "click", function() {
-    //wp.data.dispatch('core/editor').insert('sdsasd');
-    //
-    // var content = "Test content";
-    // var el = wp.element.createElement;
-    // var name = 'core/paragraph';
-    // // var name = 'core/html';
-    // insertedBlock = wp.blocks.createBlock(name, {
-    //     content: content,
-    // });
-    // wp.data.dispatch('core/editor').insertBlocks(insertedBlock);
-
-    tinyMCE.activeEditor.execCommand('mceInsertContent', 0,
-        'easyminer_report');
-    tb_remove();
-});
