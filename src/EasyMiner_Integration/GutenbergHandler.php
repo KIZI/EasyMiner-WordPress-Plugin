@@ -15,6 +15,8 @@ class GutenbergHandler extends AssetsHandler
         add_action('init', array($this, 'register_assets'));
         add_action('enqueue_block_editor_assets',
             array($this, 'my_custom_format_enqueue_assets_editor'));
+        add_action( 'admin_enqueue_scripts', array( &$this, 'thickbox' ) );
+
     }
 
     public function register_assets()
@@ -33,5 +35,9 @@ class GutenbergHandler extends AssetsHandler
     function my_custom_format_enqueue_assets_editor() {
         wp_enqueue_script('easyminer-integration-report-format-js');
         wp_enqueue_script('easyminer-integration-gutenberg-js');
+    }
+
+    public function thickbox() {
+        add_thickbox();
     }
 }
