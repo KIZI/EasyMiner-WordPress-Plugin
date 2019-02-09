@@ -20,6 +20,10 @@ $( document ).delegate( ".ea-report-polozka", "click", function() {
     checkbox.checked = !vybran;
 });
 
+$( document ).delegate( ".ea-polozka-checkbox", "click", function() {
+    this.checked = !this.checked;
+});
+
 function zobrazObsah(id) {
    // var id = this.id.replace(/ea-report-polozka-/gi, '');
     $.ajax({

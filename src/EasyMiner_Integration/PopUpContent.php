@@ -30,7 +30,7 @@ class PopUpContent
             <li class='ea-report-polozka'
                 id='ea-report-polozka-<?php echo $id ?>'
             >
-                <input type="checkbox">
+                <input type="checkbox" class="ea-polozka-checkbox">
                 <a class='row-title'><?php echo $nazev?></a>
             </li>
             <?php
