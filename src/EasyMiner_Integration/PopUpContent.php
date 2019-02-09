@@ -9,7 +9,6 @@ class PopUpContent
     public function __construct()
     {
         $this->seznamReportu = new SeznamReportu();
-
         add_action('wp_ajax_zobraz_reporty', array($this, 'zobraz_reporty'));
         add_action('wp_ajax_zobraz_pravidla', array($this, 'zobraz_pravidla'));
         add_action('admin_footer', array($this, 'render_obsah'));
@@ -21,13 +20,12 @@ class PopUpContent
         <div id="checkboxes">
             <ul id="ea-reports-list">
         <?php
-
         foreach($this->seznamReportu->getReporty() as $report)
         {
             $nazev = $report->post_title;
             $id = $report->ID;
             ?>
-            <li class='ea-report-polozka'
+            <li class='ea-report-polozka ea-nevybrana'
                 id='ea-report-polozka-<?php echo $id ?>'
             >
                 <input type="checkbox" class="ea-polozka-checkbox">
@@ -35,7 +33,6 @@ class PopUpContent
             </li>
             <?php
         }
-
         ?>
             </ul>
         </div>

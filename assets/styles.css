@@ -8,5 +8,18 @@
 }
 
 .ea-report-polozka {
-    margin: 20px;
+    margin: 10px;
+    padding: 10px;
+    border-color: #0A246A;
+    border: 2px;
+    border-style: solid;
+    border-radius: 3px;
+}
+
+.ea-vybrana {
+    background-color: rgba(80, 217, 255, 0.33);
+}
+
+.ea-nevybrana {
+    background-color: rgba(80, 217, 255, 0.03);
 }

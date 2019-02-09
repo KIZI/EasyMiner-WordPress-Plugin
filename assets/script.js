@@ -17,6 +17,13 @@ function zobrazReporty() {
 $( document ).delegate( ".ea-report-polozka", "click", function() {
     var checkbox = this.getElementsByTagName('input')[0];
     var vybran = checkbox.checked;
+    if (vybran) {
+        this.classList.remove('ea-vybrana');
+        this.classList.add('ea-nevybrana');
+    } else {
+        this.classList.remove('ea-nevybrana');
+        this.classList.add('ea-vybrana');
+    }
     checkbox.checked = !vybran;
 });
 
