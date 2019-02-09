@@ -1,4 +1,6 @@
 function zobrazReporty() {
+    var vlozitButtton = document.getElementById('ea-button-vlozit');
+    vlozitButtton.setAttribute('disabled', 'disabled');
     $.ajax({
         type: "GET",
         url: ajaxurl,

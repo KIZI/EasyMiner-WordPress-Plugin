@@ -57,7 +57,7 @@ class PopUpContent
         <div id="ea-dialog">
             <button class="button-primary"
                     id="ea-button-vlozit"
-                    disabled="disabled">Vložit</button>
+                    >Vložit</button>
             <div id="ea-tb-container"></div>
         </div>
         <?php
