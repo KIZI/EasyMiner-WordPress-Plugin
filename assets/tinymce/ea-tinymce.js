@@ -3,9 +3,8 @@ jQuery('#ea-tlacitko').click(function(){
 });
 
 $( document ).delegate( "#ea-button-vlozit", "click", function() {
+    var content = getShortCodeContent();
     tinyMCE.activeEditor.execCommand('mceInsertContent', 0,
-        'easyminer_report');
+        content);
     tb_remove();
 });
-
-

@@ -19,27 +19,27 @@ class PopUpContent
     {
         ?>
         <div id="checkboxes">
-            <label>some label</label>
-            <ul>
-                <li><input type="checkbox"> checkbox 1</li>
-                <li><input type="checkbox"> checkbox 2</li>
-                <li><input type="checkbox"> checkbox 3</li>
-                <li><input type="checkbox"> checkbox 4</li>
-            </ul>
-        </div>
+            <ul id="ea-reports-list">
         <?php
+
         foreach($this->seznamReportu->getReporty() as $report)
         {
             $nazev = $report->post_title;
             $id = $report->ID;
             ?>
-            <p class='ea-report-polozka' id='ea-report-polozka-<?php echo $id ?>'>
-                <a class='row-title'>
-                    <?php echo $nazev?>
-                </a>
-            </p>
+            <li class='ea-report-polozka'
+                id='ea-report-polozka-<?php echo $id ?>'
+            >
+                <input type="checkbox">
+                <a class='row-title'><?php echo $nazev?></a>
+            </li>
             <?php
         }
+
+        ?>
+            </ul>
+        </div>
+        <?php
         wp_die();
     }
 
