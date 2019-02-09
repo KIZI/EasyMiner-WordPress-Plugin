@@ -15,6 +15,7 @@ function zobrazReporty() {
 }
 
 $( document ).delegate( ".ea-report-polozka", "click", function() {
+    var vlozitButtton = document.getElementById('ea-button-vlozit');
     var checkbox = this.getElementsByTagName('input')[0];
     var vybran = checkbox.checked;
     if (vybran) {
@@ -25,6 +26,11 @@ $( document ).delegate( ".ea-report-polozka", "click", function() {
         this.classList.add('ea-vybrana');
     }
     checkbox.checked = !vybran;
+    if (getPocetVybranychReportu() == 0)
+        vlozitButtton.setAttribute('disabled', 'disabled');
+    else
+        vlozitButtton.removeAttribute('disabled');
+
 });
 
 $( document ).delegate( ".ea-polozka-checkbox", "click", function() {
@@ -47,6 +53,22 @@ function zobrazObsah(id) {
             console.log(errorThrown);
         }
     });
+}
+
+function getPocetVybranychReportu() {
+    var pocet = 0;
+    var items = document.
+    getElementById('ea-reports-list').
+    getElementsByTagName('li');
+    for (let item of items) {
+        var vybran =    item.
+        getElementsByTagName('input')[0].
+            checked;
+        if (vybran == true) {
+            pocet = pocet + 1;
+        }
+    }
+    return pocet;
 }
 
 function getShortCodeContent() {
