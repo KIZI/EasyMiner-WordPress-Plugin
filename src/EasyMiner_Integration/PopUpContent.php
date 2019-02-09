@@ -17,6 +17,17 @@ class PopUpContent
 
     public function zobraz_reporty()
     {
+        ?>
+        <div id="checkboxes">
+            <label>some label</label>
+            <ul>
+                <li><input type="checkbox"> checkbox 1</li>
+                <li><input type="checkbox"> checkbox 2</li>
+                <li><input type="checkbox"> checkbox 3</li>
+                <li><input type="checkbox"> checkbox 4</li>
+            </ul>
+        </div>
+        <?php
         foreach($this->seznamReportu->getReporty() as $report)
         {
             $nazev = $report->post_title;

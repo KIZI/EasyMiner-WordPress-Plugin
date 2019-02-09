@@ -6,7 +6,6 @@ function zobrazReporty() {
             action: 'zobraz_reporty',
         },
         success:function (data) {
-            console.log("success");
             $('#ea-tb-container').html(data);
         },
         error:function (errorThrown) {
