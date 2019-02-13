@@ -34,7 +34,7 @@ class Rewriter
                 'post_title' => $post_title,
                 'post_content' => $post_content,
                 'post_status' => 'publish',
-                'post_type' => 'post',
+                'post_type' => 'easyminer_report',
             ), false);
             wp_redirect(get_permalink($id));
         }
