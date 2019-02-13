@@ -12,7 +12,7 @@ class EasyminerReportType
     public function zaregistruj_typ()
     {
         $args = array(
-            'supports' => array('editor', 'title', 'custom-fields')
+            'supports' => array('title', 'custom-fields')
         );
         register_post_type('easyminer_report', $args);
     }
