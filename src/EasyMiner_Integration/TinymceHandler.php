@@ -24,7 +24,7 @@ class TinymceHandler extends AssetsHandler
 
     function zaradit_javascript()
     {
-       if(get_current_screen()->is_block_editor()) return;
+        if( function_exists( 'is_gutenberg_page' ) && is_gutenberg_page() ) return;
         wp_enqueue_script('media_button',
             plugins_url( '/assets/tinymce/ea-tinymce.js', $this->plugin_file),
             array('jquery'), '1.0', true);
