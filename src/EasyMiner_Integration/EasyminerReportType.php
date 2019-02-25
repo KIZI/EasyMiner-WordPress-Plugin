@@ -11,8 +11,6 @@ class EasyminerReportType
 
     public function zaregistruj_typ()
     {
-        //$vysledek = __('Analytical Reports', 'EasyMiner-WordPress-Plugin');
-        //wp_die($vysledek);
         $args = array(
             'name'                => 'Analytické zprávy',
             'singular_name'       => 'Analytická zpráva',
@@ -27,10 +25,10 @@ class EasyminerReportType
                 'not_found_in_trash'=> __('Not found in Trash', 'EasyMiner-WordPress-Plugin'),
             ],
             'description'         => '',
-            'supports'            => array('title', 'custom-fields'),
+            'supports'            => array('title', 'author'),
             'taxonomies'          => [],
             'hierarchical'        => false,
-            'public'              => false,
+            'public'              => true,
             'show_ui'             => true,
             'show_in_menu'        => true,
             'show_in_admin_bar'   => true,
