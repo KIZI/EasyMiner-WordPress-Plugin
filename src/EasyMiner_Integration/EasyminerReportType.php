@@ -8,21 +8,22 @@ class EasyminerReportType
     {
         add_action('init', array($this, 'zaregistruj_typ'));
     }
+
     public function zaregistruj_typ()
     {
         $args = array(
             'name'                => 'Analytické zprávy',
             'singular_name'       => 'Analytická zpráva',
-            'labels' => array(
+            'labels' => [
                 'name'=> 'Analytické zprávy',
                 'singular_name'=> 'Analytická zpráva',
-                'menu_name'=> 'Analytické zprávy',
+                'menu_name'=> __('Analytical Reports', 'easyminer-integration'),
                 'all_items'=> 'Všechny analytické zprávy',
                 'view_item'=> 'Zobrazit',
                 'search_items'=> 'Hledat',
-                'not_found'=>__('Not found'),
-                'not_found_in_trash'=>__('Not found in Trash'),
-            ),
+                'not_found'=>__('Not found', 'easyminer-integration'),
+                'not_found_in_trash'=>__('Not found in Trash', 'easyminer-integration'),
+            ],
             'description'         => '',
             'supports'            => array('title', 'custom-fields'),
             'taxonomies'          => [],
