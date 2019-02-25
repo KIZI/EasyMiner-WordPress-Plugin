@@ -2,10 +2,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: EasyMiner Integration Plugin\n"
 "POT-Creation-Date: 2019-02-25 12:32+0100\n"
-"PO-Revision-Date: 2019-02-25 14:32+0100\n"
+"PO-Revision-Date: 2019-02-25 14:57+0100\n"
 "Last-Translator: \n"
 "Language-Team: Petr Novák\n"
-"Language: cs\n"
+"Language: cs_CZ\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -21,8 +21,8 @@ msgstr "Analytické zprávy"
 
 #: src/EasyMiner_Integration/EasyminerReportType.php:24
 msgid "Not found"
-msgstr "dsffds"
+msgstr "Nejaka veta"
 
 #: src/EasyMiner_Integration/EasyminerReportType.php:25
 msgid "Not found in Trash"
-msgstr "dsfds"
+msgstr "Nejaka veta"

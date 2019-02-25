@@ -1,10 +1,11 @@
 <?php
 /**
 Plugin Name:  EasyMiner Integration
-Plugin URI:   https://github.com/PetrNovak96/easyminer-integration
+Plugin URI:   https://github.com/KIZI/EasyMiner-WordPress-Plugin
 Description:  EasyMiner Integration Plugin for WordPress
 Author:       Petr Novák
 License:      Apache
+Domain Path:  /languages
 License URI:  http://www.apache.org/licenses/LICENSE-2.0.html
  */
 
@@ -18,3 +19,7 @@ $easyminer_integration_plugin_file = __FILE__;
 
 require_once 'src/autoload.php';
 require_once 'src/init.php';
+
+$slug = dirname(plugin_basename(__FILE__));
+
+//wp_die($slug);
