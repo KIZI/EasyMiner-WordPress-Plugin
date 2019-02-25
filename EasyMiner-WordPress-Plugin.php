@@ -22,4 +22,13 @@ require_once 'src/init.php';
 
 $slug = dirname(plugin_basename(__FILE__));
 
-//wp_die($slug);
+//wp_die(get_locale());
+
+
+function myplugin_load_textdomain() {
+    load_plugin_textdomain( 'EasyMiner-WordPress-Plugin',
+        false, basename( dirname( __FILE__ ) ) . '/languages' );
+}
+
+add_action( 'init', 'myplugin_load_textdomain' );
+
