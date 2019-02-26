@@ -2,11 +2,24 @@
 
 namespace EasyMiner_Integration;
 
-class EasyminerReportType
+class EasyminerReportType extends AssetsHandler
 {
     public function __construct()
     {
+        parent::__construct();
         add_action('init', array($this, 'zaregistruj_typ'));
+        add_filter('single_template', array($this, 'report_template'));
+    }
+
+    public function report_template($single) {
+        global $post;
+        if ($post->post_type == 'easyminer-report') {
+            $cesta_k_sablone = plugin_dir_path($this->plugin_file).'/themes/single-easyminer-report.php';
+            if (file_exists($cesta_k_sablone)) {
+                return $cesta_k_sablone;
+            }
+        }
+        return $single;
     }
 
     public function zaregistruj_typ()
@@ -45,5 +58,12 @@ class EasyminerReportType
             )
         );
         register_post_type('easyminer-report', $args);
+        /*wp_insert_post(array(
+            'post_title' => 'Název',
+            'post_content' => 'Obsah',
+            'post_status' => 'publish',
+            'post_type' => 'easyminer-report',
+        ), false);
+        */
     }
 }
