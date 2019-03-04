@@ -2,6 +2,7 @@
 
 namespace EasyMiner_Integration;
 
+
 class Rewriter
 {
     function __construct()
@@ -11,6 +12,7 @@ class Rewriter
 
     public function pridani_funkci()
     {
+
         add_action('init', array($this, 'rewrite'));
         add_action('template_redirect', array($this, 'tvorba_postu'));
     }
