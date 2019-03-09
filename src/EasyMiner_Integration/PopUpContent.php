@@ -28,8 +28,7 @@ class PopUpContent
             <li class='ea-report-polozka ea-nevybrana'
                 id='ea-report-polozka-<?php echo $id ?>'
             >
-                <input type="checkbox" class="ea-polozka-checkbox">
-                <a class='row-title'><?php echo $nazev?></a>
+                <a class='row-title' style="text-decoration: none"><?php echo $nazev?></a>
             </li>
             <?php
         }
@@ -42,7 +41,21 @@ class PopUpContent
 
     public function zobraz_pravidla()
     {
-        echo $this->seznamReportu->getPravidla($_GET['id']);
+        echo 'echo';
+        $pravidla = $this->seznamReportu->getPravidla($_GET['id']);
+        foreach($pravidla as $pravidlo)
+        {
+            $nazev = $pravidlo['nazev'];
+            $id = $pravidlo['id']
+            ?>
+            <li class='ea-pravidlo-polozka ea-nevybrana'
+                id='ea-pravidlo-polozka-<?php echo $id ?>'
+            >
+                <input type="checkbox" class="ea-polozka-checkbox">
+                <a class='row-title'><?php echo $nazev?></a>
+            </li>
+            <?php
+        }
         wp_die();
     }
 

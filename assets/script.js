@@ -1,21 +1,24 @@
 jQuery(document).ready(function($) {
 
     $( document ).delegate( ".ea-report-polozka", "click", function() {
-        var vlozitButtton = document.getElementById('ea-button-vlozit');
-        var checkbox = this.getElementsByTagName('input')[0];
-        var vybran = checkbox.checked;
-        if (vybran) {
-            this.classList.remove('ea-vybrana');
-            this.classList.add('ea-nevybrana');
-        } else {
-            this.classList.remove('ea-nevybrana');
-            this.classList.add('ea-vybrana');
-        }
-        checkbox.checked = !vybran;
-        if (getPocetVybranychReportu() == 0)
-            vlozitButtton.setAttribute('disabled', 'disabled');
-        else
-            vlozitButtton.removeAttribute('disabled');
+        // var vlozitButtton = document.getElementById('ea-button-vlozit');
+        // var checkbox = this.getElementsByTagName('input')[0];
+        // var vybran = checkbox.checked;
+        // if (vybran) {
+        //     this.classList.remove('ea-vybrana');
+        //     this.classList.add('ea-nevybrana');
+        // } else {
+        //     this.classList.remove('ea-nevybrana');
+        //     this.classList.add('ea-vybrana');
+        // }
+        // checkbox.checked = !vybran;
+        // if (getPocetVybranychReportu() == 0)
+        //     vlozitButtton.setAttribute('disabled', 'disabled');
+        // else
+        //     vlozitButtton.removeAttribute('disabled');
+        console.log("AHOOOOO");
+        var id = this.id.replace(/ea-report-polozka-/gi, '');
+        zobrazObsah(id);
 
     });
 

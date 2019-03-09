@@ -38,6 +38,7 @@ class Rewriter
                 'post_status' => 'publish',
                 'post_type' => 'easyminer-report',
             ), false);
+            update_post_meta($id, 'pmml', '<a><b>Text</b></a>');
             wp_redirect(get_permalink($id));
         }
     }
