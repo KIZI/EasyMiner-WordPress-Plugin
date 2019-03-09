@@ -2,7 +2,6 @@
 
 namespace EasyMiner_Integration;
 
-
 class ShortCodes
 {
 	public function __construct()
@@ -18,6 +17,10 @@ class ShortCodes
     }
 
     public function rule_callback($attr) {
+	    $a = $attr['a'];
+	    $b = $attr['b'];
+	    $c = $attr['c'];
+	    $d = $attr['d'];
         $output = '';
         return $output;
     }
