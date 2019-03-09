@@ -7,20 +7,18 @@ class ShortCodes
 {
 	public function __construct()
 	{
-        add_shortcode( 'clicktotweet', array($this, 'clicktotweet_callback') );
+        add_shortcode( 'easyminer-report', array($this, 'report_callback') );
+        add_shortcode( 'easyminer-rule', array($this, 'rule_callback') );
 	}
 
-	public function clicktotweet_callback( $attr ) {
-		extract( $attr );
-		if ( isset( $tweet ) ) {
-			$output =
-				'<div class="' . ( ! empty( $theme ) ? $theme : 'click-to-tweet' ) . '">
-				<div class="ctt-text">' . $tweet . '</div>
-				<p><a href="https://twitter.com/intent/tweet?text='.
-				( ! empty( $tweetsent ) ? $tweetsent : $tweet ) .
-				'" class="ctt-btn" target="_blank">' . $button . '</a></p>
-			</div>';
-			return $output;
-		}
-	}
+	public function report_callback($attr, $content = null) {
+        $output = '';
+        $output.= $content;
+        return $output;
+    }
+
+    public function rule_callback($attr) {
+        $output = '';
+        return $output;
+    }
 }
