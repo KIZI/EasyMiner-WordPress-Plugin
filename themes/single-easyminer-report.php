@@ -11,5 +11,4 @@ $xmlDoc->load(__DIR__."/LM1.xml");
 $proc = new XSLTProcessor();
 $proc->importStylesheet($xslDoc);
 echo $proc->transformToXml($xmlDoc);
-
 //get_footer();
