@@ -4,11 +4,9 @@ namespace EasyMiner_Integration;
 
 class EasyminerReportType extends AssetsHandler
 {
-    public function __construct()
-    {
+    public function __construct() {
         parent::__construct();
-        add_action('init', array($this, 'zaregistruj_typ'));
-        add_filter('single_template', array($this, 'report_template'));
+        add_action('init', array($this, 'on_init'));
     }
 
     public function report_template($single) {
@@ -22,8 +20,12 @@ class EasyminerReportType extends AssetsHandler
         return $single;
     }
 
-    public function zaregistruj_typ()
-    {
+    public function on_init() {
+        $nalez = locate_template('single-easyminer-report.php');
+        if (!$nalez) {
+            add_filter('single_template', array($this, 'report_template'));
+        }
+
         $args = array(
             'name'                => 'Analytické zprávy',
             'singular_name'       => 'Analytická zpráva',
@@ -58,12 +60,5 @@ class EasyminerReportType extends AssetsHandler
             )
         );
         register_post_type('easyminer-report', $args);
-        /*wp_insert_post(array(
-            'post_title' => 'Název',
-            'post_content' => 'Obsah',
-            'post_status' => 'publish',
-            'post_type' => 'easyminer-report',
-        ), false);
-        */
     }
 }
