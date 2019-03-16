@@ -58,11 +58,30 @@ class REST
         );
     }
 
-    public function getReportsCallback(WP_REST_Request $request) {
-        $url = 'http://localhost/wordpress/easyminer_reports/nazevsdass/';
-        $response = new WP_REST_Response("response");
-        $response->set_status( 303 );
-        $response->header( 'Location', $url );
+    public function getReportsCallback() {
+        $data = array();
+        $posts = get_posts(
+            array(
+                'post_type' => 'easyminer-report',
+                'post_status' => 'publish',
+            )
+        );
+        if (!empty($posts)) {
+            foreach ($posts as $post) {
+               $report_title = $post->post_title;
+               $permalink = get_permalink($post->ID);
+               $miner_id = get_post_meta($post->ID, 'miner_id');
+               $task_id = get_post_meta($post->ID, 'task_id');
+                $ar = array(
+                    'report_title' => $report_title,
+                    'report_permalink' => $permalink,
+                    'miner_id' => $miner_id,
+                    'task_id' => $task_id,
+                );
+                $data[] = $ar;
+            }
+        }
+        $response = new WP_REST_Response($data);
         return $response;
     }
 
