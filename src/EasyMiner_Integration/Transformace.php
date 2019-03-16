@@ -20,8 +20,8 @@ class Transformace extends AssetsHandler
             LIBXML_NOCDATA);
 
         $xmlDoc = new DOMDocument();
-        //$xmlDoc->load(plugin_dir_path($this->plugin_file)."/assets/xsl/LM1.xml");
-        $xmlDoc->loadXML($xmlString);
+        $xmlDoc->load(plugin_dir_path($this->plugin_file)."/assets/xsl/LM1.xml");
+        //$xmlDoc->loadXML($xmlString);
 
         $proc = new XSLTProcessor();
         $proc->importStylesheet($xslDoc);

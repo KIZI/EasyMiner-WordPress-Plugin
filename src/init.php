@@ -6,7 +6,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 use EasyMiner_Integration as EI;
 
-$rewriter = new EI\Rewriter();
+$rewriter = new EI\REST();
 $shortcodes = new EI\ShortCodes();
 $assets = new EI\Assets();
 $reportTyp = new EI\EasyminerReportType();
