@@ -16,6 +16,7 @@ $xml->XML('<notes>
     </note>
 </notes>', 'UTF-8');
 //$xml->open('soubor.xml');
+//TODO radši Simple XML
 
 $notes = array();
 

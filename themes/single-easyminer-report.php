@@ -2,13 +2,11 @@
 //header("Content-type: application/xhtml+xml");
 //get_header();
 
-$xslDoc = new DOMDocument();
-$xslDoc->load(__DIR__."/4FTPMML2HTML.xsl", LIBXML_NOCDATA);
+use EasyMiner_Integration\Transformace;
 
-$xmlDoc = new DOMDocument();
-$xmlDoc->load(__DIR__."/LM1.xml");
+$tr = new Transformace();
+$post = get_post();
+$content = $post->post_content;
 
-$proc = new XSLTProcessor();
-$proc->importStylesheet($xslDoc);
-echo $proc->transformToXml($xmlDoc);
+echo $tr->getHTML($content);
 //get_footer();
