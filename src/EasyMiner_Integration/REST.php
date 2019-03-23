@@ -9,14 +9,11 @@ use WP_REST_Server;
 class REST
 {
     function __construct() {
-        add_action('plugins_loaded', array($this, 'on_plugins_loaded'));
-    }
-
-    public function on_plugins_loaded() {
         add_action('rest_api_init', array($this, 'register_routes'));
     }
 
     public function register_routes() {
+       // wp_die();
         register_rest_route(
             'EasyMiner-WordPress-Plugin/v1',
             'getReports',
@@ -96,7 +93,8 @@ class REST
         $url = get_permalink($id);
         $response = new WP_REST_Response();
         $response->set_status( 303 );
-        $response->header( 'Location', $url );
+        //$response->header( 'Location', $url );
+        // v jsnu co vrátím bude adresa
         return $response;
     }
 }
