@@ -10,7 +10,7 @@ class PopUpContent
     {
         $this->seznamReportu = new SeznamReportu();
         add_action('wp_ajax_zobraz_reporty', array($this, 'zobraz_reporty'));
-        add_action('wp_ajax_zobraz_pravidla', array($this, 'zobraz_pravidla'));
+        add_action('wp_ajax_zobraz_casti', array($this, 'zobraz_casti'));
         add_action('admin_footer', array($this, 'render_obsah'));
     }
 
@@ -39,9 +39,16 @@ class PopUpContent
         wp_die();
     }
 
-    public function zobraz_pravidla()
+    public function zobraz_casti()
     {
-        echo 'echo';
+        $transformace = new Transformace();
+        if (isset($_GET['id'])) {
+            $casti = $transformace->getPravidla($_GET['id']);
+            foreach ($casti as $cast) {
+                echo $cast->asXML();
+            }
+        }
+
         $pravidla = $this->seznamReportu->getPravidla($_GET['id']);
         foreach($pravidla as $pravidlo)
         {

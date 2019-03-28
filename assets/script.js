@@ -16,7 +16,6 @@ jQuery(document).ready(function($) {
         //     vlozitButtton.setAttribute('disabled', 'disabled');
         // else
         //     vlozitButtton.removeAttribute('disabled');
-        console.log("AHOOOOO");
         var id = this.id.replace(/ea-report-polozka-/gi, '');
         zobrazObsah(id);
 
@@ -46,12 +45,11 @@ function zobrazReporty() {
 }
 
 function zobrazObsah(id) {
-   // var id = this.id.replace(/ea-report-polozka-/gi, '');
     $.ajax({
         type: "GET",
         url: ajaxurl,
         data: {
-            action: 'zobraz_pravidla',
+            action: 'zobraz_casti',
             id: id,
         },
         success:function (data) {

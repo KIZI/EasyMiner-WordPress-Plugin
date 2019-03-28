@@ -19,5 +19,5 @@ $xml = new SimpleXMLElement($string);
 $vysledek = $xml->xpath('note/from');
 
 foreach ($vysledek as $polozka) {
-    echo $polozka;
+    echo $polozka->asXML();
 }
