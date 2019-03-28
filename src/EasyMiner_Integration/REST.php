@@ -91,8 +91,11 @@ class REST
         update_post_meta($id, 'miner_id', $request['miner_id']);
         update_post_meta($id, 'task_id', $request['task_id']);
         $url = get_permalink($id);
-        $response = new WP_REST_Response();
-        $response->set_status( 303 );
+        $result = array(
+            'status' => 'OK',
+            'url' => $url
+        );
+        $response = new WP_REST_Response($result);
         //$response->header( 'Location', $url );
         // v jsnu co vrátím bude adresa
         return $response;

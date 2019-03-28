@@ -5,7 +5,7 @@
             wp.editor.RichTextToolbarButton, {
                 icon: 'analytics',
                 className: null,
-                title: 'Easyminer Report',
+                title: EasyMinerGutenbergLocalizeFormat.easyminer_report,
                 onClick: function() {
                     tb_show( '', '#TB_inline?width=' + 750 +
                         '&height=' + 550 + '&inlineId=ea-dialog' );
@@ -17,7 +17,7 @@
 
     wp.richText.registerFormatType(
         'easyminer-integration/report-format', {
-            title: 'Easyminer Report',
+            title: EasyMinerGutenbergLocalizeFormat.easyminer_report,
             tagName: 'samp',
             className: null,
             edit: MyCustomButton,

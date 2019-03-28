@@ -33,6 +33,9 @@ class GutenbergHandler extends AssetsHandler
 
     function my_custom_format_enqueue_assets_editor() {
         wp_enqueue_script('easyminer-integration-report-format-js');
+        wp_localize_script('easyminer-integration-report-format-js', 'EasyMinerGutenbergLocalizeFormat', array(
+            'easyminer_report' => __('Analytical Report', 'EasyMiner-WordPress-Plugin')
+        ));
         wp_enqueue_script('easyminer-integration-gutenberg-js');
     }
 

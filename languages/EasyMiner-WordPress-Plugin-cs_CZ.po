@@ -20,6 +20,9 @@ msgstr ""
 msgid "Analytical Reports"
 msgstr "Analytické zprávy"
 
+msgid "Analytical Report"
+msgstr "Analytická zpráva"
+
 #: src/EasyMiner_Integration/EasyminerReportType.php:24
 msgid "Not found"
 msgstr "Nenalezeno"

@@ -31,5 +31,8 @@ class TinymceHandler extends AssetsHandler
         wp_enqueue_script('media_button',
             plugins_url( '/assets/tinymce/ea-tinymce.js', $this->plugin_file),
             array('jquery'), '1.0', true);
+        wp_localize_script('media_button', 'TINYMCE', array(
+
+        ));
     }
 }
