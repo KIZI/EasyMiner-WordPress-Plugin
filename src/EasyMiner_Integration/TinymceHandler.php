@@ -15,9 +15,8 @@ class TinymceHandler extends AssetsHandler
     public function tlacitko_callback()
     {
         echo
-        "<a  href='#TB_inline?&width=750&height=550&inlineId=ea-dialog&KeepThis=true'
-             id='ea-tlacitko'
-             class='button thickbox'>Vložit report
+        "<a  id='ea-tlacitko'
+             class='button'>Vložit report
         </a>";
     }
 

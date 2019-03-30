@@ -6,10 +6,7 @@
                 icon: 'analytics',
                 className: null,
                 title: EasyMinerGutenbergLocalizeFormat.easyminer_report,
-                onClick: function() {
-                    tb_show( 'Blabla bla', '#TB_inline?inlineId=ea-dialog' );
-                    zobrazReporty();
-                },
+                onClick: zobrazThickbox,
             }
         );
     };

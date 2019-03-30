@@ -1,5 +1,7 @@
 jQuery(document).ready(function($) {
 
+    $( document ).delegate( "#ea-tlacitko", "click", zobrazThickbox);
+
     $( document ).delegate( ".ea-report-polozka", "click", function() {
         // var vlozitButtton = document.getElementById('ea-button-vlozit');
         // var checkbox = this.getElementsByTagName('input')[0];
@@ -24,6 +26,11 @@ jQuery(document).ready(function($) {
         this.checked = !this.checked;
     });
 });
+
+function zobrazThickbox() {
+    tb_show( 'Blabla bla', '#TB_inline?inlineId=ea-dialog' );
+    zobrazReporty();
+}
 
 function zobrazReporty() {
     var vlozitButtton = document.getElementById('ea-button-vlozit');
@@ -53,7 +60,7 @@ function zobrazReporty() {
             'min-height': '500px'
         }
     );
-    
+    console.log("ahoooj");
 }
 
 function zobrazObsah(id) {
