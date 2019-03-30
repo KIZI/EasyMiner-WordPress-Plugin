@@ -2,13 +2,16 @@
 
 namespace EasyMiner_Integration;
 
-class PopUpContent
+class PopUpContent extends AssetsHandler
 {
     public $seznamReportu;
+    public $sipkaDoprava;
 
     public function __construct()
     {
+        parent::__construct();
         $this->seznamReportu = new SeznamReportu();
+        $this->sipkaDoprava = plugins_url('/assets/img/arrow.svg', $this->plugin_file );
         add_action('wp_ajax_zobraz_reporty', array($this, 'zobraz_reporty'));
         add_action('wp_ajax_zobraz_casti', array($this, 'zobraz_casti'));
         add_action('admin_footer', array($this, 'render_obsah'));
@@ -71,11 +74,11 @@ class PopUpContent
             <li><input type="checkbox"/>vytvořené atributy</li>
             <li><input type="checkbox"/>zadání DM úlohy</li>
             <li><input type="checkbox"/>nalezená asociační pravidla
-                <img class="sipka" src="arrow.svg" alt="arrow.svg">
+                <img class="sipka" src="<?php echo $this->sipkaDoprava;?>" alt="arrow.svg">
                 <ul class="closed">
                     <li>
                         <input type="checkbox"/>Název
-                        <img class="sipka" src="arrow.svg" alt="arrow.svg">
+                        <img class="sipka" src="<?php echo $this->sipkaDoprava;?>" alt="arrow.svg">
                         <ul class="closed">
                             <li><input type="checkbox"/>Název</li>
                             <li><input type="checkbox"/>Míry zajímavosti</li>
@@ -84,7 +87,7 @@ class PopUpContent
                     </li>
                     <li>
                         <input type="checkbox"/>Název
-                        <img class="sipka" src="arrow.svg" alt="arrow.svg">
+                        <img class="sipka" src="<?php echo $this->sipkaDoprava;?>" alt="arrow.svg">
                         <ul class="closed">
                             <li><input type="checkbox"/>Název</li>
                             <li><input type="checkbox"/>Míry zajímavosti</li>
@@ -93,7 +96,7 @@ class PopUpContent
                     </li>
                     <li>
                         <input type="checkbox"/>Název
-                        <img class="sipka" src="arrow.svg" alt="arrow.svg">
+                        <img class="sipka" src="<?php echo $this->sipkaDoprava;?>" alt="arrow.svg">
                         <ul class="closed">
                             <li><input type="checkbox"/>Název</li>
                             <li><input type="checkbox"/>Míry zajímavosti</li>

@@ -4,6 +4,7 @@
 
 #ea-tb-container {
     overflow-y: scroll;
+    height: 420px;
 }
 
 .ea-report-polozka {
@@ -16,7 +17,8 @@
 }
 
 #ea-button-vlozit {
-    margin: 10px 0 0 10px;
+    margin: 10px 10px 0 0;
+    float: right;
 }
 
 .ea-vybrana {
@@ -31,18 +33,13 @@
     color: red;
 }
 
-#TB_window {
-    min-width:750px!important;
-    max-height: 550px!important;
-}
-
-#TB_ajaxContent {
-    min-height: 550px!important;
-}
-
 #easyminerReportUL li {
     list-style-type: none;
-    float: none;
+    padding: 0 0 0 0;
+}
+
+#easyminerReportUL ul {
+    padding: 5px 0 0 25px;
 }
 
 .sipka {

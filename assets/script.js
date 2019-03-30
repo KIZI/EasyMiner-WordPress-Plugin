@@ -41,6 +41,19 @@ function zobrazReporty() {
             console.log(errorThrown);
         }
     });
+
+    /*_ _ _ ÚPRAVA THICKBOXU _ _ _ */
+    $(document).find("#TB_window").css({
+        'min-width' : '750px',
+        'max-height': '500px'
+        }
+    );
+    $(document).find("#TB_ajaxContent").css({
+            'min-width' : '750px',
+            'min-height': '500px'
+        }
+    );
+    
 }
 
 function zobrazObsah(id) {
