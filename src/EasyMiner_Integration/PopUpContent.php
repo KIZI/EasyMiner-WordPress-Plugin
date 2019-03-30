@@ -41,7 +41,7 @@ class PopUpContent
 
     public function zobraz_casti()
     {
-        $transformace = new Transformace();
+        /* $transformace = new Transformace();
         if (isset($_GET['id'])) {
             $casti = $transformace->getPravidla($_GET['id']);
             foreach ($casti as $cast) {
@@ -62,7 +62,48 @@ class PopUpContent
                 <a class='row-title'><?php echo $nazev?></a>
             </li>
             <?php
-        }
+        } */
+        ?>
+        <ul id="easyminerReportUL">
+            <li><input type="checkbox"/>metadata</li>
+            <li><input type="checkbox"/>obsah</li>
+            <li><input type="checkbox"/>popis datového souboru</li>
+            <li><input type="checkbox"/>vytvořené atributy</li>
+            <li><input type="checkbox"/>zadání DM úlohy</li>
+            <li><input type="checkbox"/>nalezená asociační pravidla
+                <img class="sipka" src="arrow.svg" alt="arrow.svg">
+                <ul class="closed">
+                    <li>
+                        <input type="checkbox"/>Název
+                        <img class="sipka" src="arrow.svg" alt="arrow.svg">
+                        <ul class="closed">
+                            <li><input type="checkbox"/>Název</li>
+                            <li><input type="checkbox"/>Míry zajímavosti</li>
+                            <li><input type="checkbox"/>Čtyřpolní tabulka</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <input type="checkbox"/>Název
+                        <img class="sipka" src="arrow.svg" alt="arrow.svg">
+                        <ul class="closed">
+                            <li><input type="checkbox"/>Název</li>
+                            <li><input type="checkbox"/>Míry zajímavosti</li>
+                            <li><input type="checkbox"/>Čtyřpolní tabulka</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <input type="checkbox"/>Název
+                        <img class="sipka" src="arrow.svg" alt="arrow.svg">
+                        <ul class="closed">
+                            <li><input type="checkbox"/>Název</li>
+                            <li><input type="checkbox"/>Míry zajímavosti</li>
+                            <li><input type="checkbox"/>Čtyřpolní tabulka</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <?php
         wp_die();
     }
 

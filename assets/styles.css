@@ -31,3 +31,27 @@
 .cervena {
     color: red;
 }
+
+#TB_window {
+    min-width:750px!important;
+}
+
+#TB_ajaxContent {
+    min-height: 550px!important;
+}
+
+#easyminerReportUL li {
+    list-style-type: none;
+    float: none;
+}
+
+.sipka {
+    padding: 0 0 0 0.5em;
+    cursor: pointer;
+    width: 10px;
+    height: 10px;
+}
+
+.closed {
+    display: none;
+}

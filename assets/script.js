@@ -18,7 +18,6 @@ jQuery(document).ready(function($) {
         //     vlozitButtton.removeAttribute('disabled');
         var id = this.id.replace(/ea-report-polozka-/gi, '');
         zobrazObsah(id);
-
     });
 
     $( document ).delegate( ".ea-polozka-checkbox", "click", function() {
@@ -54,6 +53,11 @@ function zobrazObsah(id) {
         },
         success:function (data) {
             $('#ea-tb-container').html(data);
+            //zaškrknu všechny checkboxy
+            setAllCheckboxes(
+                $("#easyminerReportUL").find("input[type=checkbox]").get(),
+                true
+            );
         },
         error:function (errorThrown) {
             console.log(errorThrown);
@@ -61,23 +65,7 @@ function zobrazObsah(id) {
     });
 }
 
-function getPocetVybranychReportu() {
-    var pocet = 0;
-    var items = document.
-    getElementById('ea-reports-list').
-    getElementsByTagName('li');
-    for (let item of items) {
-        var vybran =    item.
-        getElementsByTagName('input')[0].
-            checked;
-        if (vybran == true) {
-            pocet = pocet + 1;
-        }
-    }
-    return pocet;
-}
-
-function getShortCodeContent() {
+function getReportContent() {
     var output = '';
     var items = document.
                 getElementById('ea-reports-list').
@@ -94,3 +82,52 @@ function getShortCodeContent() {
     }
     return output
 }
+
+/**
+ * _ _ _ TREESELECT JAVASCRIPT _ _ _
+ * **/
+
+function areAllUnchecked(checkboxes) {
+    var result = true;
+    for (let checkbox of checkboxes) {
+        if (checkbox.checked)
+            result = false;
+    }
+    return result;
+}
+
+function setAllCheckboxes(checkboxes, value) {
+    for (let checkbox of checkboxes) {
+        checkbox.checked = value;
+    }
+}
+
+function getParent(node) {
+    var parent = $(node).parent().parent().parent().find("> input[type=checkbox]").get(0);
+    return parent;
+}
+
+jQuery(document).ready(function($) {
+
+    $(document).delegate("#easyminerReportUL .sipka", "click", function(){
+        //TODO: otoč šipku
+        $(this).parent().find("ul").get(0).classList.toggle("closed");
+    });
+
+    $(document).delegate("#easyminerReportUL input:checkbox", "change", function(){
+        var parents = [];
+        var child = this;
+        while (parent = getParent(child)) {
+            var siblings = $(child).parent().parent().find("> li > input[type=checkbox]").get();
+            if (areAllUnchecked(siblings)) parent.checked = false;
+            parents.push(parent);
+            child = parent;
+        }
+
+        if (parents && this.checked)
+            setAllCheckboxes(parents, true);
+
+        var children = $(this).parent().find("ul > li > input[type=checkbox]");
+        setAllCheckboxes(children, this.checked);
+    });
+});

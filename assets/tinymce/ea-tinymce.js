@@ -4,7 +4,7 @@ jQuery('#ea-tlacitko').click(function(){
 
 jQuery(document).ready(function($) {
     $( document ).delegate( "#ea-button-vlozit", "click", function() {
-        var content = getShortCodeContent();
+        var content = getReportContent();
         tinyMCE.activeEditor.execCommand('mceInsertContent', 0,
             content);
         tb_remove();

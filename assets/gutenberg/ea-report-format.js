@@ -7,7 +7,7 @@
                 className: null,
                 title: EasyMinerGutenbergLocalizeFormat.easyminer_report,
                 onClick: function() {
-                    tb_show( '', '#TB_inline?width=' + 750 +
+                    tb_show( 'Blabla bla', '#TB_inline?width=' + 750 +
                         '&height=' + 550 + '&inlineId=ea-dialog' );
                     zobrazReporty();
                 },
