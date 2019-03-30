@@ -4,7 +4,6 @@
 
 #ea-tb-container {
     overflow-y: scroll;
-    height: 400px;
 }
 
 .ea-report-polozka {
@@ -34,6 +33,7 @@
 
 #TB_window {
     min-width:750px!important;
+    max-height: 550px!important;
 }
 
 #TB_ajaxContent {

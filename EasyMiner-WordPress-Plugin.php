@@ -23,9 +23,3 @@ require_once 'src/init.php';
 
 load_plugin_textdomain( 'EasyMiner-WordPress-Plugin',
     false, basename( dirname( __FILE__ ) ) . '/languages' );
-
-
-
-
-
-

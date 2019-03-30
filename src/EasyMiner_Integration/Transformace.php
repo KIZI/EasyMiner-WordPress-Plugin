@@ -22,7 +22,6 @@ class Transformace extends AssetsHandler
         $xmlDoc = new DOMDocument();
         //$xmlDoc->load(plugin_dir_path($this->plugin_file)."/assets/xsl/LM1.xml");
         $xmlDoc->loadXML($xmlString);
-
         $proc = new XSLTProcessor();
         $proc->importStylesheet($xslDoc);
         return $proc->transformToXml($xmlDoc);

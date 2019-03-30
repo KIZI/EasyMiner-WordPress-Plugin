@@ -116,10 +116,11 @@ class PopUpContent
         }
         ?>
         <div id="ea-dialog">
+            
+            <div id="ea-tb-container"></div>
             <button class="button-primary"
                     id="ea-button-vlozit"
                     >Vložit</button>
-            <div id="ea-tb-container"></div>
         </div>
         <?php
     }
