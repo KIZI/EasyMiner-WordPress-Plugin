@@ -15,17 +15,21 @@ class PopUpContent extends AssetsHandler
         parent::__construct();
         $this->seznamReportu = new SeznamReportu();
         $this->sipkaDoprava = plugins_url('/assets/img/arrow.svg', $this->plugin_file );
-        //$this->reportsTable = new AnalyticalReportsTable();
+        add_action('admin_init', array($this, 'createReportsTable'));
         add_action('wp_ajax_zobraz_reporty', array($this, 'zobraz_reporty'));
         add_action('wp_ajax_zobraz_casti', array($this, 'zobraz_casti'));
         add_action('admin_footer', array($this, 'render_obsah'));
     }
+    // musí se volat až na admin_init https://core.trac.wordpress.org/ticket/29933
+    public function createReportsTable() {
+        $this->reportsTable = new AnalyticalReportsTable();
+    }
 
     public function zobraz_reporty()
     {
-        //$this->reportsTable->prepare_items();
-        //$this->reportsTable->display();
-        ?>
+        $this->reportsTable->prepare_items();
+        $this->reportsTable->display();
+        /*?>
         <div id="checkboxes">
             <ul id="ea-reports-list">
         <?php
@@ -44,7 +48,7 @@ class PopUpContent extends AssetsHandler
         ?>
             </ul>
         </div>
-        <?php
+        <?php*/
         wp_die();
     }
 
