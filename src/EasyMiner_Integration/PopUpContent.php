@@ -4,7 +4,10 @@ namespace EasyMiner_Integration;
 
 class PopUpContent extends AssetsHandler
 {
+    // K ODSTRANĚNÍ !!!
     public $seznamReportu;
+
+    public $reportsTable;
     public $sipkaDoprava;
 
     public function __construct()
@@ -12,6 +15,7 @@ class PopUpContent extends AssetsHandler
         parent::__construct();
         $this->seznamReportu = new SeznamReportu();
         $this->sipkaDoprava = plugins_url('/assets/img/arrow.svg', $this->plugin_file );
+        $this->reportsTable = new AnalyticalReportsTable();
         add_action('wp_ajax_zobraz_reporty', array($this, 'zobraz_reporty'));
         add_action('wp_ajax_zobraz_casti', array($this, 'zobraz_casti'));
         add_action('admin_footer', array($this, 'render_obsah'));
@@ -19,6 +23,8 @@ class PopUpContent extends AssetsHandler
 
     public function zobraz_reporty()
     {
+        $reportsTable->prepare_items();
+        $reportsTable->display();
         ?>
         <div id="checkboxes">
             <ul id="ea-reports-list">
