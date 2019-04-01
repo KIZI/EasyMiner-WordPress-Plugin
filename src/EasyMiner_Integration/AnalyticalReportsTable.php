@@ -2,6 +2,8 @@
 
 namespace EasyMiner_Integration;
 
+use WP_List_Table;
+
 class AnalyticalReportsTable extends WP_List_Table {
 
     public $data;
