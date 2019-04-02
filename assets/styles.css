@@ -8,25 +8,12 @@
 }
 
 .ea-report-polozka {
-    margin: 10px;
-    padding: 10px;
-    border-color: #0A246A;
-    border: 2px;
-    border-style: solid;
-    border-radius: 3px;
+    text-decoration: none;
 }
 
 #ea-button-vlozit {
     margin: 10px 10px 0 0;
     float: right;
-}
-
-.ea-vybrana {
-    background-color: rgba(80, 217, 255, 0.33);
-}
-
-.ea-nevybrana {
-    background-color: rgba(80, 217, 255, 0.03);
 }
 
 .cervena {

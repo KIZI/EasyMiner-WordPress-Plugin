@@ -14,10 +14,11 @@ class TinymceHandler extends AssetsHandler
 
     public function tlacitko_callback()
     {
-        echo
-        "<a  id='ea-tlacitko'
+        ?>
+        <a  id='ea-tlacitko'
              class='button'>Vložit report
-        </a>";
+        </a>
+        <?php
     }
 
     function zaradit_javascript()

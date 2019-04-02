@@ -1,13 +1,6 @@
 <?php
 namespace EasyMiner_Integration;
 
-// tyhle třídy se musí naincludovat https://wordpress.stackexchange.com/questions/211647/fatal-error-after-4-4-upgrade-class-wp-list-table
-if(!class_exists('WP_List_Table')){
-    require_once( ABSPATH . 'wp-admin/includes/class-wp-screen.php' );
-    require_once( ABSPATH . 'wp-admin/includes/screen.php' );
-    require_once( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' );
-    require_once( ABSPATH . 'wp-admin/includes/template.php' );
-}
 
 class AnalyticalReportsTable extends \WP_List_Table {
 
@@ -36,7 +29,7 @@ class AnalyticalReportsTable extends \WP_List_Table {
         //update_post_meta( $item->ID, 'task_id', 4567);        
         switch ($column_name) {
             case 'title':
-            return $item->post_title;
+            return $this->renderTitle($item);
             case 'miner_id':
             return get_post_meta( $item->ID, 'miner_id', true );
             case 'task_id':
@@ -44,5 +37,14 @@ class AnalyticalReportsTable extends \WP_List_Table {
             default:
             return 'no value';
         }
+    }
+
+    public function renderTitle($item) {
+        $rs = "";
+        $rs.= "<a class='row-title ea-report-polozka' ";
+        $rs.= "id='ea-report-polozka-$item->ID' >";
+        $rs.= $item->post_title;
+        $rs.= "</a>";
+        return $rs;
     }
 }

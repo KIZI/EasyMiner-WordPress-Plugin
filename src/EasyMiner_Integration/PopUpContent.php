@@ -18,7 +18,7 @@ class PopUpContent extends AssetsHandler
         add_action('admin_init', array($this, 'createReportsTable'));
         add_action('wp_ajax_zobraz_reporty', array($this, 'zobraz_reporty'));
         add_action('wp_ajax_zobraz_casti', array($this, 'zobraz_casti'));
-        add_action('admin_footer', array($this, 'render_obsah'));
+        add_action('admin_footer', array($this, 'render_content'));
     }
     // musí se volat až na admin_init https://core.trac.wordpress.org/ticket/29933
     public function createReportsTable() {
@@ -27,55 +27,20 @@ class PopUpContent extends AssetsHandler
 
     public function zobraz_reporty()
     {
+        ?>
+        <style type="text/css">
+        .wp-list-table .column-name { width: 70%; }
+        .wp-list-table .column-miner_id { width: 15%; }
+        .wp-list-table .column-task_id { width: 15%; }
+        </style>
+        <?php
         $this->reportsTable->prepare_items();
         $this->reportsTable->display();
-        /*?>
-        <div id="checkboxes">
-            <ul id="ea-reports-list">
-        <?php
-        foreach($this->seznamReportu->getReporty() as $report)
-        {
-            $nazev = $report->post_title;
-            $id = $report->ID;
-            ?>
-            <li class='ea-report-polozka ea-nevybrana'
-                id='ea-report-polozka-<?php echo $id ?>'
-            >
-                <a class='row-title' style="text-decoration: none"><?php echo $nazev?></a>
-            </li>
-            <?php
-        }
-        ?>
-            </ul>
-        </div>
-        <?php*/
         wp_die();
     }
 
     public function zobraz_casti()
     {
-        /* $transformace = new Transformace();
-        if (isset($_GET['id'])) {
-            $casti = $transformace->getPravidla($_GET['id']);
-            foreach ($casti as $cast) {
-                echo $cast->asXML();
-            }
-        }
-
-        $pravidla = $this->seznamReportu->getPravidla($_GET['id']);
-        foreach($pravidla as $pravidlo)
-        {
-            $nazev = $pravidlo['nazev'];
-            $id = $pravidlo['id']
-            ?>
-            <li class='ea-pravidlo-polozka ea-nevybrana'
-                id='ea-pravidlo-polozka-<?php echo $id ?>'
-            >
-                <input type="checkbox" class="ea-polozka-checkbox">
-                <a class='row-title'><?php echo $nazev?></a>
-            </li>
-            <?php
-        } */
         ?>
         <ul id="easyminerReportUL">
             <li><input type="checkbox"/>metadata</li>
@@ -120,7 +85,7 @@ class PopUpContent extends AssetsHandler
         wp_die();
     }
 
-    public function render_obsah()
+    public function render_content()
     {
         if (function_exists('get_current_screen'))
         {
