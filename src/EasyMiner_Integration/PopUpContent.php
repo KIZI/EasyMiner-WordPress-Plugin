@@ -92,7 +92,7 @@ class PopUpContent extends AssetsHandler
         <div id="ea-dialog">
             
             <div id="ea-tb-container"></div>
-            <button class="button-cancel"
+            <button class="button-secondary"
                     id="ea-button-zpet"
                     >Zpět</button>
             <button class="button-primary"
