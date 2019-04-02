@@ -1,3 +1,4 @@
+
 jQuery(document).ready(function($) {
 
     $( document ).delegate( "#ea-tlacitko", "click", zobrazThickbox);
@@ -10,6 +11,14 @@ jQuery(document).ready(function($) {
     $( document ).delegate( ".ea-polozka-checkbox", "click", function() {
         this.checked = !this.checked;
     });
+
+    $( document ).delegate( "#ea-button-zpet", "click", function() {
+        if (isPopUpListTable) {
+            tb_remove();
+        } else {
+            zobrazReporty();
+        }
+    });
 });
 
 function zobrazThickbox() {
@@ -18,6 +27,7 @@ function zobrazThickbox() {
 }
 
 function zobrazReporty() {
+    isPopUpListTable = true;
     var vlozitButtton = document.getElementById('ea-button-vlozit');
     vlozitButtton.setAttribute('disabled', 'disabled');
     $.ajax({
@@ -36,7 +46,6 @@ function zobrazReporty() {
 
     /*_ _ _ ÚPRAVA THICKBOXU _ _ _ */
     $(document).find("#TB_window").css({
-        'min-width' : '750px',
         'max-height': '500px'
         }
     );
@@ -45,10 +54,10 @@ function zobrazReporty() {
             'min-height': '500px'
         }
     );
-    console.log("ahoooj");
 }
 
 function zobrazObsah(id) {
+    isPopUpListTable = false;
     $.ajax({
         type: "GET",
         url: ajaxurl,
@@ -73,6 +82,9 @@ function zobrazObsah(id) {
 function getReportContent() {
     //TODO tady bude ajax Požadavek na HTML od PHP
 }
+
+// příznak, že je uživatel na list table v pop upu
+var isPopUpListTable = true;
 
 /**
  * _ _ _ TREESELECT JAVASCRIPT _ _ _

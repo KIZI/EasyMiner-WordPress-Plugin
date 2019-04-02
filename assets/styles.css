@@ -4,7 +4,7 @@
 
 #ea-tb-container {
     overflow-y: scroll;
-    height: 420px;
+    height: 410px;
 }
 
 .ea-report-polozka {
@@ -12,8 +12,15 @@
 }
 
 #ea-button-vlozit {
-    margin: 10px 10px 0 0;
     float: right;
+    margin: 15px 0 0 0;
+}
+
+#ea-button-zpet {
+    float: left;
+    margin: 15px 0 0 0;
+    height: 28px;
+    line-height: 0;
 }
 
 #easyminerReportUL li {

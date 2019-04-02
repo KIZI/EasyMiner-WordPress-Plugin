@@ -5,10 +5,11 @@ namespace EasyMiner_Integration;
 class AnalyticalReportsTable extends \WP_List_Table {
 
     public function prepare_items() {
-       /* $this->items = get_posts( array(
-            'post_type' => 'easyminer-report'
-        ));*/
-
+        $this->items = get_posts( array(
+            'post_type' => 'easyminer-report',
+            'posts_per_page'=>-1, 
+            'numberposts'=>-1
+        ));
         $columns = $this->get_columns();
         $this->_column_headers = array($columns);
     }
@@ -19,6 +20,7 @@ class AnalyticalReportsTable extends \WP_List_Table {
             'miner_id' => __('Miner ID', 'EasyMiner-WordPress-Plugin'),
             'task_id' => __('Task ID', 'EasyMiner-WordPress-Plugin')
         );
+        
 
         return $columns;
     }

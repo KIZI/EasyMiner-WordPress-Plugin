@@ -25,7 +25,7 @@ class PopUpContent extends AssetsHandler
     {
         ?>
         <style type="text/css">
-        .wp-list-table .column-name { width: 70%; }
+        .wp-list-table .column-name { width: 70%; } 
         .wp-list-table .column-miner_id { width: 15%; }
         .wp-list-table .column-task_id { width: 15%; }
         </style>
@@ -92,6 +92,9 @@ class PopUpContent extends AssetsHandler
         <div id="ea-dialog">
             
             <div id="ea-tb-container"></div>
+            <button class="button-cancel"
+                    id="ea-button-zpet"
+                    >Zpět</button>
             <button class="button-primary"
                     id="ea-button-vlozit"
                     >Vložit</button>
