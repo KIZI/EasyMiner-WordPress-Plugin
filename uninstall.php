@@ -9,5 +9,6 @@ $posts = get_posts(array(
 ));
 
 foreach($posts as $post) {
+    // postará se o to, že budou vymazána i metadata
     wp_delete_post($post->ID, true);
 }

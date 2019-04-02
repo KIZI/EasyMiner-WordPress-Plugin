@@ -3,7 +3,7 @@
 }
 
 #ea-tb-container {
-    overflow-y: scroll;
+    overflow-y: auto;
     height: 410px;
 }
 

@@ -28,7 +28,7 @@ class AnalyticalReportsTable extends \WP_List_Table {
     public function column_default($item, $column_name) {
         // jenom abych otestovat, že se zobrazují identifikátory
         //update_post_meta( $item->ID, 'miner_id', 1234);
-        //update_post_meta( $item->ID, 'task_id', 4567);        
+        //update_post_meta( $item->ID, 'task_id', 4567);
         switch ($column_name) {
             case 'title':
             return $this->renderTitle($item);
