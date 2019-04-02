@@ -31,4 +31,10 @@ msgstr "Nenalezeno"
 msgid "Not found in Trash"
 msgstr "Nenalezeno v koši"
 
+msgid "No Analytical Reports Found"
+msgstr "Nenalezeny žádné zprávy o běhu úlohy"
+
+
+
+
 

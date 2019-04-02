@@ -5,9 +5,9 @@ namespace EasyMiner_Integration;
 class AnalyticalReportsTable extends \WP_List_Table {
 
     public function prepare_items() {
-        $this->items = get_posts( array(
+       /* $this->items = get_posts( array(
             'post_type' => 'easyminer-report'
-        ));
+        ));*/
 
         $columns = $this->get_columns();
         $this->_column_headers = array($columns);
@@ -46,5 +46,9 @@ class AnalyticalReportsTable extends \WP_List_Table {
         $rs.= $item->post_title;
         $rs.= "</a>";
         return $rs;
+    }
+
+    function no_items() {
+        _e( 'No Analytical Reports Found', 'EasyMiner-WordPress-Plugin' );
     }
 }

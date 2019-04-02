@@ -3,21 +3,6 @@ jQuery(document).ready(function($) {
     $( document ).delegate( "#ea-tlacitko", "click", zobrazThickbox);
 
     $( document ).delegate( ".ea-report-polozka", "click", function() {
-        // var vlozitButtton = document.getElementById('ea-button-vlozit');
-        // var checkbox = this.getElementsByTagName('input')[0];
-        // var vybran = checkbox.checked;
-        // if (vybran) {
-        //     this.classList.remove('ea-vybrana');
-        //     this.classList.add('ea-nevybrana');
-        // } else {
-        //     this.classList.remove('ea-nevybrana');
-        //     this.classList.add('ea-vybrana');
-        // }
-        // checkbox.checked = !vybran;
-        // if (getPocetVybranychReportu() == 0)
-        //     vlozitButtton.setAttribute('disabled', 'disabled');
-        // else
-        //     vlozitButtton.removeAttribute('disabled');
         var id = this.id.replace(/ea-report-polozka-/gi, '');
         zobrazObsah(id);
     });
@@ -86,21 +71,7 @@ function zobrazObsah(id) {
 }
 
 function getReportContent() {
-    var output = '';
-    var items = document.
-                getElementById('ea-reports-list').
-                getElementsByTagName('li');
-    for (let item of items) {
-        var vybran =    item.
-                        getElementsByTagName('input')[0].
-                        checked;
-        if (vybran == true) {
-            output +=   item.
-                        getElementsByTagName('a')[0].
-                        innerHTML + "\n";
-        }
-    }
-    return output
+    //TODO tady bude ajax Požadavek na HTML od PHP
 }
 
 /**
