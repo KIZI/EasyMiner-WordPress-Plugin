@@ -13,11 +13,7 @@ jQuery(document).ready(function($) {
     });
 
     $( document ).delegate( "#ea-button-zpet", "click", function() {
-        if (isPopUpListTable) {
-            tb_remove();
-        } else {
-            zobrazReporty();
-        }
+        zobrazReporty();
     });
 });
 
@@ -27,6 +23,7 @@ function zobrazThickbox() {
 }
 
 function zobrazReporty() {
+    $("#ea-button-zpet").addClass("closed");
     isPopUpListTable = true;
     var vlozitButtton = document.getElementById('ea-button-vlozit');
     vlozitButtton.setAttribute('disabled', 'disabled');
@@ -57,7 +54,7 @@ function zobrazReporty() {
 }
 
 function zobrazObsah(id) {
-    isPopUpListTable = false;
+    $("#ea-button-zpet").removeClass("closed");
     $.ajax({
         type: "GET",
         url: ajaxurl,
@@ -82,9 +79,6 @@ function zobrazObsah(id) {
 function getReportContent() {
     //TODO tady bude ajax Požadavek na HTML od PHP
 }
-
-// příznak, že je uživatel na list table v pop upu
-var isPopUpListTable = true;
 
 /**
  * _ _ _ TREESELECT JAVASCRIPT _ _ _
