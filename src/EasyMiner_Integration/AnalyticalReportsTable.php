@@ -17,8 +17,7 @@ class AnalyticalReportsTable extends \WP_List_Table {
     public function get_columns() {
         $columns = array(
             'title' => __('Title', 'EasyMiner-WordPress-Plugin'),
-            'miner_id' => __('Miner ID', 'EasyMiner-WordPress-Plugin'),
-            'task_id' => __('Task ID', 'EasyMiner-WordPress-Plugin')
+            'date' => __('Created', 'EasyMiner-WordPress-Plugin'),
         );
         
 
@@ -32,10 +31,8 @@ class AnalyticalReportsTable extends \WP_List_Table {
         switch ($column_name) {
             case 'title':
             return $this->renderTitle($item);
-            case 'miner_id':
-            return get_post_meta( $item->ID, 'miner_id', true );
-            case 'task_id':
-            return get_post_meta( $item->ID, 'task_id', true );
+            case 'date':
+            return date_i18n(get_option('date_format'), get_the_time('U', $item->ID));
             default:
             return 'no value';
         }

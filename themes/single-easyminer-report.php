@@ -2,8 +2,6 @@
 
 use EasyMiner_Integration\Transformace;
 
-//get_header();
-echo '<h1>Ahoj</h1>';
 $tr = new Transformace();
 $post = get_post();
 
@@ -12,4 +10,19 @@ if (!$content) {
     wp_redirect(get_permalink($post->ID));
 }
 echo $tr->getHTML($content);
-//get_footer();
+
+/*
+__ ZKUSIL JSEM, ALE NEFUNGUJE __
+$html = get_post_meta($post->ID, 'html', true);
+if ($html) {
+    echo $html;
+    exit;
+} else {
+    $content = $post->post_content;
+    if (!$content) {
+        wp_redirect(get_permalink($post->ID));
+    }
+    $html = $tr->getHTML($content);
+    update_post_meta($post->ID, 'html', $html);
+    echo $html;
+}

@@ -14,6 +14,7 @@ class Transformace extends AssetsHandler
     }
 
     public function getHTML($xmlString) {
+        //TODO kontrola, jestli už existuje HTML musí být tady!!!
         $xslDoc = new DOMDocument();
         $xslDoc->load(
             plugin_dir_path($this->plugin_file)."/assets/xsl/4FTPMML2HTML.xsl",
@@ -27,16 +28,30 @@ class Transformace extends AssetsHandler
         return $proc->transformToXml($xmlDoc);
     }
 
-    public function getPravidla($id)
-    {
+    public function getTreeselectArray($id) {
         $post = get_post($id);
         $content = $post->post_content;
-        $html = $this->getHTML($content);
-        $xml = new SimpleXMLElement($html);
-        $casti = array();
-        $result = $xml->xpath('//*[@id="sect1"]');
-        return $xml->xpath('//*[@id="sect4"]')[0];
-        // pokud element s hledaným id není, tak se vrátí prázdné pole
+        //$html = $this->getHTML($content);
+        $html = file_get_contents(plugin_dir_path(__FILE__).'/ukazka.html');
+        $doc = new DOMDocument();
+        $doc->loadHTML($html, LIBXML_NOERROR);
+        $xml = simplexml_import_dom($doc);
+        $xml->xmlEndoding='UTF-8';
+        $array = $this->parseNode($xml);
+        return $array;
+    }
+
+    public function parseNode(SimpleXMLElement $xml) {
+        $array = [];
+        $children = $xml->xpath('(.//*[@data-easyminer-block-title])[1]/following-sibling::*[@data-easyminer-block-title] | (.//*[@data-easyminer-block-title])[1]');
+        foreach ($children as $child) {
+            $childArray = [];
+            $childArray['title'] = (string) $child['data-easyminer-block-title'];
+            $childArray['id'] = (string) $child['data-easyminer-block-id'];
+            $childArray['children'] = $this->parseNode($child);
+            $array[] = $childArray;
+        }
+        return $array;
     }
 
     public function getVybraneHTML(array $vyber) {

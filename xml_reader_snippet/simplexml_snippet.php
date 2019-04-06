@@ -1,23 +1,21 @@
 <?php
 
-$string = '<notes>
-    <note id="1">
-        <to>Tove</to>
-        <from>Jani</from>
-        <heading>Reminder</heading>
-        <body>Don\'t forget me this weekend!</body>
-    </note>
-    <note id="2">
-        <to>Petr</to>
-        <from>Dan</from>
-        <heading>DULEZITE</heading>
-        <body>Dojed Dom!</body>
-    </note>
-</notes>';
+$html = file_get_contents('ukazka.html');
+$doc = new DOMDocument();
+$doc->loadHTML($html, LIBXML_NOERROR);
+$xml = simplexml_import_dom($doc);
+$array = parseNode($xml);
 
-$xml = new SimpleXMLElement($string);
-$vysledek = $xml->xpath('note/from');
-
-foreach ($vysledek as $polozka) {
-    echo $polozka->asXML();
+var_dump($array);
+function parseNode(SimpleXMLElement $xml) {
+    $array = [];
+    $children = $xml->xpath('(.//*[@data-easyminer-block-title])[1]/following-sibling::*[@data-easyminer-block-title] | (.//*[@data-easyminer-block-title])[1]');
+    foreach ($children as $child) {
+        $childArray = [];
+        $childArray['title'] = (string) $child['data-easyminer-block-title'];
+        $childArray['id'] = (string) $child['data-easyminer-block-id'];
+        $childArray['children'] = parseNode($child);
+        $array[] = $childArray;
+    }
+    return $array;
 }

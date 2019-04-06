@@ -6,11 +6,13 @@ class PopUpContent extends AssetsHandler
 {
     public $reportsTable;
     public $sipkaDoprava;
+    public $tr;
 
     public function __construct()
     {
         parent::__construct();
         $this->sipkaDoprava = plugins_url('/assets/img/arrow.svg', $this->plugin_file );
+        $this->tr = new Transformace();
         add_action('admin_init', array($this, 'createReportsTable'));
         add_action('wp_ajax_zobraz_reporty', array($this, 'zobraz_reporty'));
         add_action('wp_ajax_zobraz_casti', array($this, 'zobraz_casti'));
@@ -26,8 +28,7 @@ class PopUpContent extends AssetsHandler
         ?>
         <style type="text/css">
         .wp-list-table .column-name { width: 70%; } 
-        .wp-list-table .column-miner_id { width: 15%; }
-        .wp-list-table .column-task_id { width: 15%; }
+        .wp-list-table .column-date { width: 30%; }
         </style>
         <?php
         $this->reportsTable->prepare_items();
@@ -37,48 +38,28 @@ class PopUpContent extends AssetsHandler
 
     public function zobraz_casti()
     {
-        ?>
-        <ul id="easyminerReportUL">
-            <li><input type="checkbox"/>metadata</li>
-            <li><input type="checkbox"/>obsah</li>
-            <li><input type="checkbox"/>popis datového souboru</li>
-            <li><input type="checkbox"/>vytvořené atributy</li>
-            <li><input type="checkbox"/>zadání DM úlohy</li>
-            <li><input type="checkbox"/>nalezená asociační pravidla
-                <img class="sipka" src="<?php echo $this->sipkaDoprava;?>" alt="arrow.svg">
-                <ul class="closed">
-                    <li>
-                        <input type="checkbox"/>Název
-                        <img class="sipka" src="<?php echo $this->sipkaDoprava;?>" alt="arrow.svg">
-                        <ul class="closed">
-                            <li><input type="checkbox"/>Název</li>
-                            <li><input type="checkbox"/>Míry zajímavosti</li>
-                            <li><input type="checkbox"/>Čtyřpolní tabulka</li>
-                        </ul>
-                    </li>
-                    <li>
-                        <input type="checkbox"/>Název
-                        <img class="sipka" src="<?php echo $this->sipkaDoprava;?>" alt="arrow.svg">
-                        <ul class="closed">
-                            <li><input type="checkbox"/>Název</li>
-                            <li><input type="checkbox"/>Míry zajímavosti</li>
-                            <li><input type="checkbox"/>Čtyřpolní tabulka</li>
-                        </ul>
-                    </li>
-                    <li>
-                        <input type="checkbox"/>Název
-                        <img class="sipka" src="<?php echo $this->sipkaDoprava;?>" alt="arrow.svg">
-                        <ul class="closed">
-                            <li><input type="checkbox"/>Název</li>
-                            <li><input type="checkbox"/>Míry zajímavosti</li>
-                            <li><input type="checkbox"/>Čtyřpolní tabulka</li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-        <?php
+        $id = $_GET['id'];
+        $treeselectArray = $this->tr->getTreeselectArray($id);
+        echo '<ul id="easyminerReportUL">';
+        foreach ($treeselectArray as $node) {
+            echo $this->parseNode($node);
+        }
+        echo '</ul>';
         wp_die();
+    }
+
+    public function parseNode(array $node) {
+        $rs = '<li><input id="'.$node['id'].'" type="checkbox"/>'.$node['title'];
+        if (!empty($node['children'])) {
+            $rs.= '<img class="sipka" src="'.$this->sipkaDoprava.'" alt="arrow.svg">';
+            $rs.= '<ul class="closed">';
+            foreach ($node['children'] as $child) {
+                $rs.= $this->parseNode($child);
+            }
+            $rs.= '</ul>';
+        }
+        $rs.= '</li>';
+        return $rs;
     }
 
     public function render_content()

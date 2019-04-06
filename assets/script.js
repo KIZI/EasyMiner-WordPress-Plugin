@@ -67,11 +67,6 @@ function zobrazObsah(id) {
         },
         success:function (data) {
             $('#ea-tb-container').html(data);
-            //zaškrknu všechny checkboxy
-            setAllCheckboxes(
-                $("#easyminerReportUL").find("input[type=checkbox]").get(),
-                true
-            );
         },
         error:function (errorThrown) {
             console.log(errorThrown);
