@@ -19,8 +19,6 @@ class AnalyticalReportsTable extends \WP_List_Table {
             'title' => __('Title', 'EasyMiner-WordPress-Plugin'),
             'date' => __('Created', 'EasyMiner-WordPress-Plugin'),
         );
-        
-
         return $columns;
     }
 
@@ -47,6 +45,7 @@ class AnalyticalReportsTable extends \WP_List_Table {
         return $rs;
     }
 
+    //Overriden
     function no_items() {
         _e( 'No Analytical Reports Found', 'EasyMiner-WordPress-Plugin' );
     }

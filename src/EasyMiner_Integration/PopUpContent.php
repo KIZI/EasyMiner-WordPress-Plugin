@@ -2,14 +2,13 @@
 
 namespace EasyMiner_Integration;
 
-class PopUpContent extends AssetsHandler
-{
+class PopUpContent extends AssetsHandler {
+
     public $reportsTable;
     public $sipkaDoprava;
     public $tr;
 
-    public function __construct()
-    {
+    public function __construct() {
         parent::__construct();
         $this->sipkaDoprava = plugins_url('/assets/img/arrow.svg', $this->plugin_file );
         $this->tr = new Transformace();
@@ -18,13 +17,13 @@ class PopUpContent extends AssetsHandler
         add_action('wp_ajax_zobraz_casti', array($this, 'zobraz_casti'));
         add_action('admin_footer', array($this, 'render_content'));
     }
+
     // musí se volat až na admin_init https://core.trac.wordpress.org/ticket/29933
     public function createReportsTable() {
         $this->reportsTable = new AnalyticalReportsTable();
     }
 
-    public function zobraz_reporty()
-    {
+    public function zobraz_reporty() {
         ?>
         <style type="text/css">
         .wp-list-table .column-name { width: 70%; } 
@@ -36,8 +35,7 @@ class PopUpContent extends AssetsHandler
         wp_die();
     }
 
-    public function zobraz_casti()
-    {
+    public function zobraz_casti() {
         $id = $_GET['id'];
         $treeselectArray = $this->tr->getTreeselectArray($id);
         echo '<ul id="easyminerReportUL">';
@@ -62,8 +60,7 @@ class PopUpContent extends AssetsHandler
         return $rs;
     }
 
-    public function render_content()
-    {
+    public function render_content() {
         if (function_exists('get_current_screen'))
         {
             $pt = get_current_screen()->post_type;

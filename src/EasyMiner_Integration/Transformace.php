@@ -8,24 +8,29 @@ use XSLTProcessor;
 
 class Transformace extends AssetsHandler
 {
-    public function __construct()
-    {
+    public function __construct() {
         parent::__construct();
     }
 
-    public function getHTML($xmlString) {
-        //TODO kontrola, jestli už existuje HTML musí být tady!!!
-        $xslDoc = new DOMDocument();
-        $xslDoc->load(
-            plugin_dir_path($this->plugin_file)."/assets/xsl/4FTPMML2HTML.xsl",
-            LIBXML_NOCDATA);
+    public function getHTML($post) {
+        $html = get_post_meta($post->ID, 'html', true);
+        if ($html) {
+            return $html;
+        } else {
+            $xslDoc = new DOMDocument();
+            $xslDoc->load(
+                plugin_dir_path($this->plugin_file)."/assets/xsl/4FTPMML2HTML.xsl",
+                LIBXML_NOCDATA);
 
-        $xmlDoc = new DOMDocument();
-        //$xmlDoc->load(plugin_dir_path($this->plugin_file)."/assets/xsl/LM1.xml");
-        $xmlDoc->loadXML($xmlString);
-        $proc = new XSLTProcessor();
-        $proc->importStylesheet($xslDoc);
-        return $proc->transformToXml($xmlDoc);
+            $xmlDoc = new DOMDocument();
+            //$xmlDoc->load(plugin_dir_path($this->plugin_file)."/assets/xsl/LM1.xml");
+            $xmlDoc->loadXML($post->post_content);
+            $proc = new XSLTProcessor();
+            $proc->importStylesheet($xslDoc);
+            $html = $proc->transformToXml($xmlDoc);
+            update_post_meta($post->ID, 'html', $html);
+            return $html;
+        }
     }
 
     public function getTreeselectArray($id) {

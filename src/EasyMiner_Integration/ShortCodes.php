@@ -4,8 +4,7 @@ namespace EasyMiner_Integration;
 
 class ShortCodes
 {
-	public function __construct()
-	{
+	public function __construct() {
         add_shortcode( 'easyminer-report', array($this, 'report_callback') );
         add_shortcode( 'easyminer-rule', array($this, 'rule_callback') );
 	}

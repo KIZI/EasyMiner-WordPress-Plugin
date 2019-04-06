@@ -5,15 +5,13 @@ namespace EasyMiner_Integration;
 class TinymceHandler extends AssetsHandler
 {
 
-    public function __construct()
-    {
+    public function __construct() {
         parent::__construct();
             add_action('media_buttons', array($this, 'tlacitko_callback'), 15);
             add_action('admin_enqueue_scripts', array($this, 'zaradit_javascript'));
     }
 
-    public function tlacitko_callback()
-    {
+    public function tlacitko_callback() {
         ?>
         <a  id='ea-tlacitko'
              class='button'>Vložit report
@@ -21,8 +19,7 @@ class TinymceHandler extends AssetsHandler
         <?php
     }
 
-    function zaradit_javascript()
-    {
+    function zaradit_javascript() {
         $current_screen = get_current_screen();
         if( (function_exists( 'is_gutenberg_page' ) && is_gutenberg_page())
         || (method_exists( $current_screen, 'is_block_editor' ) &&

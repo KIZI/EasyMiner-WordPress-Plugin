@@ -13,7 +13,6 @@ class REST
     }
 
     public function register_routes() {
-       // wp_die();
         register_rest_route(
             'EasyMiner-WordPress-Plugin/v1',
             'getReports',

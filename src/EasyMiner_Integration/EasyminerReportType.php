@@ -2,7 +2,7 @@
 
 namespace EasyMiner_Integration;
 
-class EasyminerReportType extends AssetsHandler
+class  EasyminerReportType extends AssetsHandler
 {
     public function __construct() {
         parent::__construct();

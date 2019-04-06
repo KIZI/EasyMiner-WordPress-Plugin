@@ -28,6 +28,10 @@
     padding: 0 0 0 0;
 }
 
+#easyminerReportUL li input[type=checkbox]:checked ~ tex {
+    color: red;
+}
+
 #easyminerReportUL ul {
     padding: 5px 0 0 25px;
 }

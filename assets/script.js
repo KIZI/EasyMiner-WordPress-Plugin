@@ -64,6 +64,10 @@ function zobrazObsah(id) {
         },
         success:function (data) {
             $('#ea-tb-container').html(data);
+            /*setAllCheckboxes(
+                $("#easyminerReportUL").find("input[type=checkbox]").get(),
+                false,
+            );*/
         },
         error:function (errorThrown) {
             console.log(errorThrown);
@@ -83,6 +87,15 @@ function areAllUnchecked(checkboxes) {
     var result = true;
     for (let checkbox of checkboxes) {
         if (checkbox.checked)
+            result = false;
+    }
+    return result;
+}
+
+function areAllChecked(checkboxes) {
+    var result = true;
+    for (let checkbox of checkboxes) {
+        if (!checkbox.checked)
             result = false;
     }
     return result;
@@ -120,6 +133,18 @@ jQuery(document).ready(function($) {
             setAllCheckboxes(parents, true);
 
         var children = $(this).parent().find("ul > li > input[type=checkbox]");
+        if(!areAllChecked(children) && !areAllUnchecked(children) && !this.checked) {
+            this.checked = true;
+            setAllCheckboxes(children, true);
+        }
         setAllCheckboxes(children, this.checked);
+        //pokud je neco zaškrtlé tak povolém vložení
+        var checkboxes = $("#easyminerReportUL").find("input[type=checkbox]").get();
+        var button = $("#ea-button-vlozit");
+        if (!areAllUnchecked(checkboxes)) {
+            button.removeAttr("disabled");
+        } else {
+            button.attr("disabled", "disabled");
+        }
     });
 });
