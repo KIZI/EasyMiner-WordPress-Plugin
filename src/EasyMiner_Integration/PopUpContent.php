@@ -38,7 +38,7 @@ class PopUpContent extends AssetsHandler {
     public function zobraz_casti() {
         $id = $_GET['id'];
         $treeselectArray = $this->tr->getTreeselectArray($id);
-        echo '<ul id="easyminerReportUL">';
+        echo '<ul class="easyminerReportUL" id="easyminer-report-'.$id.'">';
         foreach ($treeselectArray as $node) {
             echo $this->parseNode($node);
         }

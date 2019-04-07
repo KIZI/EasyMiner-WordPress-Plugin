@@ -55,6 +55,7 @@ function zobrazReporty() {
 
 function zobrazObsah(id) {
     $("#ea-button-zpet").removeClass("closed");
+    console.log("zobrazuju ID: ", id);
     $.ajax({
         type: "GET",
         url: ajaxurl,
@@ -65,7 +66,7 @@ function zobrazObsah(id) {
         success:function (data) {
             $('#ea-tb-container').html(data);
             /*setAllCheckboxes(
-                $("#easyminerReportUL").find("input[type=checkbox]").get(),
+                $(".easyminerReportUL").find("input[type=checkbox]").get(),
                 false,
             );*/
         },
@@ -76,9 +77,40 @@ function zobrazObsah(id) {
 }
 
 function getReportContent() {
-    //TODO tady bude ajax Požadavek na HTML od PHP
+    var treeSelect = $(".easyminerReportUL");
+    var id = treeSelect.attr("id").replace(/easyminer-report-/gi, '');
+    var pole = [];
+    pole = getListSelection(treeSelect);
+    $.ajax({
+        type: "GET",
+        url: ajaxurl,
+        data: {
+            action: 'easyminer_get_html_selection',
+            selection: pole,
+            id: id,
+        },
+        success: function (data) {
+            //TODO když dostanu HTML
+            console.log(data);
+        },
+        error: function (errorThrown) {
+            console.log(errorThrown);
+        }
+    });
+    return 'jaj môj';
 }
 
+function getListSelection(list) {
+    var selection = [];
+    var items = $(list).find("li").get();
+    for (let item of items) {
+        var checkbox = $(item).find("> input[type=checkbox]");
+        if (checkbox.get(0).checked) {
+            selection.push(checkbox.attr("id"));
+        }
+    }
+    return selection;
+}
 /**
  * _ _ _ TREESELECT JAVASCRIPT _ _ _
  * **/
@@ -114,12 +146,12 @@ function getParent(node) {
 
 jQuery(document).ready(function($) {
 
-    $(document).delegate("#easyminerReportUL .sipka", "click", function(){
+    $(document).delegate(".easyminerReportUL .sipka", "click", function(){
         //TODO: otoč šipku
         $(this).parent().find("ul").get(0).classList.toggle("closed");
     });
 
-    $(document).delegate("#easyminerReportUL input:checkbox", "change", function(){
+    $(document).delegate(".easyminerReportUL input:checkbox", "change", function(){
         var parents = [];
         var child = this;
         while (parent = getParent(child)) {
@@ -139,7 +171,7 @@ jQuery(document).ready(function($) {
         }
         setAllCheckboxes(children, this.checked);
         //pokud je neco zaškrtlé tak povolém vložení
-        var checkboxes = $("#easyminerReportUL").find("input[type=checkbox]").get();
+        var checkboxes = $(".easyminerReportUL").find("input[type=checkbox]").get();
         var button = $("#ea-button-vlozit");
         if (!areAllUnchecked(checkboxes)) {
             button.removeAttr("disabled");

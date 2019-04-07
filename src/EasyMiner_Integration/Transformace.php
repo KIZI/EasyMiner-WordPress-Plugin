@@ -10,6 +10,7 @@ class Transformace extends AssetsHandler
 {
     public function __construct() {
         parent::__construct();
+        add_action('wp_ajax_easyminer_get_html_selection', array($this, 'getSelectedHTML'));
     }
 
     public function getHTML($post) {
@@ -36,7 +37,7 @@ class Transformace extends AssetsHandler
     public function getTreeselectArray($id) {
         $post = get_post($id);
         $content = $post->post_content;
-        //$html = $this->getHTML($content);
+        //$html = $this->getHTML($post);
         $html = file_get_contents(plugin_dir_path(__FILE__).'/ukazka.html');
         $doc = new DOMDocument();
         $doc->loadHTML($html, LIBXML_NOERROR);
@@ -59,7 +60,20 @@ class Transformace extends AssetsHandler
         return $array;
     }
 
-    public function getVybraneHTML(array $vyber) {
+    public function getSelectedHTML() {
+        $selection = $_GET['selection'];
+        $id = $_GET['id'];
+        $html = $this->getHTML(get_post($id));
+        $doc = new DOMDocument();
+        $doc->loadHTML($html, LIBXML_NOERROR);
+        $xml = simplexml_import_dom($doc);
+        $xml->xmlEncoding = 'UTF-8';
+        $rs = $this->filterNode($xml, $selection);
+        echo $rs;
+        wp_die();
+    }
 
+    public function filterNode(SimpleXMLElement $xml, array $selection) {
+        return $xml->asXML();
     }
 }
