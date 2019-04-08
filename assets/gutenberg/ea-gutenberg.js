@@ -4,7 +4,7 @@ $( document ).delegate( "#ea-button-vlozit", "click", function() {
     var clientId = editorsData.getSelectedBlock().clientId;
     var blockIndex = editorsData.getBlockIndex(clientId);
     var content = getReportContent();
-    var name = 'core/paragraph';
+    var name = 'core/html';
     insertedBlock = wp.blocks.createBlock(name, {
         content: content,
     });
