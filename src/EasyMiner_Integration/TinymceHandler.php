@@ -14,7 +14,7 @@ class TinymceHandler extends AssetsHandler
     public function tlacitko_callback() {
         ?>
         <a  id='ea-tlacitko'
-             class='button'>Vložit report
+             class='button'><?php _e('Insert Report', 'EasyMiner-WordPress-Plugin');?>
         </a>
         <?php
     }

@@ -2,8 +2,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: EasyMiner Integration Plugin\n"
-"POT-Creation-Date: 2019-02-25 15:22+0100\n"
-"PO-Revision-Date: 2019-02-25 17:48+0100\n"
+"POT-Creation-Date: 2019-04-08 15:47+0200\n"
+"PO-Revision-Date: 2019-04-08 15:49+0200\n"
 "Last-Translator: \n"
 "Language-Team: Petr Novák\n"
 "Language: cs_CZ\n"
@@ -16,25 +16,50 @@ msgstr ""
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: src/EasyMiner_Integration/EasyminerReportType.php:20
-msgid "Analytical Reports"
-msgstr "Analytické zprávy"
+#: src/EasyMiner_Integration/AnalyticalReportsTable.php:19
+msgid "Title"
+msgstr "Název"
 
-msgid "Analytical Report"
-msgstr "Analytická zpráva"
+#: src/EasyMiner_Integration/AnalyticalReportsTable.php:20
+msgid "Created"
+msgstr "Vytvořeno"
 
-#: src/EasyMiner_Integration/EasyminerReportType.php:24
-msgid "Not found"
-msgstr "Nenalezeno"
+#: src/EasyMiner_Integration/AnalyticalReportsTable.php:35
+msgid "No Value"
+msgstr "Bez hodnoty"
 
-#: src/EasyMiner_Integration/EasyminerReportType.php:25
-msgid "Not found in Trash"
-msgstr "Nenalezeno v koši"
-
+#: src/EasyMiner_Integration/AnalyticalReportsTable.php:50
 msgid "No Analytical Reports Found"
 msgstr "Nenalezeny žádné zprávy o běhu úlohy"
 
+#: src/EasyMiner_Integration/Assets.php:28
+msgid "Report Selection"
+msgstr "Výběr částí zprávy o běhu úlohy"
 
+#: src/EasyMiner_Integration/EasyminerReportType.php:35
+msgid "Analytical Reports"
+msgstr "Zprávy o běhu úlohy"
 
+#: src/EasyMiner_Integration/EasyminerReportType.php:39
+msgid "Not found"
+msgstr "Nenalezeno"
 
+#: src/EasyMiner_Integration/EasyminerReportType.php:40
+msgid "Not found in Trash"
+msgstr "Nenalezeno v koši"
 
+#: src/EasyMiner_Integration/GutenbergHandler.php:34
+msgid "Analytical Report"
+msgstr "Analytická zpráva"
+
+#: src/EasyMiner_Integration/PopUpContent.php:75
+msgid "Cancel"
+msgstr "Zpět"
+
+#: src/EasyMiner_Integration/PopUpContent.php:78
+msgid "Insert"
+msgstr "Vložit"
+
+#: src/EasyMiner_Integration/TinymceHandler.php:17
+msgid "Insert Report"
+msgstr "Vložit report"

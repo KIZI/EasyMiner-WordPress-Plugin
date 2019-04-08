@@ -7,10 +7,10 @@ class Assets extends AssetsHandler
 {
     public function __construct() {
         parent::__construct();
-        add_action('init', array($this, 'obecne_scripty'));
+        add_action('init', array($this, 'general_assets'));
     }
 
-    public function obecne_scripty() {
+    public function general_assets() {
         wp_enqueue_style(
             'easyminer-integration-css',
             plugins_url( '/assets/styles.css', $this->plugin_file )
@@ -20,6 +20,13 @@ class Assets extends AssetsHandler
             'easyminer-integration-js',
             plugins_url('/assets/script.js', $this->plugin_file), array('jquery'),
             '1.0', true
+        );
+        wp_localize_script(
+            'easyminer-integration-js',
+            'EasyMinerLocalizeJS',
+            array(
+                'popUpTitle' => __('Report Selection', 'EasyMiner-WordPress-Plugin'),
+            )
         );
     }
 }

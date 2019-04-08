@@ -18,7 +18,7 @@ jQuery(document).ready(function($) {
 });
 
 function zobrazThickbox() {
-    tb_show( 'Blabla bla', '#TB_inline?inlineId=ea-dialog' );
+    tb_show( EasyMinerLocalizeJS.popUpTitle, '#TB_inline?inlineId=ea-dialog' );
     zobrazReporty();
 }
 
@@ -55,7 +55,6 @@ function zobrazReporty() {
 
 function zobrazObsah(id) {
     $("#ea-button-zpet").removeClass("closed");
-    console.log("zobrazuju ID: ", id);
     $.ajax({
         type: "GET",
         url: ajaxurl,

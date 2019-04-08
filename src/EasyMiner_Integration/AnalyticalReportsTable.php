@@ -32,7 +32,7 @@ class AnalyticalReportsTable extends \WP_List_Table {
             case 'date':
             return date_i18n(get_option('date_format'), get_the_time('U', $item->ID));
             default:
-            return 'no value';
+            return __('No Value', 'EasyMiner-WordPress-Plugin');
         }
     }
 

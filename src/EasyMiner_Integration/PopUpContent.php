@@ -72,10 +72,10 @@ class PopUpContent extends AssetsHandler {
             <div id="ea-tb-container"></div>
             <button class="closed button-secondary"
                     id="ea-button-zpet"
-                    >Zpět</button>
+                    ><?php _e('Cancel', 'EasyMiner-WordPress-Plugin');?></button>
             <button class="button-primary"
                     id="ea-button-vlozit"
-                    >Vložit</button>
+                    ><?php _e('Insert', 'EasyMiner-WordPress-Plugin');?></button>
         </div>
         <?php
     }

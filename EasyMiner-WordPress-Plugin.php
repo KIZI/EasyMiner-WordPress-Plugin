@@ -5,7 +5,6 @@ Plugin URI:   https://github.com/KIZI/EasyMiner-WordPress-Plugin
 Description:  EasyMiner Integration Plugin for WordPress
 Author:       Petr Novák
 License:      Apache
-Domain Path:  /languages
 Text Domain:  EasyMiner-WordPress-Plugin
 License URI:  http://www.apache.org/licenses/LICENSE-2.0.html
  */
