@@ -8,9 +8,14 @@ use XSLTProcessor;
 
 class Transformace extends AssetsHandler
 {
+    public $xpath;
+    public $selection;
+
     public function __construct() {
         parent::__construct();
         add_action('wp_ajax_easyminer_get_html_selection', array($this, 'getSelectedHTML'));
+        $this->xpath = '(.//*[@data-easyminer-block-title])[1]/following-sibling::*[@data-easyminer-block-title]';
+        $this->xpath.= '| (.//*[@data-easyminer-block-title])[1]';
     }
 
     public function getHTML($post) {
@@ -49,7 +54,7 @@ class Transformace extends AssetsHandler
 
     public function parseNode(SimpleXMLElement $xml) {
         $array = [];
-        $children = $xml->xpath('(.//*[@data-easyminer-block-title])[1]/following-sibling::*[@data-easyminer-block-title] | (.//*[@data-easyminer-block-title])[1]');
+        $children = $xml->xpath($this->xpath);
         foreach ($children as $child) {
             $childArray = [];
             $childArray['title'] = (string) $child['data-easyminer-block-title'];
@@ -62,18 +67,43 @@ class Transformace extends AssetsHandler
 
     public function getSelectedHTML() {
         $selection = $_GET['selection'];
+        $this->selection = $selection;
         $id = $_GET['id'];
-        $html = $this->getHTML(get_post($id));
+        //$html = $this->getHTML(get_post($id));
+        $html = file_get_contents(plugin_dir_path(__FILE__).'/ukazka.html');
         $doc = new DOMDocument();
         $doc->loadHTML($html, LIBXML_NOERROR);
         $xml = simplexml_import_dom($doc);
         $xml->xmlEncoding = 'UTF-8';
-        $rs = $this->filterNode($xml, $selection);
+        $rs = $this->filterRootNode($xml);
         echo $rs;
         wp_die();
     }
 
-    public function filterNode(SimpleXMLElement $xml, array $selection) {
-        return $xml->asXML();
+    public function FilterRootNode(SimpleXMLElement $xml) {
+        $rs = '';
+        $children = $xml->xpath($this->xpath);
+        foreach ($children as $child) {
+            $id = (string) $child['data-easyminer-block-id'];
+            if (in_array($id, $this->selection, false)) {
+                $filtered = $this->filterNode($child);
+                $rs .= $filtered->asXML();
+            }
+        }
+        return $rs;
+    }
+
+    public function filterNode(SimpleXMLElement $xml) {
+        $children = $xml->xpath($this->xpath);
+        foreach($children as &$child) {
+            $id = (string) $child['data-easyminer-block-id'];
+            if (!in_array($id, $this->selection, false)) {
+                $oNode = dom_import_simplexml($child);
+                $oNode->parentNode->removeChild($oNode);
+            } else {
+                $child = $this->filterNode($child);
+            }
+        }
+        return $xml;
     }
 }

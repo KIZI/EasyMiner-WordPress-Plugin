@@ -80,10 +80,12 @@ function getReportContent() {
     var treeSelect = $(".easyminerReportUL");
     var id = treeSelect.attr("id").replace(/easyminer-report-/gi, '');
     var pole = [];
+    var result = '';
     pole = getListSelection(treeSelect);
     $.ajax({
         type: "GET",
         url: ajaxurl,
+        async: false,
         data: {
             action: 'easyminer_get_html_selection',
             selection: pole,
@@ -91,13 +93,13 @@ function getReportContent() {
         },
         success: function (data) {
             //TODO když dostanu HTML
-            console.log(data);
+           result = data;
         },
         error: function (errorThrown) {
             console.log(errorThrown);
         }
     });
-    return 'jaj môj';
+    return result;
 }
 
 function getListSelection(list) {
