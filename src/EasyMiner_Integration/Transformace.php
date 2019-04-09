@@ -30,7 +30,7 @@ class Transformace extends AssetsHandler
 
             $xmlDoc = new DOMDocument();
             //$xmlDoc->load(plugin_dir_path($this->plugin_file)."/assets/xsl/LM1.xml");
-            $xmlDoc->loadXML($post->post_content);
+            $xmlDoc->loadXML($post->post_content, LIBXML_NOCDATA);
             $proc = new XSLTProcessor();
             $proc->importStylesheet($xslDoc);
             $html = $proc->transformToXml($xmlDoc);
@@ -75,7 +75,8 @@ class Transformace extends AssetsHandler
         $doc->loadHTML($html, LIBXML_NOERROR);
         $xml = simplexml_import_dom($doc);
         $xml->xmlEncoding = 'UTF-8';
-        $rs = $this->filterRootNode($xml);
+        $rs = '[easyminer-link]';
+        $rs .= $this->filterRootNode($xml);
         echo $rs;
         wp_die();
     }

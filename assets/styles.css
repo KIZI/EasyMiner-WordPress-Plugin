@@ -9,6 +9,7 @@
 
 .ea-report-polozka {
     text-decoration: none;
+    cursor: pointer;
 }
 
 #ea-button-vlozit {
@@ -26,10 +27,11 @@
 .easyminerReportUL li {
     list-style-type: none;
     padding: 0 0 0 0;
+    margin: 10px 0 0 0;
 }
 
 .easyminerReportUL ul {
-    padding: 5px 0 0 25px!important;
+    padding: 0 0 0 25px!important;
 }
 
 .sipka {

@@ -27,15 +27,15 @@ class  EasyminerReportType extends AssetsHandler
         }
 
         $args = array(
-            'name'                => 'Analytické zprávy',
-            'singular_name'       => 'Analytická zpráva',
+            'name'                => __('Analytical Reports', 'EasyMiner-WordPress-Plugin'),
+            'singular_name'       => __('Analytical Report', 'EasyMiner-WordPress-Plugin'),
             'labels' => [
-                'name'=> 'Analytické zprávy',
-                'singular_name'=> 'Analytická zpráva',
+                'name'=> __('Analytical Reports', 'EasyMiner-WordPress-Plugin'),
+                'singular_name'=> __('Analytical Report', 'EasyMiner-WordPress-Plugin'),
                 'menu_name'=> __('Analytical Reports', 'EasyMiner-WordPress-Plugin'),
-                'all_items'=> 'Všechny analytické zprávy',
-                'view_item'=> 'Zobrazit',
-                'search_items'=> 'Hledat',
+                'all_items'=> __('All Analytical Reports', 'EasyMiner-WordPress-Plugin'),
+                'view_item'=> __('View', 'EasyMiner-WordPress-Plugin'),
+                'search_items'=> __('Search', 'EasyMiner-WordPress-Plugin'),
                 'not_found'=> __('Not found', 'EasyMiner-WordPress-Plugin'),
                 'not_found_in_trash'=> __('Not found in Trash', 'EasyMiner-WordPress-Plugin'),
             ],

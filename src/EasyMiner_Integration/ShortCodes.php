@@ -5,22 +5,16 @@ namespace EasyMiner_Integration;
 class ShortCodes
 {
 	public function __construct() {
-        add_shortcode( 'easyminer-report', array($this, 'report_callback') );
-        add_shortcode( 'easyminer-rule', array($this, 'rule_callback') );
+        add_shortcode( 'easyminer-link', array($this, 'report_callback') );
 	}
 
-	public function report_callback($attr, $content = null) {
-        $output = '';
-        $output.= $content;
-        return $output;
-    }
+	public function report_callback($attr) {
+        //$post_id = $attr['post_id'];
+        //$block_id = $attr['block_id'];
+        //$permalink = get_permalink($post_id);
+	    $output = '<a href="https://lidovydum.eu" target="_blank">Odkaz</a>';
+	    //$output.= $permalink;
 
-    public function rule_callback($attr) {
-	    $a = $attr['a'];
-	    $b = $attr['b'];
-	    $c = $attr['c'];
-	    $d = $attr['d'];
-        $output = '';
         return $output;
     }
 }

@@ -152,7 +152,7 @@ jQuery(document).ready(function($) {
         $(this).parent().find("ul").get(0).classList.toggle("closed");
     });
 
-    $(document).delegate(".easyminerReportUL input:checkbox", "change", function(){
+    $(document).delegate(".easyminerReportUL li input:checkbox", "change", function(){
         var parents = [];
         var child = this;
         while (parent = getParent(child)) {

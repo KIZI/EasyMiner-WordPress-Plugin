@@ -2,8 +2,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: EasyMiner Integration Plugin\n"
-"POT-Creation-Date: 2019-04-08 15:47+0200\n"
-"PO-Revision-Date: 2019-04-08 15:49+0200\n"
+"POT-Creation-Date: 2019-04-08 15:57+0200\n"
+"PO-Revision-Date: 2019-04-08 15:57+0200\n"
 "Last-Translator: \n"
 "Language-Team: Petr Novák\n"
 "Language: cs_CZ\n"
@@ -36,9 +36,29 @@ msgstr "Nenalezeny žádné zprávy o běhu úlohy"
 msgid "Report Selection"
 msgstr "Výběr částí zprávy o běhu úlohy"
 
+#: src/EasyMiner_Integration/EasyminerReportType.php:30
+#: src/EasyMiner_Integration/EasyminerReportType.php:33
 #: src/EasyMiner_Integration/EasyminerReportType.php:35
 msgid "Analytical Reports"
 msgstr "Zprávy o běhu úlohy"
+
+#: src/EasyMiner_Integration/EasyminerReportType.php:31
+#: src/EasyMiner_Integration/EasyminerReportType.php:34
+#: src/EasyMiner_Integration/GutenbergHandler.php:34
+msgid "Analytical Report"
+msgstr "Analytická zpráva"
+
+#: src/EasyMiner_Integration/EasyminerReportType.php:36
+msgid "All Analytical Reports"
+msgstr "Všechny zprávy o běhu úlohy"
+
+#: src/EasyMiner_Integration/EasyminerReportType.php:37
+msgid "View"
+msgstr "Zobrazit"
+
+#: src/EasyMiner_Integration/EasyminerReportType.php:38
+msgid "Search"
+msgstr "Hledat"
 
 #: src/EasyMiner_Integration/EasyminerReportType.php:39
 msgid "Not found"
@@ -47,10 +67,6 @@ msgstr "Nenalezeno"
 #: src/EasyMiner_Integration/EasyminerReportType.php:40
 msgid "Not found in Trash"
 msgstr "Nenalezeno v koši"
-
-#: src/EasyMiner_Integration/GutenbergHandler.php:34
-msgid "Analytical Report"
-msgstr "Analytická zpráva"
 
 #: src/EasyMiner_Integration/PopUpContent.php:75
 msgid "Cancel"
