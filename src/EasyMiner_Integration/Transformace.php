@@ -91,6 +91,7 @@ class Transformace extends AssetsHandler
                 $rs .= $filtered->asXML();
             }
         }
+        $rs = preg_replace("/\r|\n/", "", trim($rs));
         return $rs;
     }
 
