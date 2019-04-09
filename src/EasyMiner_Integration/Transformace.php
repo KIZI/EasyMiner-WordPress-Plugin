@@ -77,35 +77,40 @@ class Transformace extends AssetsHandler
         $xml->xmlEncoding = 'UTF-8';
         $rs = '[easyminer-link]';
         $rs .= $this->filterRootNode($xml);
-        echo $rs;
+        echo '<div class="easyminer-block">'.$rs.'</div>';
         wp_die();
     }
 
     public function FilterRootNode(SimpleXMLElement $xml) {
         $rs = '';
-        $children = $xml->xpath($this->xpath);
-        foreach ($children as $child) {
-            $id = (string) $child['data-easyminer-block-id'];
+        $underBlocks = $xml->xpath($this->xpath);
+        foreach ($underBlocks as $underBlock) {
+            $id = (string) $underBlock['data-easyminer-block-id'];
             if (in_array($id, $this->selection, false)) {
-                $filtered = $this->filterNode($child);
-                $rs .= $filtered->asXML();
+                $filtered = $this->filterNode($underBlock);
+                $rs .= $filtered;
             }
         }
         $rs = preg_replace("/\r|\n/", "", trim($rs));
+        $rs = preg_replace("/>\s+</", "></", trim($rs));
         return $rs;
     }
 
     public function filterNode(SimpleXMLElement $xml) {
-        $children = $xml->xpath($this->xpath);
-        foreach($children as &$child) {
-            $id = (string) $child['data-easyminer-block-id'];
+        $children = $xml->children();
+        $content = '';
+        foreach($children as $child) {
+            $content .= $child->asXML();
+        }
+        $underBlocks = $xml->xpath($this->xpath);
+        foreach($underBlocks as &$underBlock) {
+            $id = (string) $underBlock['data-easyminer-block-id'];
             if (!in_array($id, $this->selection, false)) {
-                $oNode = dom_import_simplexml($child);
-                $oNode->parentNode->removeChild($oNode);
+                $content = str_replace($underBlock->asXML(), "", $content);
             } else {
-                $child = $this->filterNode($child);
+                $content = str_replace($underBlock->asXML(), $this->filterNode($underBlock), $content);
             }
         }
-        return $xml;
+        return $content;
     }
 }

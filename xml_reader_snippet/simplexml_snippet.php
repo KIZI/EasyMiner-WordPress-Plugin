@@ -1,21 +1,19 @@
 <?php
 
-$html = file_get_contents('ukazka.html');
+$html = file_get_contents('test.html');
 $doc = new DOMDocument();
 $doc->loadHTML($html, LIBXML_NOERROR);
 $xml = simplexml_import_dom($doc);
-$array = parseNode($xml);
+$rs = filterNode($xml);
 
-var_dump($array);
-function parseNode(SimpleXMLElement $xml) {
-    $array = [];
-    $children = $xml->xpath('(.//*[@data-easyminer-block-title])[1]/following-sibling::*[@data-easyminer-block-title] | (.//*[@data-easyminer-block-title])[1]');
-    foreach ($children as $child) {
-        $childArray = [];
-        $childArray['title'] = (string) $child['data-easyminer-block-title'];
-        $childArray['id'] = (string) $child['data-easyminer-block-id'];
-        $childArray['children'] = parseNode($child);
-        $array[] = $childArray;
+var_dump($rs);
+
+function filterNode(SimpleXMLElement $xml) {
+    $content = $xml->children();
+    $joj = "";
+    foreach($content as $content1) {
+        $joj .= $content1->asXML();
     }
-    return $array;
+    $children = $xml->xpath('(.//*[@data-easyminer-block-title])[1]/following-sibling::*[@data-easyminer-block-title] | (.//*[@data-easyminer-block-title])[1]');
+    return $joj;
 }
