@@ -19,7 +19,7 @@ class Transformace extends AssetsHandler
     }
 
     public function getHTML($post) {
-        $html = get_post_meta($post->ID, 'html', true);
+        $html = $post->html;
         if ($html) {
             return $html;
         } else {
@@ -34,7 +34,8 @@ class Transformace extends AssetsHandler
             $proc = new XSLTProcessor();
             $proc->importStylesheet($xslDoc);
             $html = $proc->transformToXml($xmlDoc);
-            update_post_meta($post->ID, 'html', $html);
+            // https://developer.wordpress.org/plugins/metadata/managing-post-metadata/#character-escaping
+            update_post_meta($post->ID, 'html', wp_slash($html));
             return $html;
         }
     }

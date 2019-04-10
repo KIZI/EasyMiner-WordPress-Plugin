@@ -30,10 +30,10 @@
   <!-- Polozky Support a Confidence jsou systemove, pouzivaji se pro preklad nazvu povinnych PMML atributu -->
 
   <!-- Obsahuje slovnik pojmu generovanych xslt transformaci v ruznych jazycich-->
-  <!--<xsl:variable name="LocalizationDictionary" select="document('pmml/dict/PMMLDictionary.xml')"/>-->
+  <xsl:variable name="LocalizationDictionary" select="document('pmml/dict/PMMLDictionary.xml')"/>
 
-  <!-- Obsahuje lokalizaci znacek vkladanych pro gInclude (nadpisy pro fragmenty dokumentu)-->
-  <!--<xsl:variable name="ContentTagsDictionary" select="document('pmml/dict/PMMLContentTagsDictionary.xml')"/> -->
+  <!-- Obsahuje lokalizaci znacek vkladanych pro easyminer-block (nadpisy pro fragmenty dokumentu)-->
+  <xsl:variable name="ContentTagsDictionary" select="document('pmml/dict/PMMLContentTagsDictionary.xml')"/>
 
   <!-- region Transformation root - everyting begins here -->
   <xsl:template match="/">

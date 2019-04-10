@@ -1,7 +1,6 @@
 <?php
 
 use EasyMiner_Integration\Transformace;
-
 $tr = new Transformace();
 $post = get_post();
 if (!$post->post_content) {
