@@ -2,8 +2,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: EasyMiner Integration Plugin\n"
-"POT-Creation-Date: 2019-04-08 15:57+0200\n"
-"PO-Revision-Date: 2019-04-08 15:57+0200\n"
+"POT-Creation-Date: 2019-04-10 17:28+0200\n"
+"PO-Revision-Date: 2019-04-10 17:28+0200\n"
 "Last-Translator: \n"
 "Language-Team: Petr Novák\n"
 "Language: cs_CZ\n"
@@ -16,22 +16,6 @@ msgstr ""
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: src/EasyMiner_Integration/AnalyticalReportsTable.php:19
-msgid "Title"
-msgstr "Název"
-
-#: src/EasyMiner_Integration/AnalyticalReportsTable.php:20
-msgid "Created"
-msgstr "Vytvořeno"
-
-#: src/EasyMiner_Integration/AnalyticalReportsTable.php:35
-msgid "No Value"
-msgstr "Bez hodnoty"
-
-#: src/EasyMiner_Integration/AnalyticalReportsTable.php:50
-msgid "No Analytical Reports Found"
-msgstr "Nenalezeny žádné zprávy o běhu úlohy"
-
 #: src/EasyMiner_Integration/Assets.php:28
 msgid "Report Selection"
 msgstr "Výběr částí zprávy o běhu úlohy"
@@ -39,17 +23,17 @@ msgstr "Výběr částí zprávy o běhu úlohy"
 #: src/EasyMiner_Integration/EasyminerReportType.php:30
 #: src/EasyMiner_Integration/EasyminerReportType.php:33
 #: src/EasyMiner_Integration/EasyminerReportType.php:35
-msgid "Analytical Reports"
+msgid "Task Reports"
 msgstr "Zprávy o běhu úlohy"
 
 #: src/EasyMiner_Integration/EasyminerReportType.php:31
 #: src/EasyMiner_Integration/EasyminerReportType.php:34
 #: src/EasyMiner_Integration/GutenbergHandler.php:34
-msgid "Analytical Report"
+msgid "Task Report"
 msgstr "Analytická zpráva"
 
 #: src/EasyMiner_Integration/EasyminerReportType.php:36
-msgid "All Analytical Reports"
+msgid "All Task Reports"
 msgstr "Všechny zprávy o běhu úlohy"
 
 #: src/EasyMiner_Integration/EasyminerReportType.php:37
@@ -76,6 +60,25 @@ msgstr "Zpět"
 msgid "Insert"
 msgstr "Vložit"
 
+#: src/EasyMiner_Integration/TaskReportsTable.php:19
+msgid "Title"
+msgstr "Název"
+
+#: src/EasyMiner_Integration/TaskReportsTable.php:20
+msgid "Created"
+msgstr "Vytvořeno"
+
+#: src/EasyMiner_Integration/TaskReportsTable.php:35
+msgid "No Value"
+msgstr "Bez hodnoty"
+
+#: src/EasyMiner_Integration/TaskReportsTable.php:50
+msgid "No Task Reports Found"
+msgstr "Nenalezeny žádné zprávy o běhu úlohy"
+
 #: src/EasyMiner_Integration/TinymceHandler.php:17
 msgid "Insert Report"
 msgstr "Vložit report"
+
+#~ msgid "Analytical Report"
+#~ msgstr "Všechny zprávy o běhu úlohy"

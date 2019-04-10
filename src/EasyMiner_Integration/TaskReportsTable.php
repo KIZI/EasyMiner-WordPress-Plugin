@@ -2,7 +2,7 @@
 namespace EasyMiner_Integration;
 
 
-class AnalyticalReportsTable extends \WP_List_Table {
+class TaskReportsTable extends \WP_List_Table {
 
     public function prepare_items() {
         $this->items = get_posts( array(
@@ -47,6 +47,6 @@ class AnalyticalReportsTable extends \WP_List_Table {
 
     //Overriden
     function no_items() {
-        _e( 'No Analytical Reports Found', 'EasyMiner-WordPress-Plugin' );
+        _e( 'No Task Reports Found', 'EasyMiner-WordPress-Plugin' );
     }
 }

@@ -20,7 +20,7 @@ class PopUpContent extends AssetsHandler {
 
     // musí se volat až na admin_init https://core.trac.wordpress.org/ticket/29933
     public function createReportsTable() {
-        $this->reportsTable = new AnalyticalReportsTable();
+        $this->reportsTable = new TaskReportsTable();
     }
 
     public function zobraz_reporty() {

@@ -73,8 +73,9 @@ class Transformace extends AssetsHandler
         $html = file_get_contents(plugin_dir_path(__FILE__).'/ukazka.html');
         $doc = new DOMDocument();
         $doc->loadHTML($html, LIBXML_NOERROR);
+        //$xml = simplexml_load_string($html);
         $xml = simplexml_import_dom($doc);
-        $xml->xmlEncoding = 'UTF-8';
+        //$xml->xmlEncoding = 'UTF-8';
         $rs = '[easyminer-link]';
         $rs .= $this->filterRootNode($xml);
         echo '<div class="easyminer-block">'.$rs.'</div>';
@@ -92,7 +93,7 @@ class Transformace extends AssetsHandler
             }
         }
         $rs = preg_replace("/\r|\n/", "", trim($rs));
-        $rs = preg_replace("/>\s+</", "></", trim($rs));
+        $rs = preg_replace("/>\s+<\//", "></", trim($rs));
         return $rs;
     }
 
