@@ -33,7 +33,7 @@ class Transformace extends AssetsHandler
             $xmlDoc->loadXML($post->post_content, LIBXML_NOCDATA);
             $proc = new XSLTProcessor();
             $proc->importStylesheet($xslDoc);
-            $html = $proc->transformToXml($xmlDoc);
+            $html = @$proc->transformToXml($xmlDoc);
             // https://developer.wordpress.org/plugins/metadata/managing-post-metadata/#character-escaping
             update_post_meta($post->ID, 'html', wp_slash($html));
             return $html;
