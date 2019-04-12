@@ -3,12 +3,15 @@
 namespace EasyMiner_Integration;
 
 use DOMDocument;
-use SimpleXMLElement;
+use DOMXPath;
+use DOMElement;
 use XSLTProcessor;
 
 class Transformace extends AssetsHandler
 {
     public $xpath;
+    public $DOMXpath;
+    public $DOMDocument;
     public $selection;
 
     public function __construct() {
@@ -41,25 +44,23 @@ class Transformace extends AssetsHandler
 
     public function getTreeselectArray($id) {
         $post = get_post($id);
-        $content = $post->post_content;
         //$html = $this->getHTML($post);
         $html = file_get_contents(plugin_dir_path(__FILE__).'/ukazka.html');
-        $doc = new DOMDocument();
-        $doc->loadHTML($html, LIBXML_NOERROR);
-        $xml = simplexml_import_dom($doc);
-        $xml->xmlEndoding='UTF-8';
-        $array = $this->parseNode($xml);
+        $this->DOMDocument = new DOMDocument();
+        $this->DOMDocument->loadHTML($html, LIBXML_NOERROR);
+        $this->DOMXpath = new DOMXPath($this->DOMDocument);
+        $array = $this->parseElement($this->DOMDocument->documentElement);
         return $array;
     }
 
-    public function parseNode(SimpleXMLElement $xml) {
+    public function parseElement(DOMElement $element) {
         $array = [];
-        $children = $xml->xpath($this->xpath);
+        $children = $this->getChildren($element);
         foreach ($children as $child) {
             $childArray = [];
-            $childArray['title'] = (string) $child['data-easyminer-block-title'];
-            $childArray['id'] = (string) $child['data-easyminer-block-id'];
-            $childArray['children'] = $this->parseNode($child);
+            $childArray['title'] = $this->getAttribute($child, 'data-easyminer-block-title');
+            $childArray['id'] = $this->getAttribute($child, 'data-easyminer-block-id');
+            $childArray['children'] = $this->parseElement($child);
             $array[] = $childArray;
         }
         return $array;
@@ -71,47 +72,54 @@ class Transformace extends AssetsHandler
         $id = $_GET['id'];
         //$html = $this->getHTML(get_post($id));
         $html = file_get_contents(plugin_dir_path(__FILE__).'/ukazka.html');
-        $doc = new DOMDocument();
-        $doc->loadHTML($html, LIBXML_NOERROR);
-        //$xml = simplexml_load_string($html);
-        $xml = simplexml_import_dom($doc);
-        //$xml->xmlEncoding = 'UTF-8';
+        $this->DOMDocument = new DOMDocument();
+        $this->DOMDocument->loadHTML($html, LIBXML_NOERROR);
         $rs = '[easyminer-link]';
-        $rs .= $this->filterRootNode($xml);
+        $rs .= $this->filterRootElement();
         echo '<div class="easyminer-block">'.$rs.'</div>';
         wp_die();
     }
 
-    public function FilterRootNode(SimpleXMLElement $xml) {
+    public function filterRootElement() {
         $rs = '';
-        $underBlocks = $xml->xpath($this->xpath);
+        $this->DOMXpath = new DOMXPath($this->DOMDocument);
+        $underBlocks = $this->getChildren();
         foreach ($underBlocks as $underBlock) {
-            $id = (string) $underBlock['data-easyminer-block-id'];
+            $id = $this->getAttribute($underBlock, 'data-easyminer-block-id');
             if (in_array($id, $this->selection, false)) {
-                $filtered = $this->filterNode($underBlock);
+                $filtered = $this->filterElement($underBlock);
                 $rs .= $filtered;
             }
         }
-        $rs = preg_replace("/\r|\n/", "", trim($rs));
+        $rs = preg_replace("/\r|\n/", "", $rs);
         $rs = preg_replace("/>\s+<\//", "></", trim($rs));
         return $rs;
     }
 
-    public function filterNode(SimpleXMLElement $xml) {
-        $children = $xml->children();
+    public function filterElement(DOMElement $element) {
+        $children = $element->childNodes;
         $content = '';
         foreach($children as $child) {
-            $content .= $child->asXML();
+            $content .= $this->DOMDocument->saveHTML($child);
         }
-        $underBlocks = $xml->xpath($this->xpath);
-        foreach($underBlocks as &$underBlock) {
-            $id = (string) $underBlock['data-easyminer-block-id'];
+        $underBlocks = $this->getChildren($element);
+        foreach($underBlocks as $underBlock) {
+            $id = $this->getAttribute($underBlock, 'data-easyminer-block-id');
+            $underBlockContent = $this->DOMDocument->saveHTML($underBlock);
             if (!in_array($id, $this->selection, false)) {
-                $content = str_replace($underBlock->asXML(), "", $content);
+                $content = str_replace($underBlockContent, "", $content);
             } else {
-                $content = str_replace($underBlock->asXML(), $this->filterNode($underBlock), $content);
+                $content = str_replace($underBlockContent, $this->filterElement($underBlock), $content);
             }
         }
         return $content;
+    }
+
+    private function getChildren(DOMElement $element = null) {
+        return $this->DOMXpath->query($this->xpath, $element);
+    }
+
+    private function getAttribute($element, $name) {
+        return $element->attributes->getNamedItem($name)->value;
     }
 }
