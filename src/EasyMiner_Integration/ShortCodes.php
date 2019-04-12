@@ -9,13 +9,10 @@ class ShortCodes
 	}
 
 	public function report_callback($attr) {
-	    //wp_die($attr['post_id']);
         $post_id = $attr['post_id'];
-        //$block_id = $attr['block_id'];
+        $block_id = $attr['block_id'];
         $permalink = get_permalink($post_id);
-	    $output = '<a href="'.$permalink.'#blockId=0" target="_blank">Odkaz</a>';
-	    //$output.= $permalink;
-
+	    $output = '<a href="'.$permalink.'#blockId='.$block_id.'" target="_blank">Odkaz</a>';
         return $output;
     }
 }
