@@ -2,45 +2,34 @@
     var el = element.createElement;
 
     var blockStyle = {
-        backgroundColor: '#900',
-        color: '#fff',
+        backgroundColor: 'rgba(153,0,0,0)',
+        color: 'rgb(0,0,0)',
         padding: '20px',
+        textAlign: 'center',
+        fontSize: '8pt',
     };
 
     blocks.registerBlockType( 'easyminerintegration/easyminerblock', {
-        title: 'EasyMiner',
-        icon: 'universal-access-alt',
-        category: 'layout',
-
-        attributes: {
-            content: {
-                type: 'string',
-                source: 'html',
-            },
-        },
-
-        edit: function(props) {
+        title: 'EasyMiner Report Block',
+        icon: 'analytics',
+        category: 'embed',
+        edit: function() {
             return el(
-                'div',
-                null,
-                'text'
+                'p',
+                { style: blockStyle },
+                'EasyMiner Analytical Report Block'
             );
         },
-
-        save: function(props) {
-            return props.attributes.content;
-        },
+        save: function () {
+            return null;
+        }
     } );
 }(
     window.wp.blocks,
     window.wp.element
 ) );
 
-jQuery(document).ready(function($) {
-    $( document ).delegate( ".editor-block-list-item-easyminerintegration-easyminerblock",
-        "click",
-        zobrazThickbox);
-});
+
 
 
 

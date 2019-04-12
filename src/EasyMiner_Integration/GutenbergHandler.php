@@ -17,10 +17,6 @@ class GutenbergHandler extends AssetsHandler
     }
 
     public function register_assets() {
-        wp_register_script('easyminer-integration-report-format-js',
-                            plugins_url('assets/gutenberg/ea-report-format.js',
-                                $this->plugin_file),
-                            array('wp-rich-text'));
 
         wp_register_script('easyminer-integration-gutenberg-js',
             plugins_url('assets/gutenberg/ea-gutenberg.js',
@@ -37,14 +33,8 @@ class GutenbergHandler extends AssetsHandler
     }
 
     function my_custom_format_enqueue_assets_editor() {
-        wp_enqueue_script('easyminer-integration-report-format-js');
-        wp_localize_script('easyminer-integration-report-format-js', 'EasyMinerGutenbergLocalizeFormat', array(
-            'easyminer_report' => __('Task Report', 'EasyMiner-WordPress-Plugin')
-        ));
         wp_enqueue_script('easyminer-integration-gutenberg-js');
-
         wp_enqueue_script('easyminer-block-js');
-
         register_block_type( 'easyminerintegration/easyminerblock', array(
             'editor_script' => 'gutenberg-examples-01',
         ) );

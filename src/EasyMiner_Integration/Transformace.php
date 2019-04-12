@@ -27,7 +27,6 @@ class Transformace extends AssetsHandler
             $xslDoc->load(
                 plugin_dir_path($this->plugin_file)."/assets/xsl/4FTPMML2HTML.xsl",
                 LIBXML_NOCDATA);
-
             $xmlDoc = new DOMDocument();
             //$xmlDoc->load(plugin_dir_path($this->plugin_file)."/assets/xsl/LM1.xml");
             $xmlDoc->loadXML($post->post_content, LIBXML_NOCDATA);
