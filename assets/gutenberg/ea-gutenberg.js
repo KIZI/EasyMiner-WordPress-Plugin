@@ -5,6 +5,7 @@ $( document ).delegate( "#ea-button-vlozit", "click", function() {
     var blockIndex = editorsData.getBlockIndex(clientId);
     var content = getReportContent();
     var name = 'core/html';
+    //var name = 'easyminerintegration/easyminerblock';
     insertedBlock = wp.blocks.createBlock(name, {
         content: content,
     });

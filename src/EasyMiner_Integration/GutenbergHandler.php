@@ -26,6 +26,14 @@ class GutenbergHandler extends AssetsHandler
             plugins_url('assets/gutenberg/ea-gutenberg.js',
                 $this->plugin_file),
             array('jquery'));
+
+        wp_register_script(
+            'easyminer-block-js',
+            plugins_url('assets/gutenberg/ea-block.js',
+                $this->plugin_file),
+            array( 'wp-blocks', 'wp-element', 'jquery' )
+        );
+
     }
 
     function my_custom_format_enqueue_assets_editor() {
@@ -34,6 +42,12 @@ class GutenbergHandler extends AssetsHandler
             'easyminer_report' => __('Task Report', 'EasyMiner-WordPress-Plugin')
         ));
         wp_enqueue_script('easyminer-integration-gutenberg-js');
+
+        wp_enqueue_script('easyminer-block-js');
+
+        register_block_type( 'easyminerintegration/easyminerblock', array(
+            'editor_script' => 'gutenberg-examples-01',
+        ) );
     }
 
     public function thickbox() {
