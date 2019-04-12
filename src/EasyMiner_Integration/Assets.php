@@ -21,6 +21,14 @@ class Assets extends AssetsHandler
             plugins_url('/assets/script.js', $this->plugin_file), array('jquery'),
             '1.0', true
         );
+
+        wp_register_script(
+            'easyminer-integration-scroll-js',
+            plugins_url('/assets/scrollService.js', $this->plugin_file), array('jquery'),
+            '1.0', true
+        );
+
+
         wp_localize_script(
             'easyminer-integration-js',
             'EasyMinerLocalizeJS',

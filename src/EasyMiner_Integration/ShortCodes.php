@@ -9,10 +9,11 @@ class ShortCodes
 	}
 
 	public function report_callback($attr) {
-        //$post_id = $attr['post_id'];
+	    //wp_die($attr['post_id']);
+        $post_id = $attr['post_id'];
         //$block_id = $attr['block_id'];
-        //$permalink = get_permalink($post_id);
-	    $output = '<a href="https://lidovydum.eu" target="_blank">Odkaz</a>';
+        $permalink = get_permalink($post_id);
+	    $output = '<a href="'.$permalink.'#blockId=0" target="_blank">Odkaz</a>';
 	    //$output.= $permalink;
 
         return $output;

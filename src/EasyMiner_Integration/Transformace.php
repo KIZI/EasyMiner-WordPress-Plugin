@@ -36,6 +36,10 @@ class Transformace extends AssetsHandler
             $proc = new XSLTProcessor();
             $proc->importStylesheet($xslDoc);
             $html = @$proc->transformToXml($xmlDoc);
+            //$html = file_get_contents(plugin_dir_path(__FILE__).'/ukazka.html');
+            $src = wp_scripts()->registered['easyminer-integration-scroll-js']->src;
+            $link = "\n<script type='text/javascript' src='$src'></script>\n";
+            $html = str_replace('</head>', $link."</head>", $html);
             // https://developer.wordpress.org/plugins/metadata/managing-post-metadata/#character-escaping
             update_post_meta($post->ID, 'html', wp_slash($html));
             return $html;
@@ -74,7 +78,7 @@ class Transformace extends AssetsHandler
         $html = file_get_contents(plugin_dir_path(__FILE__).'/ukazka.html');
         $this->DOMDocument = new DOMDocument();
         $this->DOMDocument->loadHTML($html, LIBXML_NOERROR);
-        $rs = '[easyminer-link]';
+        $rs = '[easyminer-link post_id=19]';
         $rs .= $this->filterRootElement();
         echo '<div class="easyminer-block">'.$rs.'</div>';
         wp_die();
