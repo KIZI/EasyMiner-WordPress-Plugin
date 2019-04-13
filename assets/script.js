@@ -140,13 +140,24 @@ function setAllCheckboxes(checkboxes, value) {
     }
 }
 
+function isSomeIndeterminate(children) {
+    var result = false;
+    for (let child of children) {
+        if (child.indeterminate === true) {
+            result = true;
+        }
+    }
+    return result;
+}
+
 function checkForIndeterminate(node) {
     var children = $(node).parent().find("> ul > li > input[type=checkbox]");
     if (node.checked) {
         for (let child of children) {
             checkForIndeterminate(child);
         }
-        if (!areAllUnchecked(children) && !areAllChecked(children)) {
+        if ((!areAllUnchecked(children) && !areAllChecked(children)) ||
+        isSomeIndeterminate(children)) {
             node.indeterminate = true;
         } else {
             node.indeterminate = false;
@@ -193,7 +204,7 @@ jQuery(document).ready(function($) {
         setAllCheckboxes(children, this.checked);
 
         var rootParent = parents[parents.length -1];
-
+        if (rootParent)
         checkForIndeterminate(rootParent);
         //pokud je neco zaškrtlé tak povolém vložení
         var checkboxes = $(".easyminerReportUL").find("input[type=checkbox]").get();
