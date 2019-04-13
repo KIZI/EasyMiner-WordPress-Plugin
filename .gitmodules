@@ -1,0 +1,3 @@
+[submodule "EasyMiner-XML"]
+	path = assets/EasyMiner-XML
+	url = https://github.com/KIZI/EasyMiner-XML.git
