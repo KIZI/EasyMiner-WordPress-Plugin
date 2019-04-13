@@ -93,7 +93,6 @@ class Transformace extends AssetsHandler
             $block_id = $this->getAttribute($underBlock, 'data-easyminer-block-id');
             if (in_array($block_id, $this->selection, false)) {
                 $filtered = $this->filterElement($underBlock, false);
-                return $filtered;
                 $rs .= $filtered;
             }
         }
@@ -122,7 +121,7 @@ class Transformace extends AssetsHandler
             } else {
 	            $filteredContent = $this->filterElement($underBlock, $rootFound);
 	            if (!$allSelected) {
-		            $shortkod = "[easyminer-link post_id=$this->post_id block_id=$block_id]";
+		            $shortkod = "[easyminer-link post_id=$this->post_id block_id=\"$block_id\"]";
 		            //TODO tady je problém, když content nemá tagy
 		            $reg = '/<\/.*>/';
 		            if (preg_match($reg, $filteredContent)) {
@@ -139,7 +138,7 @@ class Transformace extends AssetsHandler
 
         if ($allSelectedRecursive && $rootFound && $underBlocks->length > 1) {
 	        $block_id = $this->getAttribute($element, 'data-easyminer-block-id');
-	        $shortkod = "[easyminer-link post_id=$this->post_id block_id=$block_id]";
+	        $shortkod = "[easyminer-link post_id=$this->post_id block_id=\"$block_id\"]";
 	        $content = preg_replace('/<\/.*>/',
 		        '$1'.$shortkod,
 		        $content, 1);
