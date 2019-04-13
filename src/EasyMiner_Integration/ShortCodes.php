@@ -13,7 +13,8 @@ class ShortCodes
         $block_id = $attr['block_id'];
         $block_id = preg_replace('/\s/', 'XXX', $block_id);
         $permalink = get_permalink($post_id);
-	    $output = '<a class="shortcode-link" href="'.$permalink.'#blockId='.$block_id.'" target="_blank">&#x21f0;</a>';
+        $title = __('To Source', 'EasyMiner-WordPress-Plugin');
+	    $output = '<a title="'.$title.'" class="shortcode-link" href="'.$permalink.'#blockId='.$block_id.'" target="_blank">&#x21f0;</a>';
         return $output;
     }
 }

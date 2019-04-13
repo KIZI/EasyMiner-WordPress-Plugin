@@ -80,5 +80,5 @@ msgstr "Nenalezeny žádné zprávy o běhu úlohy"
 msgid "Insert Report"
 msgstr "Vložit report"
 
-#~ msgid "Analytical Report"
-#~ msgstr "Všechny zprávy o běhu úlohy"
+msgid "To Source"
+msgstr "Ke zdroji"
