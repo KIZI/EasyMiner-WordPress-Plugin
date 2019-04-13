@@ -6,12 +6,15 @@ jQuery(document).ready(function($) {
         "click",
         function () {
             zobrazThickbox();
-            $("#TB_window").find('#TB_closeWindowButton').click(
-                function () {
-                    var clientId = editorsData.getSelectedBlock().clientId;
-                    wp.data.dispatch('core/editor').removeBlock(clientId);
+            setTimeout(function () {
+                var blocks = editorsData.getBlocks();
+                for (let block of blocks) {
+                    if (block.name === 'easyminerintegration/easyminerblock') {
+                        clientId = block.clientId;
+                        wp.data.dispatch('core/editor').removeBlock(clientId);
+                    }
                 }
-            );
+            }, 0);
         }
     );
 
@@ -20,19 +23,16 @@ jQuery(document).ready(function($) {
         var blockIndex = editorsData.getBlockIndex(clientId);
         var content = getReportContent();
         var name = 'core/html';
-        //var name = 'easyminerintegration/easyminerblock';
         insertedBlock = wp.blocks.createBlock(name, {
             content: content,
         });
-        wp.data.dispatch('core/editor').removeBlock(clientId);
-        wp.data.dispatch('core/editor').insertBlock(insertedBlock, blockIndex);
+        wp.data.dispatch('core/editor').insertBlock(insertedBlock, blockIndex + 1);
         tb_remove();
     });
 });
 
 ( function( blocks, element ) {
     var el = element.createElement;
-
     var blockStyle = {
         backgroundColor: 'rgba(153,0,0,0)',
         color: 'rgb(0,0,0)',
@@ -40,7 +40,6 @@ jQuery(document).ready(function($) {
         textAlign: 'center',
         fontSize: '8pt',
     };
-
     blocks.registerBlockType( 'easyminerintegration/easyminerblock', {
         title: 'EasyMiner Report Block',
         icon: 'analytics',

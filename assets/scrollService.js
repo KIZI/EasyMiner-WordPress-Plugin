@@ -6,6 +6,7 @@ jQuery(document).ready(function($) {
         var selector = "[class=foundRulesCount]";
         var searched = $(selector).get(0);
         if (searched) {
+            //https://stackoverflow.com/questions/442404/retrieve-the-position-x-y-of-an-html-element
             var y = searched.getBoundingClientRect().top;
             //kvuli chromu (https://stackoverflow.com/questions/15691569/javascript-issue-with-scrollto-in-chrome)
             setTimeout(function () {
