@@ -140,6 +140,25 @@ function setAllCheckboxes(checkboxes, value) {
     }
 }
 
+function checkForIndeterminate(node) {
+    var children = $(node).parent().find("> ul > li > input[type=checkbox]");
+    if (node.checked) {
+        for (let child of children) {
+            checkForIndeterminate(child);
+        }
+        if (!areAllUnchecked(children) && !areAllChecked(children)) {
+            node.indeterminate = true;
+        } else {
+            node.indeterminate = false;
+        }
+    } else {
+        node.indeterminate = false;
+        for (let child of children) {
+            child.indeterminate = false;
+        }
+    }
+}
+
 function getParent(node) {
     var parent = $(node).parent().parent().parent().find("> input[type=checkbox]").get(0);
     return parent;
@@ -169,8 +188,13 @@ jQuery(document).ready(function($) {
         if(!areAllChecked(children) && !areAllUnchecked(children) && !this.checked) {
             this.checked = true;
             setAllCheckboxes(children, true);
+            setAllCheckboxes(parents, true);
         }
         setAllCheckboxes(children, this.checked);
+
+        var rootParent = parents[parents.length -1];
+
+        checkForIndeterminate(rootParent);
         //pokud je neco zaškrtlé tak povolém vložení
         var checkboxes = $(".easyminerReportUL").find("input[type=checkbox]").get();
         var button = $("#ea-button-vlozit");

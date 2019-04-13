@@ -29,7 +29,7 @@ class Transformace extends AssetsHandler
         } else {
             $xslDoc = new DOMDocument();
             $xslDoc->load(
-                plugin_dir_path($this->plugin_file)."/assets/xsl/4FTPMML2HTML.xsl",
+                plugin_dir_path($this->plugin_file)."/assets/EasyMiner-XML/transformations/guhaPMML2HTML/4FTPMML2HTML.xsl",
                 LIBXML_NOCDATA);
             $xmlDoc = new DOMDocument();
             //$xmlDoc->load(plugin_dir_path($this->plugin_file)."/assets/xsl/LM1.xml");
@@ -122,7 +122,6 @@ class Transformace extends AssetsHandler
 	            $filteredContent = $this->filterElement($underBlock, $rootFound);
 	            if (!$allSelected) {
 		            $shortkod = "[easyminer-link post_id=$this->post_id block_id=\"$block_id\"]";
-		            //TODO tady je problém, když content nemá tagy
 		            $reg = '/<\/.*>/';
 		            if (preg_match($reg, $filteredContent)) {
 			            $filteredContent = preg_replace('/<\/.*>/',
