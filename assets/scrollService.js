@@ -3,7 +3,6 @@ jQuery(document).ready(function($) {
     if (/#blockId=/.test(url)) {
         var blockId = url.replace(/(.*)#blockId=(.*)$/,'$2');
         var selector = "[data-easyminer-block-id=" + blockId + "]";
-        var selector = "[class=foundRulesCount]";
         var searched = $(selector).get(0);
         if (searched) {
             //https://stackoverflow.com/questions/442404/retrieve-the-position-x-y-of-an-html-element
@@ -15,8 +14,6 @@ jQuery(document).ready(function($) {
                     behavior: 'auto',
                 });
             }, 0);
-        }  else {
-            console.log("neděju se");
         }
     }
 });

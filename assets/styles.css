@@ -44,3 +44,9 @@
 .closed {
     display: none!important;
 }
+
+.easyminer-block a.shortcode-link {
+    display: inline;
+    text-decoration: none!important;
+    font-weight: bold;
+}

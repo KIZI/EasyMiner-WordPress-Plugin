@@ -13,6 +13,7 @@ class Transformace extends AssetsHandler
     public $DOMXpath;
     public $DOMDocument;
     public $selection;
+    public $post_id;
 
     public function __construct() {
         parent::__construct();
@@ -73,12 +74,12 @@ class Transformace extends AssetsHandler
     public function getSelectedHTML() {
         $selection = $_GET['selection'];
         $this->selection = $selection;
-        $id = $_GET['id'];
+        $this->post_id = $_GET['id'];
         //$html = $this->getHTML(get_post($id));
         $html = file_get_contents(plugin_dir_path(__FILE__).'/ukazka.html');
         $this->DOMDocument = new DOMDocument();
         $this->DOMDocument->loadHTML($html, LIBXML_NOERROR);
-        $rs = '[easyminer-link post_id=19]';
+        $rs = '';
         $rs .= $this->filterRootElement();
         echo '<div class="easyminer-block">'.$rs.'</div>';
         wp_die();
@@ -89,9 +90,10 @@ class Transformace extends AssetsHandler
         $this->DOMXpath = new DOMXPath($this->DOMDocument);
         $underBlocks = $this->getChildren();
         foreach ($underBlocks as $underBlock) {
-            $id = $this->getAttribute($underBlock, 'data-easyminer-block-id');
-            if (in_array($id, $this->selection, false)) {
-                $filtered = $this->filterElement($underBlock);
+            $block_id = $this->getAttribute($underBlock, 'data-easyminer-block-id');
+            if (in_array($block_id, $this->selection, false)) {
+                $filtered = $this->filterElement($underBlock, false);
+                return $filtered;
                 $rs .= $filtered;
             }
         }
@@ -100,22 +102,49 @@ class Transformace extends AssetsHandler
         return $rs;
     }
 
-    public function filterElement(DOMElement $element) {
+    public function filterElement(DOMElement $element, $rootFound) {
         $children = $element->childNodes;
         $content = '';
         foreach($children as $child) {
             $content .= $this->DOMDocument->saveHTML($child);
         }
         $underBlocks = $this->getChildren($element);
+		$allSelectedRecursive = false;
+		if (!$rootFound) $allSelectedRecursive = $this->areAllSelected($underBlocks, true);
+		if ($allSelectedRecursive) $rootFound = true;
+        $allSelected = $this->areAllSelected($underBlocks, false);
+
         foreach($underBlocks as $underBlock) {
-            $id = $this->getAttribute($underBlock, 'data-easyminer-block-id');
+            $block_id = $this->getAttribute($underBlock, 'data-easyminer-block-id');
             $underBlockContent = $this->DOMDocument->saveHTML($underBlock);
-            if (!in_array($id, $this->selection, false)) {
+            if (!in_array($block_id, $this->selection, false)) {
                 $content = str_replace($underBlockContent, "", $content);
             } else {
-                $content = str_replace($underBlockContent, $this->filterElement($underBlock), $content);
+	            $filteredContent = $this->filterElement($underBlock, $rootFound);
+	            if (!$allSelected) {
+		            $shortkod = "[easyminer-link post_id=$this->post_id block_id=$block_id]";
+		            //TODO tady je problém, když content nemá tagy
+		            $reg = '/<\/.*>/';
+		            if (preg_match($reg, $filteredContent)) {
+			            $filteredContent = preg_replace('/<\/.*>/',
+				            '$1'.$shortkod,
+				            $filteredContent, 1);
+		            } else {
+		            	$filteredContent = $filteredContent.$shortkod;
+		            }
+	            }
+                $content = str_replace($underBlockContent, $filteredContent, $content);
             }
         }
+
+        if ($allSelectedRecursive && $rootFound && $underBlocks->length > 1) {
+	        $block_id = $this->getAttribute($element, 'data-easyminer-block-id');
+	        $shortkod = "[easyminer-link post_id=$this->post_id block_id=$block_id]";
+	        $content = preg_replace('/<\/.*>/',
+		        '$1'.$shortkod,
+		        $content, 1);
+        }
+
         return $content;
     }
 
@@ -126,4 +155,20 @@ class Transformace extends AssetsHandler
     private function getAttribute($element, $name) {
         return $element->attributes->getNamedItem($name)->value;
     }
+
+	private function areAllSelected( $underBlocks, $recursive) {
+    	$rs = true;
+    	foreach($underBlocks as $underBlock) {
+		    $id = $this->getAttribute($underBlock, 'data-easyminer-block-id');
+		    $in_array = in_array($id, $this->selection, false);
+		    if ($recursive) {
+			    $underBlocksSelected = $this->areAllSelected($this->getChildren($underBlock), true);
+			    if (!($in_array && $underBlocksSelected))
+				$rs = false;
+		    } elseif (!$in_array) {
+			    $rs = false;
+		    }
+		}
+    	return $rs;
+	}
 }

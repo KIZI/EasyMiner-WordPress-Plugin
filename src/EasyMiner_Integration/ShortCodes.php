@@ -12,7 +12,7 @@ class ShortCodes
         $post_id = $attr['post_id'];
         $block_id = $attr['block_id'];
         $permalink = get_permalink($post_id);
-	    $output = '<a href="'.$permalink.'#blockId='.$block_id.'" target="_blank">Odkaz</a>';
+	    $output = '<a class="shortcode-link" href="'.$permalink.'#blockId='.$block_id.'" target="_blank">&#x21f0;</a>';
         return $output;
     }
 }
