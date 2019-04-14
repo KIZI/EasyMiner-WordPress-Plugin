@@ -156,8 +156,8 @@ function checkForIndeterminate(node) {
         for (let child of children) {
             checkForIndeterminate(child);
         }
-        if ((!areAllUnchecked(children) && !areAllChecked(children)) ||
-        isSomeIndeterminate(children)) {
+        if ((!areAllUnchecked(children) && !areAllChecked(children))||
+            isSomeIndeterminate(children)) {
             node.indeterminate = true;
         } else {
             node.indeterminate = false;
@@ -206,6 +206,7 @@ jQuery(document).ready(function($) {
         var rootParent = parents[parents.length -1];
         if (rootParent)
         checkForIndeterminate(rootParent);
+        else checkForIndeterminate(this);
         //pokud je neco zaškrtlé tak povolém vložení
         var checkboxes = $(".easyminerReportUL").find("input[type=checkbox]").get();
         var button = $("#ea-button-vlozit");
