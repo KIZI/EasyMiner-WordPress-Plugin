@@ -1,6 +1,8 @@
 <?php
+
 namespace EasyMiner_Integration;
 
+defined( 'ABSPATH' ) or die;
 
 class TaskReportsTable extends \WP_List_Table {
 

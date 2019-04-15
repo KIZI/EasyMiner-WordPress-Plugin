@@ -2,6 +2,8 @@
 
 namespace EasyMiner_Integration;
 
+defined( 'ABSPATH' ) or die;
+
 class ShortCodes
 {
 	public function __construct() {

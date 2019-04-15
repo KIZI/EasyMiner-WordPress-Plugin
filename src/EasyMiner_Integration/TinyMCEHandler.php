@@ -2,13 +2,14 @@
 
 namespace EasyMiner_Integration;
 
-class TinymceHandler extends AssetsHandler
+defined( 'ABSPATH' ) or die;
+
+class TinyMCEHandler
 {
 
     public function __construct() {
-        parent::__construct();
-            add_action('media_buttons', array($this, 'tlacitko_callback'), 15);
-            add_action('admin_enqueue_scripts', array($this, 'zaradit_javascript'));
+        add_action('media_buttons', array($this, 'tlacitko_callback'), 15);
+        add_action('admin_enqueue_scripts', array($this, 'enqueue'));
     }
 
     public function tlacitko_callback() {
@@ -19,17 +20,14 @@ class TinymceHandler extends AssetsHandler
         <?php
     }
 
-    function zaradit_javascript() {
+    function enqueue() {
         $current_screen = get_current_screen();
         if( (function_exists( 'is_gutenberg_page' ) && is_gutenberg_page())
         || (method_exists( $current_screen, 'is_block_editor' ) &&
             $current_screen->is_block_editor())) return;
-
-        wp_enqueue_script('media_button',
-            plugins_url( '/assets/tinymce/ea-tinymce.js', $this->plugin_file),
+	    global $easyminer_integration_plugin_file;
+        wp_enqueue_script('easyminer-tinymce-js',
+            plugins_url( '/assets/tinymce/ea-tinymce.js', $easyminer_integration_plugin_file),
             array('jquery'), '1.0', true);
-        wp_localize_script('media_button', 'TINYMCE', array(
-
-        ));
     }
 }

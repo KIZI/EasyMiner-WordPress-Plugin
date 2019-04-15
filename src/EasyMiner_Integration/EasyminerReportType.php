@@ -2,17 +2,19 @@
 
 namespace EasyMiner_Integration;
 
-class  EasyminerReportType extends AssetsHandler
+defined( 'ABSPATH' ) or die;
+
+class  EasyminerReportType
 {
     public function __construct() {
-        parent::__construct();
         add_action('init', array($this, 'on_init'));
     }
 
     public function report_template($single) {
         global $post;
+        global $easyminer_integration_plugin_file;
         if ($post->post_type == 'easyminer-report') {
-            $cesta_k_sablone = plugin_dir_path($this->plugin_file).'/themes/single-easyminer-report.php';
+            $cesta_k_sablone = plugin_dir_path($easyminer_integration_plugin_file).'/themes/single-easyminer-report.php';
             if (file_exists($cesta_k_sablone)) {
                 return $cesta_k_sablone;
             }

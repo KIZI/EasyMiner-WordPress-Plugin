@@ -2,15 +2,17 @@
 
 namespace EasyMiner_Integration;
 
-class PopUpContent extends AssetsHandler {
+defined( 'ABSPATH' ) or die;
+
+class PopUpContent {
 
     public $reportsTable;
     public $sipkaDoprava;
     public $tr;
 
     public function __construct() {
-        parent::__construct();
-        $this->sipkaDoprava = plugins_url('/assets/img/arrow.svg', $this->plugin_file );
+        global $easyminer_integration_plugin_file;
+        $this->sipkaDoprava = plugins_url('/assets/img/arrow.svg', $easyminer_integration_plugin_file );
         $this->tr = new Transformace();
         add_action('admin_init', array($this, 'createReportsTable'));
         add_action('wp_ajax_zobraz_reporty', array($this, 'zobraz_reporty'));

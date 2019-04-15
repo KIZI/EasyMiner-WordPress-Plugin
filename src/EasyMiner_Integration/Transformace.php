@@ -2,12 +2,14 @@
 
 namespace EasyMiner_Integration;
 
+defined( 'ABSPATH' ) or die;
+
 use DOMDocument;
 use DOMXPath;
 use DOMElement;
 use XSLTProcessor;
 
-class Transformace extends AssetsHandler
+class Transformace
 {
     public $xpath;
     public $DOMXpath;
@@ -16,20 +18,20 @@ class Transformace extends AssetsHandler
     public $post_id;
 
     public function __construct() {
-        parent::__construct();
         add_action('wp_ajax_easyminer_get_html_selection', array($this, 'getSelectedHTML'));
         $this->xpath = '(.//*[@data-easyminer-block-title])[1]/following-sibling::*[@data-easyminer-block-title]';
         $this->xpath.= '| (.//*[@data-easyminer-block-title])[1]';
     }
 
     public function getHTML($post) {
-        $html = $post->html;
+    	$html = $post->html;
         if ($html) {
             return $html;
         } else {
+        	global $easyminer_integration_plugin_file;
             $xslDoc = new DOMDocument();
             $xslDoc->load(
-                plugin_dir_path($this->plugin_file)."/assets/EasyMiner-XML/transformations/guhaPMML2HTML/4FTPMML2HTML.xsl",
+                plugin_dir_path($easyminer_integration_plugin_file)."/assets/EasyMiner-XML/transformations/guhaPMML2HTML/4FTPMML2HTML.xsl",
                 LIBXML_NOCDATA);
             $xmlDoc = new DOMDocument();
             //$xmlDoc->load(plugin_dir_path($this->plugin_file)."/assets/xsl/LM1.xml");

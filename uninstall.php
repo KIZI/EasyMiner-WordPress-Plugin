@@ -1,8 +1,7 @@
 <?php
 
-if (!defined('WP_UNINSTALL_PLUGIN')) {
-    die;
-}
+defined( 'ABSPATH' ) or die;
+defined('WP_UNINSTALL_PLUGIN') or die;
 
 $posts = get_posts(array(
     'post_type' => 'easyminer-report'

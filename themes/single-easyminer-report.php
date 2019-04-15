@@ -1,4 +1,5 @@
 <?php
+defined( 'ABSPATH' ) or die;
 use EasyMiner_Integration\Transformace;
 $tr = new Transformace();
 $post = get_post();

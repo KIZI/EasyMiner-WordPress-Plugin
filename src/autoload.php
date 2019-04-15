@@ -1,7 +1,8 @@
 <?php
 
-try
-{
+defined( 'ABSPATH' ) or die;
+
+try {
     spl_autoload_register(function($class){
         $file = __DIR__.'/';
         $file .= str_replace(['\\'], DIRECTORY_SEPARATOR, $class).'.php';
@@ -10,7 +11,6 @@ try
         }
     });
 }
-catch (\Exception $exception)
-{
+catch (\Exception $exception) {
     wp_die($exception->getMessage());
 }

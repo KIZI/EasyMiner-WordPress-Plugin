@@ -64,10 +64,6 @@ function zobrazObsah(id) {
         },
         success:function (data) {
             $('#ea-tb-container').html(data);
-            /*setAllCheckboxes(
-                $(".easyminerReportUL").find("input[type=checkbox]").get(),
-                false,
-            );*/
         },
         error:function (errorThrown) {
             console.log(errorThrown);
@@ -156,12 +152,8 @@ function checkForIndeterminate(node) {
         for (let child of children) {
             checkForIndeterminate(child);
         }
-        if ((!areAllUnchecked(children) && !areAllChecked(children))||
-            isSomeIndeterminate(children)) {
-            node.indeterminate = true;
-        } else {
-            node.indeterminate = false;
-        }
+        node.indeterminate = (!areAllUnchecked(children) && !areAllChecked(children)) ||
+            isSomeIndeterminate(children);
     } else {
         node.indeterminate = false;
         for (let child of children) {
@@ -171,8 +163,7 @@ function checkForIndeterminate(node) {
 }
 
 function getParent(node) {
-    var parent = $(node).parent().parent().parent().find("> input[type=checkbox]").get(0);
-    return parent;
+    return $(node).parent().parent().parent().find("> input[type=checkbox]").get(0);
 }
 
 jQuery(document).ready(function($) {

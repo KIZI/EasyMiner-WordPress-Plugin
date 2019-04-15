@@ -1,15 +1,13 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+defined( 'ABSPATH' ) or die;
 
 use EasyMiner_Integration as EI;
 
 $rest = new EI\REST();
 $shortcodes = new EI\ShortCodes();
 $assets = new EI\Assets();
-$reportTyp = new EI\EasyminerReportType();
-$tinymce = new EI\TinymceHandler();
+$reportType = new EI\EasyminerReportType();
+$tinymce = new EI\TinyMCEHandler();
 $gutenberg = new EI\GutenbergHandler();
 $popUpContent = new EI\PopUpContent();
