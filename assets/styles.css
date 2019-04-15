@@ -7,17 +7,17 @@
     height: 410px;
 }
 
-.ea-report-polozka {
+.ea-report-item {
     text-decoration: none;
     cursor: pointer;
 }
 
-#ea-button-vlozit {
+#ea-button-insert {
     float: right;
     margin: 15px 0 0 0;
 }
 
-#ea-button-zpet {
+#ea-button-back {
     float: left;
     margin: 15px 0 0 0;
     height: 28px;
@@ -42,7 +42,7 @@
     padding: 0 0 0 25px!important;
 }
 
-.sipka {
+.ea-arrow {
     padding: 0 0 0 0.5em;
     cursor: pointer;
     width: 10px;

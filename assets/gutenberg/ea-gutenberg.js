@@ -5,7 +5,7 @@ jQuery(document).ready(function($) {
     $( document ).delegate( ".editor-block-list-item-easyminerintegration-easyminerblock",
         "click",
         function () {
-            zobrazThickbox();
+            showThickbox();
             setTimeout(function () {
                 var blocks = editorsData.getBlocks();
                 for (let block of blocks) {
@@ -18,7 +18,7 @@ jQuery(document).ready(function($) {
         }
     );
 
-    $( document ).delegate( "#ea-button-vlozit", "click", function() {
+    $( document ).delegate( "#ea-button-insert", "click", function() {
         var clientId = editorsData.getSelectedBlock().clientId;
         var blockIndex = editorsData.getBlockIndex(clientId);
         var content = getReportContent();

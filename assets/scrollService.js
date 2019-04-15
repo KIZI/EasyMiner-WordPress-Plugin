@@ -1,5 +1,4 @@
 jQuery(document).ready(function($) {
-    console.log("fur tu su");
     var url = window.location.href;
     if (/#blockId=/.test(url)) {
         var blockId = url.replace(/(.+)#blockId=(.*)$/, '$2');

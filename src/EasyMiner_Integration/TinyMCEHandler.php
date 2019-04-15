@@ -14,7 +14,7 @@ class TinyMCEHandler
 
     public function tlacitko_callback() {
         ?>
-        <a  id='ea-tlacitko'
+        <a  id='ea-button'
              class='button'><?php _e('Insert Report', 'EasyMiner-WordPress-Plugin');?>
         </a>
         <?php

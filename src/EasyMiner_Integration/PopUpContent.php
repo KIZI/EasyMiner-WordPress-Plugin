@@ -7,16 +7,16 @@ defined( 'ABSPATH' ) or die;
 class PopUpContent {
 
     public $reportsTable;
-    public $sipkaDoprava;
+    public $arrowRight;
     public $tr;
 
     public function __construct() {
         global $easyminer_integration_plugin_file;
-        $this->sipkaDoprava = plugins_url('/assets/img/arrow.svg', $easyminer_integration_plugin_file );
-        $this->tr = new Transformace();
+        $this->arrowRight = plugins_url('/assets/img/arrow.svg', $easyminer_integration_plugin_file );
+        $this->tr = new Transformations();
         add_action('admin_init', array($this, 'createReportsTable'));
-        add_action('wp_ajax_zobraz_reporty', array($this, 'zobraz_reporty'));
-        add_action('wp_ajax_zobraz_casti', array($this, 'zobraz_casti'));
+        add_action('wp_ajax_show_reports', array($this, 'show_reports'));
+        add_action('wp_ajax_show_sections', array($this, 'show_sections'));
         add_action('admin_footer', array($this, 'render_content'));
     }
 
@@ -25,7 +25,7 @@ class PopUpContent {
         $this->reportsTable = new TaskReportsTable();
     }
 
-    public function zobraz_reporty() {
+    public function show_reports() {
         ?>
         <style type="text/css">
         .wp-list-table .column-name { width: 70%; } 
@@ -37,7 +37,7 @@ class PopUpContent {
         wp_die();
     }
 
-    public function zobraz_casti() {
+    public function show_sections() {
         $id = $_GET['id'];
         $treeselectArray = $this->tr->getTreeselectArray($id);
         echo '<ul class="easyminerReportUL" id="easyminer-report-'.$id.'">';
@@ -49,9 +49,10 @@ class PopUpContent {
     }
 
     public function parseNode(array $node) {
+
         $rs = '<li><input id="'.$node['id'].'" type="checkbox"/>'.$node['title'];
         if (!empty($node['children'])) {
-            $rs.= '<img class="sipka" src="'.$this->sipkaDoprava.'" alt="arrow.svg">';
+            $rs.= '<img class="ea-arrow" src="'.$this->arrowRight.'" alt="arrow.svg">';
             $rs.= '<ul class="closed">';
             foreach ($node['children'] as $child) {
                 $rs.= $this->parseNode($child);
@@ -73,10 +74,10 @@ class PopUpContent {
             
             <div id="ea-tb-container"></div>
             <button class="closed button-secondary"
-                    id="ea-button-zpet"
+                    id="ea-button-back"
                     ><?php _e('Cancel', 'EasyMiner-WordPress-Plugin');?></button>
             <button class="button-primary"
-                    id="ea-button-vlozit"
+                    id="ea-button-insert"
                     ><?php _e('Insert', 'EasyMiner-WordPress-Plugin');?></button>
         </div>
         <?php

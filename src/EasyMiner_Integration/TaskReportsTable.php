@@ -40,8 +40,8 @@ class TaskReportsTable extends \WP_List_Table {
 
     public function renderTitle($item) {
         $rs = "";
-        $rs.= "<a class='row-title ea-report-polozka' ";
-        $rs.= "id='ea-report-polozka-$item->ID' >";
+        $rs.= "<a class='row-title ea-report-item' ";
+        $rs.= "id='ea-report-item-$item->ID' >";
         $rs.= $item->post_title;
         $rs.= "</a>";
         return $rs;

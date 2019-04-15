@@ -1,7 +1,7 @@
 <?php
 defined( 'ABSPATH' ) or die;
-use EasyMiner_Integration\Transformace;
-$tr = new Transformace();
+use EasyMiner_Integration\Transformations;
+$tr = new Transformations();
 $post = get_post();
 
 if (!$post->post_content) {

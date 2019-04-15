@@ -1,37 +1,32 @@
 
 jQuery(document).ready(function($) {
 
-    $( document ).delegate( "#ea-tlacitko", "click", zobrazThickbox);
+    $( document ).delegate( "#ea-button-insert", "click", showThickbox);
 
-    $( document ).delegate( ".ea-report-polozka", "click", function() {
-        var id = this.id.replace(/ea-report-polozka-/gi, '');
-        zobrazObsah(id);
+    $( document ).delegate( ".ea-report-item", "click", function() {
+        var id = this.id.replace(/ea-report-item-/gi, '');
+        showSections(id);
     });
 
-    $( document ).delegate( ".ea-polozka-checkbox", "click", function() {
-        this.checked = !this.checked;
-    });
-
-    $( document ).delegate( "#ea-button-zpet", "click", function() {
-        zobrazReporty();
+    $( document ).delegate( "#ea-button-back", "click", function() {
+        showReports();
     });
 });
 
-function zobrazThickbox() {
+function showThickbox() {
     tb_show( EasyMinerLocalizeJS.popUpTitle, '#TB_inline?inlineId=ea-dialog' );
-    zobrazReporty();
+    showReports();
 }
 
-function zobrazReporty() {
-    $("#ea-button-zpet").addClass("closed");
-    isPopUpListTable = true;
-    var vlozitButtton = document.getElementById('ea-button-vlozit');
-    vlozitButtton.setAttribute('disabled', 'disabled');
+function showReports() {
+    $("#ea-button-back").addClass("closed");
+    var insertButton = document.getElementById('ea-button-insert');
+    insertButton.setAttribute('disabled', 'disabled');
     $.ajax({
         type: "GET",
         url: ajaxurl,
         data: {
-            action: 'zobraz_reporty',
+            action: 'show_reports',
         },
         success:function (data) {
             $('#ea-tb-container').html(data);
@@ -53,13 +48,13 @@ function zobrazReporty() {
     );
 }
 
-function zobrazObsah(id) {
-    $("#ea-button-zpet").removeClass("closed");
+function showSections(id) {
+    $("#ea-button-back").removeClass("closed");
     $.ajax({
         type: "GET",
         url: ajaxurl,
         data: {
-            action: 'zobraz_casti',
+            action: 'show_sections',
             id: id,
         },
         success:function (data) {
@@ -74,20 +69,19 @@ function zobrazObsah(id) {
 function getReportContent() {
     var treeSelect = $(".easyminerReportUL");
     var id = treeSelect.attr("id").replace(/easyminer-report-/gi, '');
-    var pole = [];
+    var array = [];
     var result = '';
-    pole = getListSelection(treeSelect);
+    array = getListSelection(treeSelect);
     $.ajax({
         type: "GET",
         url: ajaxurl,
         async: false,
         data: {
             action: 'easyminer_get_html_selection',
-            selection: pole,
+            selection: array,
             id: id,
         },
         success: function (data) {
-            //TODO když dostanu HTML
            result = data;
         },
         error: function (errorThrown) {
@@ -168,7 +162,7 @@ function getParent(node) {
 
 jQuery(document).ready(function($) {
 
-    $(document).delegate(".easyminerReportUL .sipka", "click", function(){
+    $(document).delegate(".easyminerReportUL .ea-arrow", "click", function(){
         //TODO: otoč šipku
         $(this).parent().find("ul").get(0).classList.toggle("closed");
     });
@@ -200,7 +194,7 @@ jQuery(document).ready(function($) {
         else checkForIndeterminate(this);
         //pokud je neco zaškrtlé tak povolém vložení
         var checkboxes = $(".easyminerReportUL").find("input[type=checkbox]").get();
-        var button = $("#ea-button-vlozit");
+        var button = $("#ea-button-insert");
         if (!areAllUnchecked(checkboxes)) {
             button.removeAttr("disabled");
         } else {

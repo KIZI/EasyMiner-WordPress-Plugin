@@ -9,7 +9,7 @@ use DOMXPath;
 use DOMElement;
 use XSLTProcessor;
 
-class Transformace
+class Transformations
 {
     public $xpath;
     public $DOMXpath;
