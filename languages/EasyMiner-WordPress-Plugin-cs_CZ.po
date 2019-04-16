@@ -2,8 +2,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: EasyMiner Integration Plugin\n"
-"POT-Creation-Date: 2019-04-10 17:28+0200\n"
-"PO-Revision-Date: 2019-04-10 17:28+0200\n"
+"POT-Creation-Date: 2019-04-16 14:09+0200\n"
+"PO-Revision-Date: 2019-04-16 14:10+0200\n"
 "Last-Translator: \n"
 "Language-Team: Petr Novák\n"
 "Language: cs_CZ\n"
@@ -16,69 +16,73 @@ msgstr ""
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: src/EasyMiner_Integration/Assets.php:28
+#: src/EasyMiner_Integration/Assets.php:42
 msgid "Report Selection"
 msgstr "Výběr částí zprávy o běhu úlohy"
 
-#: src/EasyMiner_Integration/EasyminerReportType.php:30
-#: src/EasyMiner_Integration/EasyminerReportType.php:33
+#: src/EasyMiner_Integration/EasyminerReportType.php:32
 #: src/EasyMiner_Integration/EasyminerReportType.php:35
+#: src/EasyMiner_Integration/EasyminerReportType.php:37
 msgid "Task Reports"
 msgstr "Zprávy o běhu úlohy"
 
-#: src/EasyMiner_Integration/EasyminerReportType.php:31
-#: src/EasyMiner_Integration/EasyminerReportType.php:34
-#: src/EasyMiner_Integration/GutenbergHandler.php:34
-msgid "Task Report"
-msgstr "Analytická zpráva"
-
+#: src/EasyMiner_Integration/EasyminerReportType.php:33
 #: src/EasyMiner_Integration/EasyminerReportType.php:36
+msgid "Task Report"
+msgstr "Zpráva o běhu úlohy"
+
+#: src/EasyMiner_Integration/EasyminerReportType.php:38
 msgid "All Task Reports"
 msgstr "Všechny zprávy o běhu úlohy"
 
-#: src/EasyMiner_Integration/EasyminerReportType.php:37
+#: src/EasyMiner_Integration/EasyminerReportType.php:39
 msgid "View"
 msgstr "Zobrazit"
 
-#: src/EasyMiner_Integration/EasyminerReportType.php:38
+#: src/EasyMiner_Integration/EasyminerReportType.php:40
 msgid "Search"
 msgstr "Hledat"
 
-#: src/EasyMiner_Integration/EasyminerReportType.php:39
+#: src/EasyMiner_Integration/EasyminerReportType.php:41
 msgid "Not found"
 msgstr "Nenalezeno"
 
-#: src/EasyMiner_Integration/EasyminerReportType.php:40
+#: src/EasyMiner_Integration/EasyminerReportType.php:42
 msgid "Not found in Trash"
 msgstr "Nenalezeno v koši"
 
-#: src/EasyMiner_Integration/PopUpContent.php:75
+#: src/EasyMiner_Integration/GutenbergHandler.php:24
+msgid "EasyMiner Task Report Block"
+msgstr "Zpráva o běhu úlohy"
+
+#: src/EasyMiner_Integration/PopUpContent.php:78
 msgid "Cancel"
 msgstr "Zpět"
 
-#: src/EasyMiner_Integration/PopUpContent.php:78
+#: src/EasyMiner_Integration/PopUpContent.php:81
 msgid "Insert"
 msgstr "Vložit"
 
-#: src/EasyMiner_Integration/TaskReportsTable.php:19
+#: src/EasyMiner_Integration/ShortCodes.php:20
+msgid "To Source"
+msgstr "Ke zdroji"
+
+#: src/EasyMiner_Integration/TaskReportsTable.php:21
 msgid "Title"
 msgstr "Název"
 
-#: src/EasyMiner_Integration/TaskReportsTable.php:20
+#: src/EasyMiner_Integration/TaskReportsTable.php:22
 msgid "Created"
 msgstr "Vytvořeno"
 
-#: src/EasyMiner_Integration/TaskReportsTable.php:35
+#: src/EasyMiner_Integration/TaskReportsTable.php:37
 msgid "No Value"
 msgstr "Bez hodnoty"
 
-#: src/EasyMiner_Integration/TaskReportsTable.php:50
+#: src/EasyMiner_Integration/TaskReportsTable.php:52
 msgid "No Task Reports Found"
 msgstr "Nenalezeny žádné zprávy o běhu úlohy"
 
-#: src/EasyMiner_Integration/TinymceHandler.php:17
+#: src/EasyMiner_Integration/TinyMCEHandler.php:18
 msgid "Insert Report"
 msgstr "Vložit report"
-
-msgid "To Source"
-msgstr "Ke zdroji"
