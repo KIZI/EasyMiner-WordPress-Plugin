@@ -41,20 +41,20 @@ jQuery(document).ready(function($) {
         fontSize: '8pt',
     };
     blocks.registerBlockType( 'easyminerintegration/easyminerblock', {
-        title: 'EasyMiner Report Block',
+        title: eaGutenbergLocalize.blockName,
         icon: 'analytics',
         category: 'embed',
         edit: function() {
             return el(
                 'p',
                 { style: blockStyle },
-                'EasyMiner Analytical Report Block'
+                eaGutenbergLocalize.blockName
             );
         },
         save: function () {
             return null;
         }
-    } );
+    });
 }(
     window.wp.blocks,
     window.wp.element

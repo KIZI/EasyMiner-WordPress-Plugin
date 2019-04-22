@@ -18,6 +18,11 @@ class GutenbergHandler
             plugins_url('assets/gutenberg/ea-gutenberg.js',
 	            $easyminer_integration_plugin_file),
             array('wp-blocks','wp-element','jquery'));
+        wp_localize_script('easyminer-integration-gutenberg-js',
+            'eaGutenbergLocalize',
+            array(
+                'blockName' =>__('EasyMiner Task Report Block', 'EasyMiner-WordPress-Plugin')
+            ));
     }
 
     function enqueue() {

@@ -11,12 +11,15 @@ class ShortCodes
 	}
 
 	public function report_callback($attr) {
-        $post_id = $attr['post_id'];
-        $block_id = $attr['block_id'];
-        $block_id = preg_replace('/\s/', 'XXX', $block_id);
-        $permalink = get_permalink($post_id);
-        $title = __('To Source', 'EasyMiner-WordPress-Plugin');
-	    $output = '<a title="'.$title.'" class="shortcode-link" href="'.$permalink.'#blockId='.$block_id.'" target="_blank">&#x21f0;</a>';
+        $output = '';
+	    if (isset($attr['post_id']) && isset($attr['block_id'])) {
+            $post_id = $attr['post_id'];
+            $block_id = $attr['block_id'];
+            $block_id = preg_replace('/\s/', 'XXX', $block_id);
+            $permalink = get_permalink($post_id);
+            $title = __('To Source', 'EasyMiner-WordPress-Plugin');
+            $output .= '<a title="'.$title.'" class="shortcode-link" href="'.$permalink.'#blockId='.$block_id.'" target="_blank">&#x21f0;</a>';
+        }
         return $output;
     }
 }
