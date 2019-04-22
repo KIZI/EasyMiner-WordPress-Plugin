@@ -6,7 +6,7 @@ jQuery(document).ready(function($) {
         var content = getReportContent();
         var editor = tinyMCE.activeEditor;
         if(editor) {
-            tinyMCE.activeEditor.execCommand('mceInsertRawHTML', 0,
+            editor.execCommand('mceInsertRawHTML', 0,
                 content);
         } else {
             var textarea = $('#content');

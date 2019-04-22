@@ -21,7 +21,6 @@ class GutenbergHandler
     }
 
     function enqueue() {
-	    register_block_type( 'easyminerintegration/easyminerblock');
     	wp_enqueue_script('easyminer-integration-gutenberg-js');
 	    add_thickbox();
     }

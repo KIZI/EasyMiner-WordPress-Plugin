@@ -8,11 +8,11 @@ class TinyMCEHandler
 {
 
     public function __construct() {
-        add_action('media_buttons', array($this, 'tlacitko_callback'), 15);
+        add_action('media_buttons', array($this, 'button_callback'), 15);
         add_action('admin_enqueue_scripts', array($this, 'enqueue'));
     }
 
-    public function tlacitko_callback() {
+    public function button_callback() {
         ?>
         <a  id='ea-button'
              class='button'><?php _e('Insert Report', 'EasyMiner-WordPress-Plugin');?>
@@ -27,7 +27,7 @@ class TinyMCEHandler
             $current_screen->is_block_editor())) return;
 	    global $easyminer_integration_plugin_file;
         wp_enqueue_script('easyminer-tinymce-js',
-            plugins_url( '/assets/tinymce/ea-tinymce.js', $easyminer_integration_plugin_file),
+            plugins_url( '/assets/tinyMCE/ea-tinyMCE.js', $easyminer_integration_plugin_file),
             array('jquery'), '1.0', true);
     }
 }

@@ -7,6 +7,7 @@ defined( 'ABSPATH' ) or die;
 use WP_REST_Request;
 use WP_REST_Response;
 use WP_REST_Server;
+use WP_Error;
 
 class REST
 {
@@ -48,58 +49,50 @@ class REST
                         'required' => true,
                     ),
                 ),
-                'permission_callback' => function () {
+               /* 'permission_callback' => function () {
                     //return current_user_can('create_posts');
                     return true;
-                }
+                }*/
             )
         );
     }
 
     public function getReportsCallback() {
-        $data = array();
+        $data = [];
         $posts = get_posts(
-            array(
-                'post_type' => 'easyminer-report',
-                'post_status' => 'publish',
-            )
+            ['post_type' => 'easyminer-report',
+             'post_status' => 'publish',
+             'numberposts'=>-1]
         );
         if (!empty($posts)) {
             foreach ($posts as $post) {
-               $report_title = $post->post_title;
-               $permalink = get_permalink($post->ID);
-               $miner_id = get_post_meta($post->ID, 'miner_id');
-               $task_id = get_post_meta($post->ID, 'task_id');
-                $ar = array(
-                    'report_title' => $report_title,
-                    'report_permalink' => $permalink,
-                    'miner_id' => $miner_id,
-                    'task_id' => $task_id,
-                );
-                $data[] = $ar;
+               $ar = array(
+                    'report_title' => $post->post_title,
+                    'report_permalink' => get_permalink($post->ID),
+                    'miner_id' => get_post_meta($post->ID, 'miner_id', true),
+                    'task_id' => get_post_meta($post->ID, 'task_id', true),
+               );
+               $data[] = $ar;
             }
         }
-        $response = new WP_REST_Response($data);
-        return $response;
+        return new WP_REST_Response($data);
     }
 
     public function createReportCallback(WP_REST_Request $request) {
-        $id = wp_insert_post(array(
+        $r = wp_insert_post(array(
             'post_title' => $request['report_title'],
             'post_content' => $request['report_content'],
             'post_status' => 'publish',
             'post_type' => 'easyminer-report',
-        ), false);
-        update_post_meta($id, 'miner_id', $request['miner_id']);
-        update_post_meta($id, 'task_id', $request['task_id']);
-        $url = get_permalink($id);
+        ), true);
+        if ($r instanceof WP_Error) return $r;
+        update_post_meta($r, 'miner_id', $request['miner_id']);
+        update_post_meta($r, 'task_id', $request['task_id']);
+        $url = get_permalink($r);
         $result = array(
             'status' => 'OK',
             'url' => $url
         );
-        $response = new WP_REST_Response($result);
-        //$response->header( 'Location', $url );
-        // v jsnu co vrátím bude adresa
-        return $response;
+	    return new WP_REST_Response($result);
     }
 }

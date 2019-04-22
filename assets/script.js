@@ -1,13 +1,8 @@
-
 jQuery(document).ready(function($) {
-
-    $( document ).delegate( "#ea-button-insert", "click", showThickbox);
-
     $( document ).delegate( ".ea-report-item", "click", function() {
         var id = this.id.replace(/ea-report-item-/gi, '');
         showSections(id);
     });
-
     $( document ).delegate( "#ea-button-back", "click", function() {
         showReports();
     });
