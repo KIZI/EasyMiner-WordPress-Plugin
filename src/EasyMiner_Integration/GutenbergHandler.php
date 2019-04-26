@@ -22,6 +22,7 @@ class GutenbergHandler
             array(
                 'blockName' =>__('EasyMiner Task Report Block', 'EasyMiner-WordPress-Plugin')
             ));
+
     }
 
     function enqueue() {
