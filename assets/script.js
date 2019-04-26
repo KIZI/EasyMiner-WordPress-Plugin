@@ -163,26 +163,23 @@ jQuery(document).ready(function($) {
     });
 
     $(document).delegate(".easyminerReportUL li input:checkbox", "change", function(){
-        var parents = [];
-        var child = this;
+        var parents = [], child = this;
+        //var child = this;
         while (parent = getParent(child)) {
             var siblings = $(child).parent().parent().find("> li > input[type=checkbox]").get();
             if (areAllUnchecked(siblings)) parent.checked = false;
             parents.push(parent);
             child = parent;
         }
-
         if (parents && this.checked)
             setAllCheckboxes(parents, true);
-
         var children = $(this).parent().find("ul > li > input[type=checkbox]");
-        if(!areAllChecked(children) && !areAllUnchecked(children) && !this.checked) {
+        if(!areAllChecked(children) && !areAllUnchecked(children)) {
             this.checked = true;
             setAllCheckboxes(children, true);
             setAllCheckboxes(parents, true);
         }
         setAllCheckboxes(children, this.checked);
-
         var rootParent = parents[parents.length -1];
         if (rootParent)
         checkForIndeterminate(rootParent);

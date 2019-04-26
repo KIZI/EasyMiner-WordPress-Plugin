@@ -19,7 +19,8 @@ class Transformations
 
     public function __construct() {
         add_action('wp_ajax_easyminer_get_html_selection', array($this, 'getSelectedHTML'));
-        $this->xpath = '(.//*[@data-easyminer-block-title])[1]/following-sibling::*[@data-easyminer-block-title]';
+        $this->xpath = '(.//*[@data-easyminer-block-title])[1]/';
+        $this->xpath.= 'following-sibling::*[@data-easyminer-block-title]';
         $this->xpath.= '| (.//*[@data-easyminer-block-title])[1]';
     }
 
@@ -28,10 +29,9 @@ class Transformations
         if ($html) {
             return $html;
         } else {
-        	global $easyminer_integration_plugin_file;
             $xslDoc = new DOMDocument();
             $xslDoc->load(
-                plugin_dir_path($easyminer_integration_plugin_file)."/assets/EasyMiner-XML/transformations/guhaPMML2HTML/4FTPMML2HTML.xsl",
+                plugin_dir_path(EASYMINER_PLUGIN_FILE)."/assets/EasyMiner-XML/transformations/guhaPMML2HTML/4FTPMML2HTML.xsl",
                 LIBXML_NOCDATA);
             $xmlDoc = new DOMDocument();
             //$xmlDoc->load(plugin_dir_path($this->plugin_file)."/assets/xsl/LM1.xml");
@@ -74,8 +74,7 @@ class Transformations
     }
 
     public function getSelectedHTML() {
-        $selection = $_GET['selection'];
-        $this->selection = $selection;
+        $this->selection = $_GET['selection'];
         $this->post_id = $_GET['id'];
         //$html = $this->getHTML(get_post($id));
         $html = file_get_contents(plugin_dir_path(__FILE__).'/ukazka.html');
@@ -106,9 +105,7 @@ class Transformations
     public function filterElement(DOMElement $element, $rootFound) {
         $children = $element->childNodes;
         $content = '';
-        foreach($children as $child) {
-            $content .= $this->DOMDocument->saveHTML($child);
-        }
+        foreach($children as $child) $content .= $this->DOMDocument->saveHTML($child);
         $underBlocks = $this->getChildren($element);
 		$allSelectedRecursive = false;
 		if (!$rootFound) $allSelectedRecursive = $this->areAllSelected($underBlocks, true);
@@ -136,7 +133,6 @@ class Transformations
                 $content = str_replace($underBlockContent, $filteredContent, $content);
             }
         }
-
         if ($allSelectedRecursive && $rootFound && $underBlocks->length > 1) {
 	        $block_id = $this->getAttribute($element, 'data-easyminer-block-id');
 	        $shortkod = "[easyminer-link post_id=$this->post_id block_id=\"$block_id\"]";
@@ -144,7 +140,6 @@ class Transformations
 		        '$1'.$shortkod,
 		        $content, 1);
         }
-
         return $content;
     }
 

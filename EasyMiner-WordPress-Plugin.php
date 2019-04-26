@@ -9,8 +9,7 @@ License URI:  http://www.apache.org/licenses/LICENSE-2.0.html
  */
 defined( 'ABSPATH' ) or die;
 
-global $easyminer_integration_plugin_file;
-$easyminer_integration_plugin_file = __FILE__;
+define('EASYMINER_PLUGIN_FILE', __FILE__);
 
 require_once 'src/autoload.php';
 require_once 'src/init.php';

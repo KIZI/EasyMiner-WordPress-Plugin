@@ -13,10 +13,9 @@ class GutenbergHandler
     }
 
     public function on_init() {
-		global $easyminer_integration_plugin_file;
         wp_register_script('easyminer-integration-gutenberg-js',
             plugins_url('assets/gutenberg/ea-gutenberg.js',
-	            $easyminer_integration_plugin_file),
+	            EASYMINER_PLUGIN_FILE),
             array('wp-blocks','wp-element','jquery'));
         wp_localize_script('easyminer-integration-gutenberg-js',
             'eaGutenbergLocalize',

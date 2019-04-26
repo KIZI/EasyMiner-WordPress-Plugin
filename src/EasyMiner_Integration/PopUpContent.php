@@ -11,8 +11,7 @@ class PopUpContent {
     public $tr;
 
     public function __construct() {
-        global $easyminer_integration_plugin_file;
-        $this->arrowRight = plugins_url('/assets/img/arrow.svg', $easyminer_integration_plugin_file );
+        $this->arrowRight = plugins_url('/assets/img/arrow.svg', EASYMINER_PLUGIN_FILE );
         $this->tr = new Transformations();
         add_action('admin_init', array($this, 'createReportsTable'));
         add_action('wp_ajax_show_reports', array($this, 'show_reports'));
@@ -49,7 +48,6 @@ class PopUpContent {
     }
 
     public function parseNode(array $node) {
-
         $rs = '<li><input id="'.$node['id'].'" type="checkbox"/>'.$node['title'];
         if (!empty($node['children'])) {
             $rs.= '<img class="ea-arrow" src="'.$this->arrowRight.'" alt="arrow.svg">';

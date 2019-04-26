@@ -7,8 +7,6 @@ defined( 'ABSPATH' ) or die;
 class Assets {
 	public $plugin_file;
     public function __construct() {
-	    global $easyminer_integration_plugin_file;
-	    $this->plugin_file = $easyminer_integration_plugin_file;
         add_action('init', array($this, 'on_init'));
         add_action('admin_init', array($this, 'on_admin_init'));
         add_action('admin_enqueue_scripts', array($this, 'on_admin_enqueue_scripts'));
@@ -18,7 +16,7 @@ class Assets {
 
         wp_register_script(
             'easyminer-integration-scroll-js',
-            plugins_url('/assets/scrollService.js', $this->plugin_file), array('jquery'),
+            plugins_url('/assets/scrollService.js', EASYMINER_PLUGIN_FILE), array('jquery'),
             '1.0', true
         );
     }
@@ -26,12 +24,12 @@ class Assets {
 	public function on_admin_init() {
 		wp_register_style(
 			'easyminer-integration-css',
-			plugins_url( '/assets/styles.css', $this->plugin_file )
+			plugins_url( '/assets/styles.css', EASYMINER_PLUGIN_FILE )
 		);
 
 		wp_register_script(
 			'easyminer-integration-js',
-			plugins_url('/assets/script.js', $this->plugin_file), array('jquery'),
+			plugins_url('/assets/script.js', EASYMINER_PLUGIN_FILE), array('jquery'),
 			'1.0', true
 		);
 

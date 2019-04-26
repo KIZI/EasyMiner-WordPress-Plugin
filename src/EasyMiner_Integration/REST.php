@@ -13,7 +13,6 @@ class REST
 {
     function __construct() {
         add_action('rest_api_init', array($this, 'register_routes'));
-
     }
 
     public function register_routes() {
@@ -33,10 +32,6 @@ class REST
                 'callback' => array($this, 'createReportCallback'),
                 'args' => array(
                     'report_title'=> array(
-                        'validate_callback' => function($param, $request, $key) {
-                            //return is_numeric( $param );
-                            return true;
-                        },
                         'required' => true,
                     ),
                     'report_content' => array(
@@ -48,11 +43,7 @@ class REST
                     'task_id' => array(
                         'required' => true,
                     ),
-                ),
-               /* 'permission_callback' => function () {
-                    //return current_user_can('create_posts');
-                    return true;
-                }*/
+                )
             )
         );
     }

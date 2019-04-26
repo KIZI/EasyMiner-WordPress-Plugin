@@ -25,9 +25,8 @@ class TinyMCEHandler
         if( (function_exists( 'is_gutenberg_page' ) && is_gutenberg_page())
         || (method_exists( $current_screen, 'is_block_editor' ) &&
             $current_screen->is_block_editor())) return;
-	    global $easyminer_integration_plugin_file;
         wp_enqueue_script('easyminer-tinymce-js',
-            plugins_url( '/assets/tinyMCE/ea-tinyMCE.js', $easyminer_integration_plugin_file),
+            plugins_url( '/assets/tinyMCE/ea-tinyMCE.js', EASYMINER_PLUGIN_FILE),
             array('jquery'), '1.0', true);
     }
 }
