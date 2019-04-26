@@ -1,0 +1,118 @@
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: EasyMiner-WordPress-Plugin REST API
+  description: |
+    This is a REST API documentation for WordPress Plugin [EasyMiner-WordPress-Plugin](https://github.com/KIZI/EasyMiner-WordPress-Plugin),
+    that integrates [EasyMiner](https://www.easyminer.eu/) data mining tool with WordPress.
+host: localhost/wordpress
+basePath: /wp-json/EasyMiner-WordPress-Plugin/v1
+produces:
+  - application/json
+consumes:
+  - multipart/form-data
+
+paths:
+
+  /getReports:
+    get:
+      summary: |
+        Returns info about saved task reports
+      produces:
+        - application/json
+      responses:
+        200:
+          description: Task Reports Info Retrieved
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/TaskReportInfo"
+            #https://swagger.io/docs/specification/2-0/describing-responses/
+            #https://stackoverflow.com/questions/19585581/how-to-describe-a-model-in-swagger-for-an-array-with-simple-objects
+            #https://swagger.io/docs/specification/data-models/data-types/#array
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/Error"
+
+  /createReport:
+    post:
+      summary: |
+        Creates record of task report
+      produces:
+        - application/json
+      parameters:
+        - in: formData
+          name: report_title
+          required: true
+          type: string
+          description: |
+            Title of the new task report stored in WordPress
+        - in: formData
+          name: report_content
+          type: string
+          required: true
+          description: |
+            Content of the task report. XML string of a PMML format
+        - in: formData
+          name: miner_id
+          type: string
+          required: true
+          description: |
+            Miner ID
+        - in: formData
+          name: task_id
+          type: string
+          required: true
+          description: |
+            Task ID
+      responses:
+        201:
+          description: Task Report Saved
+          schema:
+            $ref: "#/definitions/TaskReportCreation"
+          #https://swagger.io/docs/specification/2-0/describing-responses/
+          #https://github.com/starfishmod/WPAPI-SwaggerGenerator/blob/master/lib/class-wp-rest-swagger-controller.php
+          #-> okopči definici error, default response
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/Error"
+
+definitions:
+
+  TaskReportInfo:
+    type: object
+    properties:
+      report_title:
+        type: string
+      report_permalink:
+        type: string
+      miner_id:
+        type: string
+      task_id:
+        type: string
+
+  TaskReportCreation:
+    type: object
+    properties:
+      status:
+        type: string
+      url:
+        type: string
+
+  Error:
+    type: object
+    properties:
+      code:
+        type: string
+      message:
+        type: string
+      data:
+        type: object
+        properties:
+          status:
+            type: integer
+
+
+

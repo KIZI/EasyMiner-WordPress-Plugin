@@ -66,7 +66,7 @@ class REST
                $data[] = $ar;
             }
         }
-        return new WP_REST_Response($data);
+        return new WP_REST_Response($data, 200);
     }
 
     public function createReportCallback(WP_REST_Request $request) {
@@ -84,6 +84,6 @@ class REST
             'status' => 'OK',
             'url' => $url
         );
-	    return new WP_REST_Response($result);
+	    return new WP_REST_Response($result, 201);
     }
 }
