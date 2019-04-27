@@ -40,8 +40,8 @@ class Transformations
             $proc->importStylesheet($xslDoc);
             $html = @$proc->transformToXml($xmlDoc);
             //$html = file_get_contents(plugin_dir_path(__FILE__).'/ukazka.html');
-            $src = wp_scripts()->registered['easyminer-integration-scroll-js']->src;
-            $link = "\n<script type='text/javascript' src='$src'></script>\n";
+            $srcScr = wp_scripts()->registered['easyminer-integration-scroll-js']->src;
+	        $link = "\n<script type='text/javascript' src='$srcScr'></script>\n";
             $html = str_replace('</head>', $link."</head>", $html);
             // https://developer.wordpress.org/plugins/metadata/managing-post-metadata/#character-escaping
             update_post_meta($post->ID, 'html', wp_slash($html));

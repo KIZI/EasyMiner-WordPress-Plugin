@@ -70,19 +70,24 @@ class REST
     }
 
     public function createReportCallback(WP_REST_Request $request) {
-        $r = wp_insert_post(array(
+	    //https://wordpress.stackexchange.com/questions/75568/wp-insert-post-disable-html-filter
+	    remove_filter('content_save_pre', 'wp_filter_post_kses');
+	    remove_filter('content_filtered_save_pre', 'wp_filter_post_kses');
+    	$r = wp_insert_post(array(
             'post_title' => $request['report_title'],
             'post_content' => $request['report_content'],
             'post_status' => 'publish',
             'post_type' => 'easyminer-report',
         ), true);
+	    add_filter('content_save_pre', 'wp_filter_post_kses');
+	    add_filter('content_filtered_save_pre', 'wp_filter_post_kses');
         if ($r instanceof WP_Error) return $r;
         update_post_meta($r, 'miner_id', $request['miner_id']);
         update_post_meta($r, 'task_id', $request['task_id']);
         $url = get_permalink($r);
         $result = array(
             'status' => 'OK',
-            'url' => $url
+            'url' => $url,
         );
 	    return new WP_REST_Response($result, 201);
     }

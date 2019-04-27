@@ -13,6 +13,7 @@ class Assets {
     }
 
     public function on_init() {
+	    // Post filtering
 
         wp_register_script(
             'easyminer-integration-scroll-js',

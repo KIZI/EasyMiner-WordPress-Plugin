@@ -12,10 +12,9 @@ class  EasyminerReportType
 
     public function report_template($single) {
         global $post;
-        global $easyminer_integration_plugin_file;
         if ($post->post_type == 'easyminer-report') {
             $cesta_k_sablone =
-	        plugin_dir_path($easyminer_integration_plugin_file).
+	        plugin_dir_path(EASYMINER_PLUGIN_FILE).
 	        '/themes/single-easyminer-report.php';
             if (file_exists($cesta_k_sablone)) {
                 return $cesta_k_sablone;
@@ -25,6 +24,7 @@ class  EasyminerReportType
     }
 
     public function on_init() {
+
         $found = locate_template('single-easyminer-report.php');
         if (!$found) {
             add_filter('single_template', array($this, 'report_template'));
