@@ -1,4 +1,4 @@
-jQuery(document).ready(function($) {
+(function ($, root) {$(document).ready(function(){
     var url = window.location.href;
     if (/#blockId=/.test(url)) {
         var blockId = url.replace(/(.+)#blockId=(.*)$/, '$2');
@@ -18,4 +18,4 @@ jQuery(document).ready(function($) {
             }, 0);
         }
     }
-});
+});})(jQuery, this);
