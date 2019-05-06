@@ -34,12 +34,10 @@ class Transformations
                 plugin_dir_path(EASYMINER_PLUGIN_FILE)."/assets/EasyMiner-XML/transformations/guhaPMML2HTML/4FTPMML2HTML.xsl",
                 LIBXML_NOCDATA);
             $xmlDoc = new DOMDocument();
-            //$xmlDoc->load(plugin_dir_path($this->plugin_file)."/assets/xsl/LM1.xml");
             $xmlDoc->loadXML($post->post_content, LIBXML_NOCDATA);
             $proc = new XSLTProcessor();
             $proc->importStylesheet($xslDoc);
             $html = @$proc->transformToXml($xmlDoc);
-            //$html = file_get_contents(plugin_dir_path(__FILE__).'/ukazka.html');
             $srcScr = wp_scripts()->registered['easyminer-integration-scroll-js']->src;
 	        $link = "\n<script type='text/javascript' src='$srcScr'></script>\n";
             $html = str_replace('</head>', $link."</head>", $html);
@@ -51,8 +49,7 @@ class Transformations
 
     public function getTreeselectArray($id) {
         $post = get_post($id);
-        //$html = $this->getHTML($post);
-        $html = file_get_contents(plugin_dir_path(__FILE__).'/ukazka.html');
+        $html = $this->getHTML($post);
         $this->DOMDocument = new DOMDocument();
         $this->DOMDocument->loadHTML($html, LIBXML_NOERROR);
         $this->DOMXpath = new DOMXPath($this->DOMDocument);
@@ -76,8 +73,7 @@ class Transformations
     public function getSelectedHTML() {
         $this->selection = $_GET['selection'];
         $this->post_id = $_GET['id'];
-        //$html = $this->getHTML(get_post($id));
-        $html = file_get_contents(plugin_dir_path(__FILE__).'/ukazka.html');
+        $html = $this->getHTML(get_post($this->post_id));
         $this->DOMDocument = new DOMDocument();
         $this->DOMDocument->loadHTML($html, LIBXML_NOERROR);
         $rs = '';
